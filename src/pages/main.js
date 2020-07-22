@@ -3,13 +3,13 @@ import { useMainPageStyles } from "../styles";
 import Layout from "../components/shared/Layout";
 
 function MainPage() {
-  useMainPageStyles();
+  const classes = useMainPageStyles();
 
   return (
     <Layout>
-    hello
+      <h1>hello</h1>
     </Layout>
-  )
+  );
 }
 
 export default MainPage;

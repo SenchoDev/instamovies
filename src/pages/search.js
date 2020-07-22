@@ -1,10 +1,11 @@
 import React from "react";
 import { useSearchStyles } from "../styles";
+import Layout from "../components/shared/Layout";
 
 function SearchPage() {
-  useSearchStyles();
+  const classes = useSearchStyles();
 
-  return <div>SearchPage</div>;
+  return <h1>Search Page</h1>
 }
 
 export default SearchPage;

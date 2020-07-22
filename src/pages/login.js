@@ -85,7 +85,6 @@ function LoginPage() {
 }
 
 export function LoginWithFacebook({ color, iconColor, variant, blue }) {
-  console.log(blue)
   const classes = useLoginPageStyles();
   const facebookIcon =
     iconColor === "blue" ? FacebookIconBlue : FacebookIconWhite;

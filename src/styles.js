@@ -239,7 +239,11 @@ export const useNavbarStyles = makeStyles((theme) => ({
     order: 0,
     zIndex: "100 !important",
   },
-  section: {
+  navLink:{
+    fontSize: '20px',
+    cursor: 'pointer',
+  },
+    section: {
     alignItems: "center",
     display: "flex",
     height: 54,
