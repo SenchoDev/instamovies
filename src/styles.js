@@ -2,8 +2,6 @@ import { makeStyles, withStyles, Tooltip } from "@material-ui/core";
 import IconSheet from "./images/icon-sheet.png";
 import IconSheet2 from "./images/icon-sheet-2.png";
 
-
-
 /* Feed page: /pages/feed.js */
 export const useMainPageStyles = makeStyles((theme) => ({
   container: {
@@ -117,23 +115,15 @@ export const useExploreGridStyles = makeStyles((theme) => ({
 
 /* Login page: /pages/login.js */
 export const useLoginPageStyles = makeStyles({
-  signUpCard: {
-    maxWidth: 348,
-    padding: "16px 40px",
-    marginBottom: 10,
+  section: {
     display: "grid",
-    alignItems: "center",
-    gridTemplateColumns: "2fr 1fr",
+    placeItems: "center",
+    height: "100vh",
   },
   card: {
     maxWidth: 348,
     padding: "16px 40px",
     marginBottom: 10,
-  },
-  section: {
-    display: "grid",
-    placeItems: "center",
-    height: "100vh",
   },
   cardHeader: {
     backgroundImage: `url(${IconSheet})`,
@@ -168,6 +158,17 @@ export const useLoginPageStyles = makeStyles({
     height: 16,
     width: 16,
     marginRight: 8,
+  },
+  colorSecondary:{
+    color: "#385185"
+  },
+    signUpCard: {
+    maxWidth: 348,
+    padding: "16px 40px",
+    marginBottom: 10,
+    display: "grid",
+    alignItems: "center",
+    gridTemplateColumns: "2fr 1fr",
   },
 });
 
