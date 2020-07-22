@@ -19,7 +19,7 @@ function LoginPage() {
     <React.Fragment>
       <SEO title="Login" />
       <section className={classes.section}>
-        <aritcle>
+        <article>
           <Card className={classes.card}>
             <CardHeader className={classes.cardHeader} />
             <form>
@@ -62,7 +62,7 @@ function LoginPage() {
               <div className={classes.orLine} />
             </div>
 
-            <LoginWithFacebook  iconColor="blue"/>
+            <LoginWithFacebook  iconColor="blue" blue />
             <Button fullWidth className={classes.colorSecondary}>
               <Typography variant="caption">Forgot password?</Typography>
             </Button>
@@ -78,19 +78,20 @@ function LoginPage() {
               </Button>
             </Link>
           </Card>
-        </aritcle>
+        </article>
       </section>
     </React.Fragment>
   );
 }
 
-export function LoginWithFacebook({ iconColor, variant }) {
+export function LoginWithFacebook({ color, iconColor, variant, blue }) {
+  console.log(blue)
   const classes = useLoginPageStyles();
   const facebookIcon =
     iconColor === "blue" ? FacebookIconBlue : FacebookIconWhite;
 
   return (
-    <Button fullWidth variant={variant} className={classes.colorSecondary}>
+    <Button fullWidth color={color} variant={variant} className={blue ? classes.buttonColor : classes.buttonWhite} >
       <img
         src={facebookIcon}
         alt="facebook icon"

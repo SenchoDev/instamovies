@@ -159,10 +159,13 @@ export const useLoginPageStyles = makeStyles({
     width: 16,
     marginRight: 8,
   },
-  colorSecondary:{
-    color: "#385185"
+  buttonColor: {
+    color: "#385185",
   },
-    signUpCard: {
+  buttonWhite: {
+    color: "#ffffff",
+  },
+  signUpCard: {
     maxWidth: 348,
     padding: "16px 40px",
     marginBottom: 10,
