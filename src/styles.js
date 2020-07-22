@@ -3,7 +3,7 @@ import IconSheet from "./images/icon-sheet.png";
 import IconSheet2 from "./images/icon-sheet-2.png";
 
 /* Feed page: /pages/feed.js */
-export const useFeedPageStyles = makeStyles(theme => ({
+export const useMainPageStyles = makeStyles(theme => ({
   container: {
     display: "grid",
     // gridAutoFlow: "column",
@@ -31,6 +31,55 @@ const iconProps = {
   backgroundRepeat: "no-repeat",
   height: 12
 };
+
+/* Feed page: /search */
+export const useSearchStyles = makeStyles(theme => ({
+  container: {
+    display: "grid",
+    // gridAutoFlow: "column",
+    gridTemplateColumns: "minmax(auto, 600px) 300px",
+    gridGap: 35,
+    [theme.breakpoints.down("sm")]: {
+      gridTemplateColumns: "minmax(auto, 600px)",
+      justifyContent: "center"
+    },
+    "&.slickSlider": {
+      display: "grid"
+    }
+  },
+  sidebarContainer: {
+    display: "grid",
+    margin: "0px 28px 24px",
+    justifyContent: "center",
+    gridTemplateColumns: "minmax(auto, 300px)"
+  },
+  sidebarWrapper: { position: "fixed", width: 293 }
+}));
+
+export const useMoviesStyles = makeStyles(theme => ({
+  container: {
+    display: "grid",
+    // gridAutoFlow: "column",
+    gridTemplateColumns: "minmax(auto, 600px) 300px",
+    gridGap: 35,
+    [theme.breakpoints.down("sm")]: {
+      gridTemplateColumns: "minmax(auto, 600px)",
+      justifyContent: "center"
+    },
+    "&.slickSlider": {
+      display: "grid"
+    }
+  },
+  sidebarContainer: {
+    display: "grid",
+    margin: "0px 28px 24px",
+    justifyContent: "center",
+    gridTemplateColumns: "minmax(auto, 300px)"
+  },
+  sidebarWrapper: { position: "fixed", width: 293 }
+}));
+
+
 
 /* ExploreSuggestions component: /components/explore/ExploreSuggestions.js */
 export const useExploreSuggestionsStyles = makeStyles(theme => ({

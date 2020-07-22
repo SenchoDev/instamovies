@@ -35,3 +35,25 @@ export const defaultCurrentUser = {
   followers: [defaultUser],
   following: [defaultUser]
 };
+
+
+export function getSmallCard() {
+  return {
+    id: uuid(),
+    title: "Marvel's Agents of S.H.I.E.L.D",
+    date: "Sep 24, 2013",
+    image:
+      "https://i.ibb.co/j6GS0gV/ImgSmall.png"
+  };
+}
+
+export function getTrailerCard() {
+  return {
+    id: uuid(),
+    title: "Greyhound",
+    image:
+      "https://i.ibb.co/gdYHvx5/Img-Trailer.png"
+  };
+}
+
+

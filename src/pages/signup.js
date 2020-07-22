@@ -1,7 +1,8 @@
 import React from "react";
+import { useSignUpPageStyles } from "../styles";
 
 function SignUpPage() {
-  const classes = useSignUpPageStyles();
+  useSignUpPageStyles();
   return (
     <div>
       SignUp Page

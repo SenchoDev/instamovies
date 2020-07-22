@@ -4,7 +4,7 @@ import { useProfilePageStyles } from "../styles";
 function ProfilePage() {
   useProfilePageStyles();
 
-  return <div>ProfilePage</div>;
+  return <div>PROFILE PAGE</div>;
 }
 
 export default ProfilePage;
