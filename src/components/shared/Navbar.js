@@ -2,7 +2,7 @@ import React from "react";
 import { useNavbarStyles } from "../../styles";
 import { AppBar } from "@material-ui/core";
 import { Link } from "react-router-dom";
-import logo from "../../images/logo.png";
+import logo from "../../images/instamovies.png";
 
 function Navbar() {
   const classes = useNavbarStyles();
