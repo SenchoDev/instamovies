@@ -2,7 +2,7 @@ import React from "react";
 import { useSliderStyles } from "../../styles";
 
 function Slider() {
-  useSliderStyles();
+  const classes = useSliderStyles();
 
   return <div>Slider</div>;
 }

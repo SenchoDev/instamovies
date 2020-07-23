@@ -17,27 +17,39 @@ export const useMainPageStyles = makeStyles((theme) => ({
   },
   headerWrapper: {
     position: "absolute",
-    top: 40,
+    top: 50,
     left: 40,
+    [theme.breakpoints.down("xs")]: {
+    left: 20,
+    },
   },
   heading: {
     color: "#ffffff",
+    [theme.breakpoints.down("xs")]: {
+      fontSize: '30px'
+    },
   },
   search: {
+    paddingTop: '23px',
     display: "flex",
     alignItems: "center",
+    
   },
   field:{ 
     border: 'none',
     background: 'none',
     fontFamily:' inherit',
     color: 'inherit',
-    fontSize: '1.7rem',
-    width: '50rem',
-    height: '5rem',
-    color: '$color-primary',
-    fontSize: '2rem',
+    fontSize: '15px',
+    width: '380px',
+    height: '42px',
+    boxShadow: '0 3px 6px rgba(101, 90, 86, 0.08)',
+    paddingLeft: '20px',
     opacity:' 0.9',
+    [theme.breakpoints.down("xs")]: {
+      width: '300px',
+      fontSize: '13px',
+    },
 
     "&:focus,&:active":{
         outline: 'none',
@@ -46,15 +58,43 @@ export const useMainPageStyles = makeStyles((theme) => ({
     "&::placeholder":{
         color: "#000000",
         opacity: '0.32',
-        fontSize: '1.95rem',
+        fontSize: '15px',
+        [theme.breakpoints.down("xs")]: {
+          width: '300px',
+          fontSize: '13px',
+        },
     }
-
+  },
+  btnSearch:{
     
+    background : '#AA2CA8',
+    borderRadius: '25px',
+    boder: 'none',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    cursor: 'pointer',
+    transition: 'all .4s',
+    outline: 'none',
+    color: '#ffffff',
+    fontSize: '20px',
+    boxShadow: '0 3px 6px rgba(101, 90, 86, 0.08)',
+    width: '90px',
+    height: '42px',
+    paddingBottom : 4,
+    "&:hover":{
+      transform: 'scale(1.05)',
+    },
+    [theme.breakpoints.down("xs")]: {
+      width: '120px',
+      background : '#ffffff',
+      color: '#AA2CA8',
+    },
   },
   box: {
     display: "flex",
     backgroundColor: "#ffffff",
-    borderRadius: "5rem",
+    borderRadius: "25px",
     transition: ".2s all",
     '&:focus-within': {
       transform: 'translateY(-2px)',
@@ -77,6 +117,29 @@ const iconProps = {
 };
 
 /* Feed page: /search */
+export const useSliderStyles = makeStyles((theme) => ({
+  container: {
+    display: "grid",
+    // gridAutoFlow: "column",
+    gridTemplateColumns: "minmax(auto, 600px) 300px",
+    gridGap: 35,
+    [theme.breakpoints.down("sm")]: {
+      gridTemplateColumns: "minmax(auto, 600px)",
+      justifyContent: "center",
+    },
+    "&.slickSlider": {
+      display: "grid",
+    },
+  },
+  sidebarContainer: {
+    display: "grid",
+    margin: "0px 28px 24px",
+    justifyContent: "center",
+    gridTemplateColumns: "minmax(auto, 300px)",
+  },
+  sidebarWrapper: { position: "fixed", width: 293 },
+}));
+
 export const useSearchStyles = makeStyles((theme) => ({
   container: {
     display: "grid",
