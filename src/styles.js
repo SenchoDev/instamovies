@@ -7,10 +7,11 @@ import theme from "./theme";
 export const useMainPageStyles = makeStyles((theme) => ({
   header: {
     position: "relative",
+
   },
   imageHeader: {
-    width: "100%",
-    height: "100%",
+    width: '100%',
+    
     minHeight: 280,
     objectFit: "cover",
     userSelect: "none",
@@ -101,13 +102,31 @@ export const useMainPageStyles = makeStyles((theme) => ({
       boxShadow: '0 0.7rem 3rem rgba(101, 90, 86, 0.08)'
     }
   },
-  sidebarContainer: {
-    display: "grid",
-    margin: "0px 28px 24px",
-    justifyContent: "center",
-    gridTemplateColumns: "minmax(auto, 300px)",
+  slider: {
+    width: '1040px',
+    margin: '0 auto',
+    marginTop: '20px',
+    padding: '0 10px',
+    display: 'flex',
+    flexDirection: 'column',
   },
-  sidebarWrapper: { position: "fixed", width: 293 },
+  sliderHeader:{
+    display: 'flex',
+    alignItems: 'center',
+    marginLeft: 20,
+  },
+  sliderAbout:{
+    background: 'transparent linear-gradient(270deg, #9F1578 0%, #D5A9FA 100%) 0% 0% no-repeat padding-box;',
+    color: '#ffffff',
+    marginTop: 6,
+    marginLeft: 22,
+    borderRadius: '20px'
+  },
+  sliderAboutText:{
+    padding: '4px 25px',
+    fontSize: 16,
+    fontWeight: 500,
+  },
 }));
 
 const iconProps = {
@@ -116,29 +135,48 @@ const iconProps = {
   height: 12,
 };
 
-/* Feed page: /search */
+const marginBottom = "20px !important";
+
 export const useSliderStyles = makeStyles((theme) => ({
   container: {
-    display: "grid",
-    // gridAutoFlow: "column",
-    gridTemplateColumns: "minmax(auto, 600px) 300px",
-    gridGap: 35,
-    [theme.breakpoints.down("sm")]: {
-      gridTemplateColumns: "minmax(auto, 600px)",
-      justifyContent: "center",
-    },
     "&.slickSlider": {
       display: "grid",
     },
   },
-  sidebarContainer: {
-    display: "grid",
-    margin: "0px 28px 24px",
-    justifyContent: "center",
-    gridTemplateColumns: "minmax(auto, 300px)",
+  slide: {
+    padding: "10px 0px 20px 0px !important",
+    marginBottom,
+    // border,
+    borderTop: "none",
+    "& .slick-slide > div": {
+      background: 'transparent',
+      margin: "0px 8px !important",
+      padding: "20px !important"
+    },
+    "& .slick-next:before, & .slick-prev:before": {
+      color: "#AA2CA8",
+      fontSize: "30px !important",
+    }
   },
-  sidebarWrapper: { position: "fixed", width: 293 },
 }));
+
+export const useSmallCardStyles = makeStyles((theme) => ({
+  container:{
+    width: '150px',
+    display: 'flex',
+    flexDirection: 'column',
+  },
+  title:{
+    paddingTop: 8,
+    paddingLeft: 10,
+  },
+  date:{
+    paddingLeft: 10,
+    color: '#00000080',
+    marginTop: 2,
+  },
+}));
+
 
 export const useSearchStyles = makeStyles((theme) => ({
   container: {
@@ -1041,61 +1079,7 @@ export const useUserCardStyles = makeStyles({
   },
 });
 
-/* FollowSuggestions component: /components/shared/FollowSuggestions.js */
-const border = "1px solid #e6e6e6";
-const marginBottom = 20;
-export const useFollowSuggestionsStyles = makeStyles((theme) => ({
-  container: {
-    maxWidth: "100vw",
-  },
-  slide: {
-    padding: "10px 0px 20px 0px",
-    marginBottom,
-    // border,
-    borderTop: "none",
-    "& .slick-slide > div": {
-      background: "#ffffff",
-      border,
-      margin: "0px 10px",
-      padding: 20,
-    },
-    "& .slick-next:before, & .slick-prev:before": {
-      color: "rgb(38, 38, 38)",
-      fontSize: 24,
-    },
-  },
-  typography: {
-    borderBottom: "none",
-    padding: "0px 0px 0px 12px",
-  },
-  skeleton: {
-    display: "grid",
-    gridAutoFlow: "column",
-    marginBottom,
-    gridGap: 16,
-  },
-  avatar: {
-    width: 54,
-    height: 54,
-  },
-  avatarImg: {
-    userSelect: "none",
-  },
-  text: {
-    textOverflow: "ellipsis",
-    overflow: "hidden",
-    whiteSpace: "nowrap",
-    width: "100%",
-  },
-  card: {
-    display: "grid",
-    justifyItems: "center",
-    width: 138,
-    [theme.breakpoints.down("xs")]: {
-      width: 116,
-    },
-  },
-}));
+
 
 /* Suggestions: /components/feed/FeedSideSuggestions.js */
 export const useFeedSideSuggestionsStyles = makeStyles((theme) => ({
