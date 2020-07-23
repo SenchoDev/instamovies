@@ -1,32 +1,36 @@
 import React from "react";
 import { useNavbarStyles, RedTooltip } from "../../styles";
-import { AppBar, Typography, Zoom } from "@material-ui/core";
+import { AppBar, Typography, Zoom, Avatar, Grid } from "@material-ui/core";
 import { Link, useHistory } from "react-router-dom";
 import logo from "../../images/instamovies.png";
-import {
-  LoadingIcon,
-  LikeIcon,
-  LikeActiveIcon,
-} from "../../icons";
+import { LikeIcon, LikeActiveIcon } from "../../icons";
 
 import { defaultCurrentUser, getDefaultUser } from "../../data";
 import NotificationList from "../notification/NotificationList";
 import NotificationTooltip from "../notification/NotificationTooltip";
+import { useNProgress } from "@tanem/react-nprogress";
+import useOutsideClick from "@rooks/use-outside-click";
 
 function Navbar({ minimalNavbar }) {
   const classes = useNavbarStyles();
-
+  const [isLoadingPage, setLoadingPage] = React.useState(true);
   const history = useHistory();
   const path = history.location.pathname;
 
+  React.useEffect(() => {
+    setLoadingPage(false);
+  }, [path]);
+
   return (
-    <AppBar className={classes.appBar}>
-      <section className={classes.section}>
-        <Logo />
-        {!minimalNavbar && 
-        <Links path={path}/>}
-      </section>
-    </AppBar>
+    <React.Fragment>
+      <Progress isAnimating={isLoadingPage} />
+      <AppBar className={classes.appBar}>
+        <section className={classes.section}>
+          <Logo />
+          {!minimalNavbar && <Links path={path} />}
+        </section>
+      </AppBar>
+    </React.Fragment>
   );
 }
 
@@ -49,15 +53,16 @@ function Links({ path }) {
 
   const [showList, setList] = React.useState(false);
   const [showTooltip, setTooltip] = React.useState(true);
+  const [showMovies, setMovies] = React.useState(false);
 
   React.useEffect(() => {
-    const timeout =  setTimeout(handleHideTooltip, 5000)
+    const timeout = setTimeout(handleHideTooltip, 5000);
     return () => {
       clearTimeout(timeout);
-    }
-  })
+    };
+  });
   function handleToggleList() {
-    setList(prev => !prev);
+    setList((prev) => !prev);
   }
 
   function handleHideTooltip() {
@@ -67,13 +72,24 @@ function Links({ path }) {
   function handleHideList() {
     setList(false);
   }
+  
+  function handleToggleMovies() {
+    setMovies((prev) => !prev);
+  }
+  function handleHideMovies() {
+    setMovies(false);
+  }
   return (
     <div className={classes.linksContainer}>
       {showList && <NotificationList handleHideList={handleHideList} />}
+      
       <div className={classes.linksWrapper}>
-        <Typography className={classes.navLink}  >Movies</Typography>
-        <Typography color="secondary" className={classes.navLink} >TV Shows</Typography>
-        <RedTooltip 
+        <Typography className={classes.navLink} onClick={handleToggleMovies}>Movies</Typography>
+        {showMovies && <MoviesTvList handleHideMovies={handleHideMovies} />}
+        <Typography color="secondary" className={classes.navLink}>
+          TV Shows
+        </Typography>
+        <RedTooltip
           arrow
           open={showTooltip}
           onOpen={handleHideTooltip}
@@ -84,9 +100,72 @@ function Links({ path }) {
             {showList ? <LikeActiveIcon /> : <LikeIcon />}
           </div>
         </RedTooltip>
+        <Link to={`/${defaultCurrentUser.username}`}>
+          <div
+            className={
+              path === `/${defaultCurrentUser.username}`
+                ? classes.profileActive
+                : ""
+            }
+          ></div>
+          <Avatar
+            src={defaultCurrentUser.profile_image}
+            className={classes.profileImage}
+          />
+        </Link>
       </div>
     </div>
+  );
+}
+
+function MoviesTvList(){
+  const classes = useNavbarStyles();
+  
+  return (
+    
+    <Grid conatiner className={classes.listContainer}>
+    <div className={classes.listWrapper}>
+    
+      <Link to="/movies">
+        <Typography variant="body2">Popular</Typography>
+      </Link>
+      <Link to="/movies">
+        Popular
+      </Link>
+      <Link to="/movies">
+        Popular
+      </Link>
+      </div>
+
+    </Grid>
   )
+}
+
+function Progress({ isAnimating }) {
+  const classes = useNavbarStyles();
+  const { animationDuration, isFinished, progress } = useNProgress({
+    isAnimating
+  });
+
+  return (
+    <div
+      className={classes.progressContainer}
+      style={{
+        opacity: isFinished ? 0 : 1,
+        transition: `opacity ${animationDuration}ms linear`
+      }}
+    >
+      <div
+        className={classes.progressBar}
+        style={{
+          marginLeft: `${(-1 + progress) * 100}%`,
+          transition: `margin-left ${animationDuration}ms linear`
+        }}
+      >
+        <div className={classes.progressBackground} />
+      </div>
+    </div>
+  );
 }
 
 

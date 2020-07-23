@@ -290,6 +290,7 @@ export const useNavbarStyles = makeStyles((theme) => ({
     justifyContent: "flex-end",
   },
   linksWrapper: {
+    postion: 'relative',
     display: "flex",
     paddingLeft: 24,
     [theme.breakpoints.down("xs")]: {
@@ -322,6 +323,30 @@ export const useNavbarStyles = makeStyles((theme) => ({
       marginLeft: 22,
     },
   },
+  listContainer: {
+    background: "rgba(var(--cdc,255,255,255),1)",
+    borderRadius: "5px",
+    border: "solid 1px rgba(var(--f23,255,255,255),1)",
+    boxShadow: "0 0 5px rgba(var(--jb7,0,0,0),.0975)",
+    height: "105px !important",
+    overflowX: "hidden",
+    overflowY: "auto",
+    padding: "0",
+    position: "absolute",
+    top: "54px !important",
+    whiteSpace: "normal",
+    width: '154px !important'
+    // [theme.breakpoints.down("sm")]: {
+    //   width: "100% !important",
+    //   right: 0,
+    // },
+  },
+  listWrapper: {
+    display: 'flex',
+    flexDirection: 'column',
+    
+  },
+  
   clearIcon: {
     backgroundImage: `url(${IconSheet})`,
     backgroundRepeat: "no-repeat",
