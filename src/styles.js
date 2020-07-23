@@ -1,21 +1,65 @@
 import { makeStyles, withStyles, Tooltip } from "@material-ui/core";
 import IconSheet from "./images/icon-sheet.png";
 import IconSheet2 from "./images/icon-sheet-2.png";
+import theme from "./theme";
 
 /* Feed page: /pages/feed.js */
 export const useMainPageStyles = makeStyles((theme) => ({
-  container: {
-    display: "grid",
-    // gridAutoFlow: "column",
-    gridTemplateColumns: "minmax(auto, 600px) 300px",
-    gridGap: 35,
-    [theme.breakpoints.down("sm")]: {
-      gridTemplateColumns: "minmax(auto, 600px)",
-      justifyContent: "center",
+  header: {
+    position: "relative",
+  },
+  imageHeader: {
+    width: "100%",
+    height: "100%",
+    minHeight: 280,
+    objectFit: "cover",
+    userSelect: "none",
+  },
+  headerWrapper: {
+    position: "absolute",
+    top: 40,
+    left: 40,
+  },
+  heading: {
+    color: "#ffffff",
+  },
+  search: {
+    display: "flex",
+    alignItems: "center",
+  },
+  field:{ 
+    border: 'none',
+    background: 'none',
+    fontFamily:' inherit',
+    color: 'inherit',
+    fontSize: '1.7rem',
+    width: '50rem',
+    height: '5rem',
+    color: '$color-primary',
+    fontSize: '2rem',
+    opacity:' 0.9',
+
+    "&:focus,&:active":{
+        outline: 'none',
+        opacity: 1,
     },
-    "&.slickSlider": {
-      display: "grid",
-    },
+    "&::placeholder":{
+        color: "#000000",
+        opacity: '0.32',
+        fontSize: '1.95rem',
+    }
+
+    
+  },
+  box: {
+    display: "flex",
+    backgroundColor: "#ffffff",
+    borderRadius: "5rem",
+    transition: ".2s all",
+    '&:focus-within': {
+      transform: 'translateY(-2px)',
+      boxShadow: '0 0.7rem 3rem rgba(101, 90, 86, 0.08)'
+    }
   },
   sidebarContainer: {
     display: "grid",
@@ -239,12 +283,12 @@ export const useNavbarStyles = makeStyles((theme) => ({
     order: 0,
     zIndex: "100 !important",
   },
-  navLink:{
-    fontSize: '20px',
-    cursor: 'pointer',
-    paddingBottom: '5px'
+  navLink: {
+    fontSize: "20px",
+    cursor: "pointer",
+    paddingBottom: "5px",
   },
-    section: {
+  section: {
     alignItems: "center",
     display: "flex",
     height: 54,
@@ -290,7 +334,7 @@ export const useNavbarStyles = makeStyles((theme) => ({
     justifyContent: "flex-end",
   },
   linksWrapper: {
-    postion: 'relative',
+    postion: "relative",
     display: "flex",
     paddingLeft: 24,
     [theme.breakpoints.down("xs")]: {
@@ -329,29 +373,29 @@ export const useNavbarStyles = makeStyles((theme) => ({
     border: "solid 1px rgba(var(--f23,255,255,255),1)",
     boxShadow: "0 0 5px rgba(var(--jb7,0,0,0),.0975)",
     height: "105px !important",
-    
+
     padding: "0",
     position: "absolute",
     top: "54px !important",
     whiteSpace: "normal",
-    width: '154px !important'
+    width: "154px !important",
     // [theme.breakpoints.down("sm")]: {
     //   width: "100% !important",
     //   right: 0,
     // },
   },
   listWrapper: {
-    display: 'flex',
-    flexDirection: 'column',
-    width: '154px !important',
-    alignItems: 'flex-start',
-    paddingLeft: '20px',
-    paddingTop: '10px',
+    display: "flex",
+    flexDirection: "column",
+    width: "154px !important",
+    alignItems: "flex-start",
+    paddingLeft: "20px",
+    paddingTop: "10px",
     "&>*:not(:last-child)": {
       marginBottom: 8,
     },
   },
-  
+
   clearIcon: {
     backgroundImage: `url(${IconSheet})`,
     backgroundRepeat: "no-repeat",
