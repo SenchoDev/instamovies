@@ -71,7 +71,7 @@ function Links({ path }) {
     <div className={classes.linksContainer}>
       {showList && <NotificationList handleHideList={handleHideList} />}
       <div className={classes.linksWrapper}>
-        <Typography className={classes.navLink} >Movies</Typography>
+        <Typography className={classes.navLink}  >Movies</Typography>
         <Typography color="secondary" className={classes.navLink} >TV Shows</Typography>
         <RedTooltip 
           arrow

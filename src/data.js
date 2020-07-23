@@ -20,6 +20,21 @@ export function getDefaultUser() {
   };
 }
 
+export const defaultNotifications = [
+  {
+    id: uuid(),
+    type: "follow",
+    user: defaultUser,
+    created_at: "2020-02-29T03:08:14.522421+00:00"
+  },
+  {
+    id: uuid(),
+    type: "follow",
+    user: defaultUser,
+    created_at: "2020-02-29T03:08:14.522421+00:00"
+  }
+];
+
 
 export const defaultCurrentUser = {
   id: uuid(),

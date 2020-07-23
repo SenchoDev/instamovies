@@ -242,6 +242,7 @@ export const useNavbarStyles = makeStyles((theme) => ({
   navLink:{
     fontSize: '20px',
     cursor: 'pointer',
+    paddingBottom: '5px'
   },
     section: {
     alignItems: "center",
@@ -1287,7 +1288,6 @@ export const useNotificationListStyles = makeStyles((theme) => ({
     borderRadius: "3px",
     border: "solid 1px rgba(var(--f23,255,255,255),1)",
     boxShadow: "0 0 5px rgba(var(--jb7,0,0,0),.0975)",
-    display: "block",
     maxHeight: "362px !important",
     minHeight: "100px !important",
     overflowX: "hidden",
