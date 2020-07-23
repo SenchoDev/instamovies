@@ -265,7 +265,7 @@ export const useNavbarStyles = makeStyles((theme) => ({
     alignContent: "stretch",
   },
   logo: {
-    marginTop: 7,
+    marginTop: 8,
     maxHeight: "100%",
     maxWidth: "100%",
     objectFit: "contain",
@@ -329,8 +329,7 @@ export const useNavbarStyles = makeStyles((theme) => ({
     border: "solid 1px rgba(var(--f23,255,255,255),1)",
     boxShadow: "0 0 5px rgba(var(--jb7,0,0,0),.0975)",
     height: "105px !important",
-    overflowX: "hidden",
-    overflowY: "auto",
+    
     padding: "0",
     position: "absolute",
     top: "54px !important",
@@ -344,7 +343,13 @@ export const useNavbarStyles = makeStyles((theme) => ({
   listWrapper: {
     display: 'flex',
     flexDirection: 'column',
-    
+    width: '154px !important',
+    alignItems: 'flex-start',
+    paddingLeft: '20px',
+    paddingTop: '10px',
+    "&>*:not(:last-child)": {
+      marginBottom: 8,
+    },
   },
   
   clearIcon: {

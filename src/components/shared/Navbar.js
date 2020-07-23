@@ -54,6 +54,7 @@ function Links({ path }) {
   const [showList, setList] = React.useState(false);
   const [showTooltip, setTooltip] = React.useState(true);
   const [showMovies, setMovies] = React.useState(false);
+  const [showTv, setTv] = React.useState(false);
 
   React.useEffect(() => {
     const timeout = setTimeout(handleHideTooltip, 5000);
@@ -68,27 +69,38 @@ function Links({ path }) {
   function handleHideTooltip() {
     setTooltip(false);
   }
-
   function handleHideList() {
     setList(false);
   }
-  
   function handleToggleMovies() {
     setMovies((prev) => !prev);
   }
   function handleHideMovies() {
     setMovies(false);
   }
+  function handleToggleTv() {
+    setTv((prev) => !prev);
+  }
+  function handleHideTv() {
+    setTv(false);
+  }
   return (
     <div className={classes.linksContainer}>
       {showList && <NotificationList handleHideList={handleHideList} />}
-      
+
       <div className={classes.linksWrapper}>
-        <Typography className={classes.navLink} onClick={handleToggleMovies}>Movies</Typography>
-        {showMovies && <MoviesTvList handleHideMovies={handleHideMovies} />}
-        <Typography color="secondary" className={classes.navLink}>
+        <Typography className={classes.navLink} onClick={handleToggleMovies}>
+          Movies
+        </Typography>
+        {showMovies && <MoviesList handleHideMovies={handleHideMovies} />}
+        <Typography
+          color="secondary"
+          className={classes.navLink}
+          onClick={handleToggleTv}
+        >
           TV Shows
         </Typography>
+        {showTv && <TvList handleHideTv={handleHideTv} />}
         <RedTooltip
           arrow
           open={showTooltip}
@@ -118,33 +130,56 @@ function Links({ path }) {
   );
 }
 
-function MoviesTvList(){
+function TvList({ handleHideTv }) {
   const classes = useNavbarStyles();
-  
-  return (
-    
-    <Grid conatiner className={classes.listContainer}>
-    <div className={classes.listWrapper}>
-    
-      <Link to="/movies">
-        <Typography variant="body2">Popular</Typography>
-      </Link>
-      <Link to="/movies">
-        Popular
-      </Link>
-      <Link to="/movies">
-        Popular
-      </Link>
-      </div>
+  const listContainerRef = React.useRef();
+  useOutsideClick(listContainerRef, handleHideTv);
 
+  return (
+    <Grid ref={listContainerRef} container className={classes.listContainer} style={{
+      marginLeft: '85px'
+    }}>
+      <Grid item className={classes.listWrapper}>
+        <Link to="/movies">
+          <Typography variant="subtitle2">Popular</Typography>
+        </Link>
+        <Link to="/movies">
+          <Typography variant="subtitle2">On TV</Typography>
+        </Link>
+        <Link to="/movies">
+          <Typography variant="subtitle2">Top Rated</Typography>
+        </Link>
+      </Grid>
     </Grid>
-  )
+  );
+}
+
+function MoviesList({ handleHideMovies }) {
+  const classes = useNavbarStyles();
+  const listContainerRef = React.useRef();
+  useOutsideClick(listContainerRef, handleHideMovies);
+
+  return (
+    <Grid ref={listContainerRef} container className={classes.listContainer}>
+      <Grid item className={classes.listWrapper}>
+        <Link to="/movies">
+          <Typography variant="subtitle2">Popular</Typography>
+        </Link>
+        <Link to="/movies">
+          <Typography variant="subtitle2">Upcoming</Typography>
+        </Link>
+        <Link to="/movies">
+          <Typography variant="subtitle2">Top Rated</Typography>
+        </Link>
+      </Grid>
+    </Grid>
+  );
 }
 
 function Progress({ isAnimating }) {
   const classes = useNavbarStyles();
   const { animationDuration, isFinished, progress } = useNProgress({
-    isAnimating
+    isAnimating,
   });
 
   return (
@@ -152,14 +187,14 @@ function Progress({ isAnimating }) {
       className={classes.progressContainer}
       style={{
         opacity: isFinished ? 0 : 1,
-        transition: `opacity ${animationDuration}ms linear`
+        transition: `opacity ${animationDuration}ms linear`,
       }}
     >
       <div
         className={classes.progressBar}
         style={{
           marginLeft: `${(-1 + progress) * 100}%`,
-          transition: `margin-left ${animationDuration}ms linear`
+          transition: `margin-left ${animationDuration}ms linear`,
         }}
       >
         <div className={classes.progressBackground} />
@@ -167,6 +202,5 @@ function Progress({ isAnimating }) {
     </div>
   );
 }
-
 
 export default Navbar;
