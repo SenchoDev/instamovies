@@ -3,16 +3,25 @@ import IconSheet from "./images/icon-sheet.png";
 import IconSheet2 from "./images/icon-sheet-2.png";
 import theme from "./theme";
 import MainBg from "./images/background1.png";
+import AboutBg from "./images/background2.png";
 
 /* Feed page: /pages/feed.js */
 export const useMainPageStyles = makeStyles((theme) => ({
   header: {
     position: "relative",
-    width: '1100px',
+    width: "1100px",
+    margin: "0 auto",
   },
   imageHeader: {
-    width: '100%',
+    width: "100%",
     backgroundImage: `url(${MainBg})`,
+    minHeight: 280,
+    objectFit: "cover",
+    userSelect: "none",
+  },
+  aboutHeader: {
+    width: "100%",
+    backgroundImage: `url(${AboutBg})`,
     minHeight: 280,
     objectFit: "cover",
     userSelect: "none",
@@ -22,75 +31,73 @@ export const useMainPageStyles = makeStyles((theme) => ({
     top: 50,
     left: 40,
     [theme.breakpoints.down("xs")]: {
-    left: 20,
+      left: 20,
     },
   },
   heading: {
     color: "#ffffff",
     [theme.breakpoints.down("xs")]: {
-      fontSize: '30px'
+      fontSize: "30px",
     },
   },
   search: {
-    paddingTop: '23px',
+    paddingTop: "23px",
     display: "flex",
     alignItems: "center",
-    
   },
-  field:{ 
-    border: 'none',
-    background: 'none',
-    fontFamily:' inherit',
-    color: 'inherit',
-    fontSize: '15px',
-    width: '380px',
-    height: '42px',
-    boxShadow: '0 3px 6px rgba(101, 90, 86, 0.08)',
-    paddingLeft: '20px',
-    opacity:' 0.9',
+  field: {
+    border: "none",
+    background: "none",
+    fontFamily: " inherit",
+    color: "inherit",
+    fontSize: "15px",
+    width: "380px",
+    height: "42px",
+    boxShadow: "0 3px 6px rgba(101, 90, 86, 0.08)",
+    paddingLeft: "20px",
+    opacity: " 0.9",
     [theme.breakpoints.down("xs")]: {
-      width: '300px',
-      fontSize: '13px',
+      width: "300px",
+      fontSize: "13px",
     },
 
-    "&:focus,&:active":{
-        outline: 'none',
-        opacity: 1,
+    "&:focus,&:active": {
+      outline: "none",
+      opacity: 1,
     },
-    "&::placeholder":{
-        color: "#000000",
-        opacity: '0.32',
-        fontSize: '15px',
-        [theme.breakpoints.down("xs")]: {
-          width: '300px',
-          fontSize: '13px',
-        },
-    }
+    "&::placeholder": {
+      color: "#000000",
+      opacity: "0.32",
+      fontSize: "15px",
+      [theme.breakpoints.down("xs")]: {
+        width: "300px",
+        fontSize: "13px",
+      },
+    },
   },
-  btnSearch:{
-    
-    background : '#AA2CA8',
-    borderRadius: '25px',
-    boder: 'none',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    cursor: 'pointer',
-    transition: 'all .4s',
-    outline: 'none',
-    color: '#ffffff',
-    fontSize: '20px',
-    boxShadow: '0 3px 6px rgba(101, 90, 86, 0.08)',
-    width: '90px',
-    height: '42px',
-    paddingBottom : 4,
-    "&:hover":{
-      transform: 'scale(1.05)',
+  btnSearch: {
+    background: "#AA2CA8",
+    borderRadius: "25px",
+    boder: "none",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    cursor: "pointer",
+    transition: "all .4s",
+    outline: "none",
+    color: "#ffffff",
+    fontSize: "20px",
+    boxShadow: "0 3px 6px rgba(101, 90, 86, 0.08)",
+    width: "90px",
+    height: "42px",
+    paddingBottom: 4,
+    "&:hover": {
+      transform: "scale(1.05)",
     },
     [theme.breakpoints.down("xs")]: {
-      width: '120px',
-      background : '#ffffff',
-      color: '#AA2CA8',
+      width: "120px",
+      background: "#ffffff",
+      color: "#AA2CA8",
     },
   },
   box: {
@@ -98,89 +105,99 @@ export const useMainPageStyles = makeStyles((theme) => ({
     backgroundColor: "#ffffff",
     borderRadius: "25px",
     transition: ".2s all",
-    '&:focus-within': {
-      transform: 'translateY(-2px)',
-      boxShadow: '0 0.7rem 3rem rgba(101, 90, 86, 0.08)'
-    }
-  },
-  slider: {
-    width: '1040px',
-    margin: '0 auto',
-    marginTop: '20px',
-    padding: '0 10px',
-    display: 'flex',
-    flexDirection: 'column',
-    [theme.breakpoints.down("xs")]: {
-      padding: 0,
-      margin: '20px 5px'
+    "&:focus-within": {
+      transform: "translateY(-2px)",
+      boxShadow: "0 0.7rem 3rem rgba(101, 90, 86, 0.08)",
     },
   },
-  movieHeader:{
-    display: 'flex',
-    alignItems: 'center',
+  slider: {
+    width: "1040px",
+    margin: "0 auto",
+    marginTop: "20px",
+    padding: "0 10px",
+    display: "flex",
+    flexDirection: "column",
+    [theme.breakpoints.down("xs")]: {
+      padding: 0,
+      margin: "20px 5px",
+    },
+  },
+  movieHeader: {
+    display: "flex",
+    alignItems: "center",
     marginLeft: 20,
   },
-  movieAbout:{
-    background: 'transparent linear-gradient(270deg, #9F1578 0%, #D5A9FA 100%) 0% 0% no-repeat padding-box;',
-    color: '#ffffff',
+  movieAbout: {
+    background:
+      "transparent linear-gradient(270deg, #9F1578 0%, #D5A9FA 100%) 0% 0% no-repeat padding-box;",
+    color: "#ffffff",
     marginTop: 6,
     marginLeft: 22,
-    borderRadius: '20px',
+    borderRadius: "20px",
     [theme.breakpoints.down("xs")]: {
       marginLeft: 10,
     },
-
   },
-  movieHeaderText:{
+  movieHeaderText: {
     [theme.breakpoints.down("xs")]: {
-      fontSize: '21px',
+      fontSize: "21px",
     },
   },
 
-  movieAboutText:{
-    padding: '4px 25px',
+  movieAboutText: {
+    padding: "4px 25px",
     fontSize: 16,
     fontWeight: 500,
     [theme.breakpoints.down("xs")]: {
-      padding: '4px 20px',
+      padding: "4px 20px",
     },
   },
   trailer: {
-    width: '1110px',
-    minHeight: '400px',
-    background: '#AA2CA812',
+    width: "1110px",
+    minHeight: "400px",
+    background: "#AA2CA812",
     paddingTop: 50,
     paddingLeft: 90,
     [theme.breakpoints.down("xs")]: {
       paddingTop: 10,
-    paddingLeft: 5,
-      
+      paddingLeft: 5,
     },
   },
-  trailerContainer:{
-    display: 'flex',
+  trailerContainer: {
+    display: "flex",
     [theme.breakpoints.down("sm")]: {
-      width: '600px',
-      flexWrap: 'wrap',
-      flexDirection: 'column',
-      alignItems: 'center',
+      width: "600px",
+      flexWrap: "wrap",
+      flexDirection: "column",
+      alignItems: "center",
     },
     [theme.breakpoints.down("xs")]: {
-      width: '320px',
-      
+      width: "320px",
     },
     gridAutoFlow: "column",
     gridGap: 25,
-    marginTop: '30px',
+    marginTop: "30px",
+  },
+  profileButton: {
+    background:
+      "transparent linear-gradient(90deg, #B91372 0%, #450B6B 100%) 0% 0% no-repeat padding-box",
+    boxShadow: "0px 2px 4px #00000029",
+    borderRadius: "52px",
+    color: "#ffffff",
+    fontSize: '16px',
+    padding: '8px 20px',
+    fontWeight: '500',
+    marginTop: '20px'
+  },
+  buttonWrap:{
+    marginTop: '40px',
   }
-  
 }));
 
 const iconProps = {
   backgroundImage: `url(${IconSheet2})`,
   backgroundRepeat: "no-repeat",
   height: 12,
-
 };
 
 const marginBottom = "20px !important";
@@ -197,62 +214,83 @@ export const useSliderStyles = makeStyles((theme) => ({
     // border,
     borderTop: "none",
     "& .slick-slide > div": {
-      background: 'transparent',
+      background: "transparent",
       margin: "0px 8px !important",
-      padding: "20px !important"
+      padding: "20px !important",
     },
     [theme.breakpoints.down("xs")]: {
       margin: "0px 0px !important",
-      padding: "0 !important"
+      padding: "0 !important",
     },
     "& .slick-next:before, & .slick-prev:before": {
       color: "#AA2CA8",
       fontSize: "30px !important",
       [theme.breakpoints.down("sm")]: {
         fontSize: "0 !important",
-      }
-    }
+      },
+    },
   },
 }));
 export const useBigCardStyles = makeStyles((theme) => ({
-  card:{
-    width: '300px',
-    display: 'flex',
-    flexDirection: 'column',
+  card: {
+    width: "300px",
+    display: "flex",
+    flexDirection: "column",
     [theme.breakpoints.down("xs")]: {
-      alignItems: 'center'
-      
+      alignItems: "center",
     },
   },
-  image:{
+  image: {
     borderRadius: 10,
-    marginBottom: '15px',
+    marginBottom: "15px",
     [theme.breakpoints.down("xs")]: {
-      width: '250px',
-      
+      width: "250px",
     },
   },
   heading: {
-    marginBottom: '5px',
-  }
-  
-}))
+    marginBottom: "5px",
+  },
+}));
 
 export const useSmallCardStyles = makeStyles((theme) => ({
-  container:{
-    width: '150px',
-    display: 'flex',
-    flexDirection: 'column',
+  container: {
+    width: "150px",
+    display: "flex",
+    flexDirection: "column",
   },
-  title:{
+  title: {
     paddingTop: 8,
     paddingLeft: 10,
   },
-  date:{
+  date: {
     paddingLeft: 10,
-    color: '#00000080',
+    color: "#00000080",
     marginTop: 2,
   },
+}));
+
+
+export const useFooterStyles = makeStyles((theme) => ({
+  container: {
+    display: "grid",
+    // gridAutoFlow: "column",
+    gridTemplateColumns: "minmax(auto, 600px) 300px",
+    gridGap: 35,
+    [theme.breakpoints.down("sm")]: {
+      gridTemplateColumns: "minmax(auto, 600px)",
+      justifyContent: "center",
+    },
+    "&.slickSlider": {
+      display: "grid",
+    },
+  },
+  sidebarContainer: {
+    display: "grid",
+    margin: "0px 28px 24px",
+    justifyContent: "center",
+    gridTemplateColumns: "minmax(auto, 300px)",
+  },
+  sidebarWrapper: { position: "fixed", width: 293 },
 }));
 
 
@@ -1156,8 +1194,6 @@ export const useUserCardStyles = makeStyles({
     whiteSpace: "nowrap",
   },
 });
-
-
 
 /* Suggestions: /components/feed/FeedSideSuggestions.js */
 export const useFeedSideSuggestionsStyles = makeStyles((theme) => ({

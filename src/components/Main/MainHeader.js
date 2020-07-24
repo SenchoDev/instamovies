@@ -2,7 +2,6 @@ import React from "react";
 import { useMainPageStyles } from "../../styles";
 import { Link } from "react-router-dom";
 import { Typography, Hidden } from "@material-ui/core";
-import MainBg from "../../images/background1.png";
 
 function MainHeader() {
   const classes = useMainPageStyles();
@@ -11,12 +10,15 @@ function MainHeader() {
     <main className={classes.header}>
       <div alt="main" className={classes.imageHeader} />
       <div className={classes.headerWrapper}>
-        
-          <Typography variant="h4" className={classes.heading}>
-            Welcome. <br/>
-            Millions of movies,<Hidden smUp ><br/></Hidden> TV shows and people to discover.
-          </Typography>
-        
+        <Typography variant="h4" className={classes.heading}>
+          Welcome. <br />
+          Millions of movies,
+          <Hidden smUp>
+            <br />
+          </Hidden>{" "}
+          TV shows and people to discover.
+        </Typography>
+
         <div className={classes.search}>
           <div className={classes.box}>
             <Hidden xsDown>
