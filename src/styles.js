@@ -8,6 +8,7 @@ import MainBg from "./images/background1.png";
 export const useMainPageStyles = makeStyles((theme) => ({
   header: {
     position: "relative",
+    width: '1100px',
   },
   imageHeader: {
     width: '100%',
@@ -109,6 +110,10 @@ export const useMainPageStyles = makeStyles((theme) => ({
     padding: '0 10px',
     display: 'flex',
     flexDirection: 'column',
+    [theme.breakpoints.down("xs")]: {
+      padding: 0,
+      margin: '20px 5px'
+    },
   },
   movieHeader:{
     display: 'flex',
@@ -120,18 +125,55 @@ export const useMainPageStyles = makeStyles((theme) => ({
     color: '#ffffff',
     marginTop: 6,
     marginLeft: 22,
-    borderRadius: '20px'
+    borderRadius: '20px',
+    [theme.breakpoints.down("xs")]: {
+      marginLeft: 10,
+    },
+
   },
+  movieHeaderText:{
+    [theme.breakpoints.down("xs")]: {
+      fontSize: '21px',
+    },
+  },
+
   movieAboutText:{
     padding: '4px 25px',
     fontSize: 16,
     fontWeight: 500,
+    [theme.breakpoints.down("xs")]: {
+      padding: '4px 20px',
+    },
   },
   trailer: {
     width: '1110px',
-    height: '400px',
-    background: '#AA2CA812 0% 0% no-repeat padding-box'
+    minHeight: '400px',
+    background: '#AA2CA812',
+    paddingTop: 50,
+    paddingLeft: 90,
+    [theme.breakpoints.down("xs")]: {
+      paddingTop: 10,
+    paddingLeft: 5,
+      
+    },
+  },
+  trailerContainer:{
+    display: 'flex',
+    [theme.breakpoints.down("sm")]: {
+      width: '600px',
+      flexWrap: 'wrap',
+      flexDirection: 'column',
+      alignItems: 'center',
+    },
+    [theme.breakpoints.down("xs")]: {
+      width: '320px',
+      
+    },
+    gridAutoFlow: "column",
+    gridGap: 25,
+    marginTop: '30px',
   }
+  
 }));
 
 const iconProps = {
@@ -159,6 +201,10 @@ export const useSliderStyles = makeStyles((theme) => ({
       margin: "0px 8px !important",
       padding: "20px !important"
     },
+    [theme.breakpoints.down("xs")]: {
+      margin: "0px 0px !important",
+      padding: "0 !important"
+    },
     "& .slick-next:before, & .slick-prev:before": {
       color: "#AA2CA8",
       fontSize: "30px !important",
@@ -168,6 +214,29 @@ export const useSliderStyles = makeStyles((theme) => ({
     }
   },
 }));
+export const useBigCardStyles = makeStyles((theme) => ({
+  card:{
+    width: '300px',
+    display: 'flex',
+    flexDirection: 'column',
+    [theme.breakpoints.down("xs")]: {
+      alignItems: 'center'
+      
+    },
+  },
+  image:{
+    borderRadius: 10,
+    marginBottom: '15px',
+    [theme.breakpoints.down("xs")]: {
+      width: '250px',
+      
+    },
+  },
+  heading: {
+    marginBottom: '5px',
+  }
+  
+}))
 
 export const useSmallCardStyles = makeStyles((theme) => ({
   container:{

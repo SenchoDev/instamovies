@@ -1,6 +1,7 @@
 import React from "react";
 import { useSmallCardStyles } from "../../styles";
 import { Typography } from "@material-ui/core";
+import { Link } from "react-router-dom";
 
 function SmallCard({card}) {
   const classes = useSmallCardStyles();
@@ -8,11 +9,11 @@ function SmallCard({card}) {
   const { title, date, image} = card;
 
   return (
-    <div className={classes.container}>
+    <Link to="/" className={classes.container}>
       <img src={image} alt="movie"/>
       <Typography variant="subtitle2" className={classes.title}>{title}</Typography>
       <p className={classes.date}>{date}</p>
-    </div>
+    </Link>
   )
 }
 

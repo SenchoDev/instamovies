@@ -8,7 +8,7 @@ function Heading({textHeader, textButton}) {
   return (
     
       <div className={classes.movieHeader}>
-        <Typography variant="h5">{textHeader}</Typography>
+        <Typography variant="h5" className={classes.movieHeaderText}>{textHeader}</Typography>
         <div className={classes.movieAbout}>
           <Typography variant="body2" className={classes.movieAboutText}>
             {textButton}
