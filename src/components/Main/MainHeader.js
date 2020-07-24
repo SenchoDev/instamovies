@@ -9,13 +9,14 @@ function MainHeader() {
 
   return (
     <main className={classes.header}>
-      <img src={MainBg} alt="main" className={classes.imageHeader} />
+      <div alt="main" className={classes.imageHeader} />
       <div className={classes.headerWrapper}>
-      
-        <Typography variant="h4" className={classes.heading}>
-          Welcome. <br />
-          Millions of movies, TV shows and people to discover.
-        </Typography>
+        
+          <Typography variant="h4" className={classes.heading}>
+            Welcome. <br/>
+            Millions of movies,<Hidden smUp ><br/></Hidden> TV shows and people to discover.
+          </Typography>
+        
         <div className={classes.search}>
           <div className={classes.box}>
             <Hidden xsDown>

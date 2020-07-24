@@ -2,16 +2,16 @@ import { makeStyles, withStyles, Tooltip } from "@material-ui/core";
 import IconSheet from "./images/icon-sheet.png";
 import IconSheet2 from "./images/icon-sheet-2.png";
 import theme from "./theme";
+import MainBg from "./images/background1.png";
 
 /* Feed page: /pages/feed.js */
 export const useMainPageStyles = makeStyles((theme) => ({
   header: {
     position: "relative",
-
   },
   imageHeader: {
     width: '100%',
-    
+    backgroundImage: `url(${MainBg})`,
     minHeight: 280,
     objectFit: "cover",
     userSelect: "none",
@@ -110,29 +110,35 @@ export const useMainPageStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
   },
-  sliderHeader:{
+  movieHeader:{
     display: 'flex',
     alignItems: 'center',
     marginLeft: 20,
   },
-  sliderAbout:{
+  movieAbout:{
     background: 'transparent linear-gradient(270deg, #9F1578 0%, #D5A9FA 100%) 0% 0% no-repeat padding-box;',
     color: '#ffffff',
     marginTop: 6,
     marginLeft: 22,
     borderRadius: '20px'
   },
-  sliderAboutText:{
+  movieAboutText:{
     padding: '4px 25px',
     fontSize: 16,
     fontWeight: 500,
   },
+  trailer: {
+    width: '1110px',
+    height: '400px',
+    background: '#AA2CA812 0% 0% no-repeat padding-box'
+  }
 }));
 
 const iconProps = {
   backgroundImage: `url(${IconSheet2})`,
   backgroundRepeat: "no-repeat",
   height: 12,
+
 };
 
 const marginBottom = "20px !important";
@@ -156,6 +162,9 @@ export const useSliderStyles = makeStyles((theme) => ({
     "& .slick-next:before, & .slick-prev:before": {
       color: "#AA2CA8",
       fontSize: "30px !important",
+      [theme.breakpoints.down("sm")]: {
+        fontSize: "0 !important",
+      }
     }
   },
 }));

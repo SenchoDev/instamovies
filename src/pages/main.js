@@ -6,6 +6,7 @@ import { Typography } from "@material-ui/core";
 
 import MainHeader from "../components/Main/MainHeader";
 import SliderA from "../components/shared/Slider";
+import Heading from "../components/shared/Heading";
 
 function MainPage() {
   const classes = useMainPageStyles();
@@ -17,15 +18,13 @@ function MainPage() {
 
       {/* Slider 1 */}
       <div className={classes.slider}>
-        <div className={classes.sliderHeader}>
-          <Typography variant="h5">Whats Popular</Typography>
-          <div className={classes.sliderAbout}>
-            <Typography variant="body2" className={classes.sliderAboutText}>Movies</Typography>
-          </div>
-        </div>
-        <SliderA/>
+        <Heading textHeader="Whats Popular" textButton="Movies" />
+        <SliderA />
       </div>
-      {/* Slider 1 */}
+      {/* Trailer */}
+      <div className={classes.trailer}>
+        <Heading textHeader="Whats Popular" textButton="Trailers" />
+      </div>
     </Layout>
   );
 }
