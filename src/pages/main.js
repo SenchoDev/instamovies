@@ -45,8 +45,6 @@ function MainPage() {
         <Heading textHeader="Upcoming" textButton="TV Shows & Movies" />
         <SliderA />
       </div>
-
-      <Footer />
     </Layout>
   );
 }

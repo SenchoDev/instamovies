@@ -272,25 +272,53 @@ export const useSmallCardStyles = makeStyles((theme) => ({
 
 export const useFooterStyles = makeStyles((theme) => ({
   container: {
-    display: "grid",
-    // gridAutoFlow: "column",
-    gridTemplateColumns: "minmax(auto, 600px) 300px",
-    gridGap: 35,
-    [theme.breakpoints.down("sm")]: {
-      gridTemplateColumns: "minmax(auto, 600px)",
-      justifyContent: "center",
-    },
-    "&.slickSlider": {
-      display: "grid",
+    background: '#AA2CA812 0% 0% no-repeat',
+    display: 'flex',
+    flexDirection: 'column',
+    paddingTop: '50px',
+    marginBottom: '55',
+    
+  },
+  logoContainer: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    [theme.breakpoints.down("xs")]: {
+      flexDirection: 'column',
+      "&>*:first-child":{
+        marginBottom: '25px'
+      }
     },
   },
-  sidebarContainer: {
+
+  sections:{
     display: "grid",
-    margin: "0px 28px 24px",
-    justifyContent: "center",
-    gridTemplateColumns: "minmax(auto, 300px)",
+    margin: '80px 180px',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(173px, 1fr))',
+    gridGap: '20px',
+    alignItems: 'center',
+    "&>*": {
+      justifySelf: 'center',
+      alignSelf: 'center',
+    },
+    [theme.breakpoints.down("xs")]: {
+      margin: '40px'
+    },
   },
-  sidebarWrapper: { position: "fixed", width: 293 },
+
+  text: {
+    marginRight: '30px',
+  },
+  created:{
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingBottom: '20px',
+    [theme.breakpoints.down("xs")]: {
+      paddingLeft: '10px',
+    },
+  }
+  
 }));
 
 
