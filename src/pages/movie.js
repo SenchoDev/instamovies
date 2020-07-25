@@ -7,11 +7,7 @@ import {
   Fab,
   Button,
   Dialog,
-  DialogActions,
-  DialogTitle,
   DialogContent,
-  Card,
-  CardMedia,
   Divider,
   Avatar,
   TextField,
@@ -28,9 +24,11 @@ import {
 } from "../icons";
 
 import Slider from "react-slick";
+import SliderA from "../components/shared/Slider";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { Link } from "react-router-dom";
+import Heading from "../components/shared/Heading";
 
 function MoviePage() {
   const classes = useMovieStyles();
@@ -158,6 +156,10 @@ function MoviePage() {
       <Comments comments={comments} />
       <Divider />
       <AddComment />
+      <div className={classes.moviesRecommendation}>
+        <Heading textHeader="Recommendations" textButton="TV Shows & Movies" />
+        <SliderA />
+      </div>
     </Layout>
   );
 }

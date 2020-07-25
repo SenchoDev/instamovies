@@ -483,20 +483,35 @@ export const useMovieStyles = makeStyles((theme) => ({
   addComment: {
     display: 'flex',
     alignItems: 'flex-end',
-    marginLeft: '15px',
+    marginLeft: '20px',
     marginTop: '20px',
+    marginBottom: '20px',
   },
   urlInput: {
     margin: theme.spacing(1)
+
   },
   addCommentImage: {
     width: '70px',
     height: '70px',
+    marginRight: '20px',
   },
   commentButton:{
     marginBottom: 8
-  }
-
+  },
+  moviesRecommendation:{
+    width: "1040px",
+    margin: "0 auto",
+    marginTop: "50px",
+    padding: "0 10px",
+    display: "flex",
+    flexDirection: "column",
+    [theme.breakpoints.down("xs")]: {
+      padding: 0,
+      margin: "20px 5px",
+    },
+  },
+  
 
 }));
 
