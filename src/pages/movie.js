@@ -12,8 +12,11 @@ import {
   DialogContent,
   Card,
   CardMedia,
+  Divider,
+  Avatar,
+  TextField,
 } from "@material-ui/core";
-import { defaultMovie, getActorCard } from "../data";
+import { defaultMovie, getActorCard, defaultUser } from "../data";
 import PlayArrowRoundedIcon from "@material-ui/icons/PlayArrowRounded";
 import ReactPlayer from "react-player";
 
@@ -27,6 +30,7 @@ import {
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { Link } from "react-router-dom";
 
 function MoviePage() {
   const classes = useMovieStyles();
@@ -60,6 +64,7 @@ function MoviePage() {
     overview,
     directors,
     seriesCast,
+    comments,
   } = defaultMovie;
   return (
     <Layout movieLarge image={backgroundImage}>
@@ -147,8 +152,12 @@ function MoviePage() {
       </section>
       <div className={classes.seriesCast}>
         <Typography variant="h4">Series Cast</Typography>
-        <ActorSlider seriesCast={seriesCast}/>
+        <ActorSlider seriesCast={seriesCast} />
       </div>
+      <Divider style={{ marginBottom: "20px" }} />
+      <Comments comments={comments} />
+      <Divider />
+      <AddComment />
     </Layout>
   );
 }
@@ -202,7 +211,7 @@ function LikeButton() {
 function ActorSlider({ seriesCast }) {
   const classes = useMovieStyles();
   return (
-    <div className={classes.container}>
+    <div className={classes.sliderContainer}>
       <Slider
         className={classes.slide}
         dots={false}
@@ -223,13 +232,81 @@ function ActorSlider({ seriesCast }) {
   );
 }
 
-function ActorCard({card}) {
+function ActorCard({ card }) {
   const classes = useMovieStyles();
-  return(
+  return (
     <div className={classes.actor}>
-      <img src={card.image} alt="actor"/>
-      <Typography variant="body2" >{card.realName}</Typography>
-      <p className={classes.name}>{card.name}</p>
+      <img src={card.image} alt="actor" className={classes.imageCard} />
+      <div className={classes.imgTextContainer}>
+        <Typography variant="body2" className={classes.realName}>
+          {card.realName}
+        </Typography>
+        <p className={classes.name}>{card.name}</p>
+      </div>
+    </div>
+  );
+}
+
+function Comments({ comments }) {
+  const classes = useMovieStyles();
+  return (
+    <div className={classes.comments}>
+      <Typography variant="h5">Comments section</Typography>
+      {comments.map((comment) => (
+        <div key={comment.id} className={classes.commentContainer}>
+          <Link to={`/${comment.user.username}`}>
+            <Avatar
+              className={classes.commentImage}
+              src={comment.user.profile_image}
+            />
+          </Link>
+          <div className={classes.commentsInfo}>
+            <div className={classes.commentsInfoHeader}>
+              <Typography variant="body2" className={classes.commentName}>
+                {comment.user.username}
+              </Typography>
+              <Typography variant="body1" className={classes.commentDate}>
+                {comment.date}
+              </Typography>
+            </div>
+            <Typography variant="body2" className={classes.commentContent}>
+              {comment.content}
+            </Typography>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function AddComment() {
+  const classes = useMovieStyles();
+
+  const [comment, setComment] = React.useState("");
+  return (
+    <div className={classes.addComment}>
+      <Avatar
+        src={defaultUser.profile_image}
+        className={classes.addCommentImage}
+      />
+      <TextField
+        className={classes.urlInput}
+        onChange={(event) => setComment(event.target.value)}
+        fullWidth
+        margin="normal"
+        placeholder="Add a comment..."
+        color="secondary"
+        value={comment}
+        type="comment"
+      />
+      <Button
+        color="secondary"
+        variant="contained"
+        disabled={!comment.trim()}
+        className={classes.commentButton}
+      >
+        Post
+      </Button>
     </div>
   );
 }

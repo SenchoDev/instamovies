@@ -94,4 +94,34 @@ export const defaultMovie = {
     "Agent Phil Coulson of S.H.I.E.L.D. (Strategic Homeland Intervention, Enforcement and Logistics Division) puts together a team of agents to investigate the new, the strange and the unknown around the globe, protecting the ordinary from the extraordinary.",
   directors: ["Joss Whedon", "Jed Whedon", "Mauriss Tahncharoan"],
   seriesCast: [actor],
+  comments: [{
+    id: uuid(),
+    user: defaultUser,
+    date: "5 weeks ago",
+    content: "Don't tell a possible* future employer - anything about the previous salaries or per-hour rates you've had. It's none of their business. Just talk about what you want. They want something + you want something. They usually need you more than you think. "
+  },
+  {
+    id: uuid(),
+    user: defaultUser,
+    date: "5 weeks ago",
+    content: "Don't tell a possible* future employer - anything about the previous salaries or per-hour rates you've had. It's none of their business. Just talk about what you want. They want something + you want something. They usually need you more than you think. "
+  },
+  {
+    id: uuid(),
+    user: defaultUser,
+    date: "5 weeks ago",
+    content: "Don't tell a possible* future employer - anything about the previous salaries or per-hour rates you've had. It's none of their business. Just talk about what you want. They want something + you want something. They usually need you more than you think. "
+  },
+  {
+    id: uuid(),
+    user: defaultUser,
+    date: "5 weeks ago",
+    content: "Don't tell a possible* future employer - anything about the previous salaries or per-hour rates you've had. It's none of their business. Just talk about what you want. They want something + you want something. They usually need you more than you think. "
+  },
+  {
+    id: uuid(),
+    user: defaultUser,
+    date: "5 weeks ago",
+    content: "Don't tell a possible* future employer - anything about the previous salaries or per-hour rates you've had. It's none of their business. Just talk about what you want. They want something + you want something. They usually need you more than you think. "
+  }]
 };

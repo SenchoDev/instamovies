@@ -322,14 +322,14 @@ export const useMovieStyles = makeStyles((theme) => ({
   about: {
     position: "absolute",
     top: "30px",
-    left: '15%',
-    
+    left: "15%",
+
     display: "flex",
     [theme.breakpoints.up("xl")]: {
-      left: '20%',
+      left: "20%",
     },
     [theme.breakpoints.down("md")]: {
-      left: '10%',
+      left: "10%",
     },
   },
   heading: {
@@ -340,7 +340,7 @@ export const useMovieStyles = makeStyles((theme) => ({
     marginTop: "60px",
     marginLeft: "40px",
     color: "#ffffff",
-    marginRight: '20px',
+    marginRight: "20px",
   },
   buttons: {
     marginTop: "15px",
@@ -360,7 +360,7 @@ export const useMovieStyles = makeStyles((theme) => ({
     fontSize: "15px",
     fontWeight: "500",
 
-    boxShadow:  "0 0 5px rgba(var(--jb7,0,0,0),.0975)"
+    boxShadow: "0 0 5px rgba(var(--jb7,0,0,0),.0975)",
   },
   saveIcon: {
     cursor: "pointer",
@@ -380,25 +380,25 @@ export const useMovieStyles = makeStyles((theme) => ({
     borderRadius: "10px",
   },
   trailer: {
-    display: 'flex',
+    display: "flex",
     alignItems: "center",
-    color: '#fff',
+    color: "#fff",
   },
-  trailerVideo:{
-    background: 'transparent'
+  trailerVideo: {
+    background: "transparent",
   },
   trailerText: {
-    marginBottom : '5px',
+    marginBottom: "5px",
   },
   sliderContainer: {
     "&.slickSlider": {
       display: "grid",
     },
   },
-  seriesCast:{
-    marginTop: '20px',
-    display: 'flex',
-    flexDirection: 'column',
+  seriesCast: {
+    marginTop: "20px",
+    display: "flex",
+    flexDirection: "column",
   },
   slide: {
     padding: "10px 0px 20px 0px !important",
@@ -423,25 +423,86 @@ export const useMovieStyles = makeStyles((theme) => ({
     },
   },
   actor: {
-    width: '140px',
-    height: '270px',
-    background: '#FFFFFF',
-    boxShadow: '2px 3px 6px #00000029',
-    borderRadius: '10px',
-    border: '1px solid #B8A6A6',
+    width: "140px",
+    height: "270px",
+    background: "#FFFFFF",
+    boxShadow: "2px 3px 6px #00000029",
+    borderRadius: "10px",
   },
-  image: {
-    width: '100%',
+  imageCard: {
+    width: "100%",
+    borderRadiusTopRight: "10px",
+    borderRadiusTopLeft: "10px",
+  },
+  realName: {
+    fontSize: "16px",
+    fontWeight: 500,
+  },
+  name: {
+    fontSize: "12pxs",
+    color: "#00000080",
+    marginTop: 2,
+  },
+  imgTextContainer: {
+    margin: '10px',
+  },
+  comments: {
+    marginBottom: 40,
+  },
+  commentContainer:{
+    display: 'flex',
+    alignItems: 'center',
+    marginLeft: '20px',
+    marginTop: '20px',
+  },
+  commentImage: {
+    width: '70px',
+    height: '70px',
+    marginRight: '20px',
+  },
+  commentsInfo:{
+    display: 'flex',
+    flexDirection: 'column',
+  },
+  commentsInfoHeader:{
+    display: 'flex',
+    alignItems: 'center',
+  },
+  commentName: {
+    fontSize: "16px",
+    fontWeight: 500,
+    marginRight: '14px',
+  },
+  commentDate: {
+    fontSize: "12pxs",
+    color: "#00000080",
+  },
+  commentContent:{
+    width: '85%',
+  },
+  addComment: {
+    display: 'flex',
+    alignItems: 'flex-end',
+    marginLeft: '15px',
+    marginTop: '20px',
+  },
+  urlInput: {
+    margin: theme.spacing(1)
+  },
+  addCommentImage: {
+    width: '70px',
+    height: '70px',
+  },
+  commentButton:{
+    marginBottom: 8
   }
+
+
 }));
 
-export const useSearchStyles = makeStyles((theme) => ({
-  
-}));
+export const useSearchStyles = makeStyles((theme) => ({}));
 
-export const useMoviesStyles = makeStyles((theme) => ({
-  
-}));
+export const useMoviesStyles = makeStyles((theme) => ({}));
 
 /* ExploreSuggestions component: /components/explore/ExploreSuggestions.js */
 export const useExploreSuggestionsStyles = makeStyles((theme) => ({
@@ -871,7 +932,7 @@ export const PurpleTooltip = withStyles({
   tooltip: {
     backgroundColor: "#AA2CA8",
     color: "#fff",
-    fontSize: '14px',
+    fontSize: "14px",
   },
 })(Tooltip);
 
