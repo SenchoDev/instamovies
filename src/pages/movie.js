@@ -10,8 +10,10 @@ import {
   DialogActions,
   DialogTitle,
   DialogContent,
+  Card,
+  CardMedia,
 } from "@material-ui/core";
-import { defaultMovie } from "../data";
+import { defaultMovie, getActorCard } from "../data";
 import PlayArrowRoundedIcon from "@material-ui/icons/PlayArrowRounded";
 import ReactPlayer from "react-player";
 
@@ -21,6 +23,10 @@ import {
   LikeIconWhite,
   LikeActiveIconWhite,
 } from "../icons";
+
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 function MoviePage() {
   const classes = useMovieStyles();
@@ -75,7 +81,7 @@ function MoviePage() {
           <div className={classes.trailerVideo}>
             <ReactPlayer
               url={trailer}
-              width={800}
+              width={760}
               height={500}
               style={{ marginLeft: "50px" }}
             />
@@ -139,6 +145,10 @@ function MoviePage() {
           </Typography>
         </div>
       </section>
+      <div className={classes.seriesCast}>
+        <Typography variant="h4">Series Cast</Typography>
+        <ActorSlider seriesCast={seriesCast}/>
+      </div>
     </Layout>
   );
 }
@@ -186,6 +196,41 @@ function LikeButton() {
     <Fab className={classes.fab} onClick={onClick}>
       <Icon className={classes.saveIcon} />
     </Fab>
+  );
+}
+
+function ActorSlider({ seriesCast }) {
+  const classes = useMovieStyles();
+  return (
+    <div className={classes.container}>
+      <Slider
+        className={classes.slide}
+        dots={false}
+        infinite
+        speed={1000}
+        touchThreshold={1000}
+        variableWidth
+        swipeToSlide
+        arrows
+        slidesToScroll={4}
+        easing="ease-in-out"
+      >
+        {Array.from({ length: 10 }, () => getActorCard()).map((card) => (
+          <ActorCard key={card.id} card={card} />
+        ))}
+      </Slider>
+    </div>
+  );
+}
+
+function ActorCard({card}) {
+  const classes = useMovieStyles();
+  return(
+    <div className={classes.actor}>
+      <img src={card.image} alt="actor"/>
+      <Typography variant="body2" >{card.realName}</Typography>
+      <p className={classes.name}>{card.name}</p>
+    </div>
   );
 }
 

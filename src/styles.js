@@ -389,53 +389,58 @@ export const useMovieStyles = makeStyles((theme) => ({
   },
   trailerText: {
     marginBottom : '5px',
+  },
+  sliderContainer: {
+    "&.slickSlider": {
+      display: "grid",
+    },
+  },
+  seriesCast:{
+    marginTop: '20px',
+    display: 'flex',
+    flexDirection: 'column',
+  },
+  slide: {
+    padding: "10px 0px 20px 0px !important",
+    marginBottom,
+    // border,
+    borderTop: "none",
+    "& .slick-slide > div": {
+      background: "transparent",
+      margin: "0px 8px !important",
+      padding: "15px !important",
+    },
+    [theme.breakpoints.down("xs")]: {
+      margin: "0px 0px !important",
+      padding: "0 !important",
+    },
+    "& .slick-next:before, & .slick-prev:before": {
+      color: "#AA2CA8",
+      fontSize: "30px !important",
+      [theme.breakpoints.down("sm")]: {
+        fontSize: "0 !important",
+      },
+    },
+  },
+  actor: {
+    width: '140px',
+    height: '270px',
+    background: '#FFFFFF',
+    boxShadow: '2px 3px 6px #00000029',
+    borderRadius: '10px',
+    border: '1px solid #B8A6A6',
+  },
+  image: {
+    width: '100%',
   }
 }));
 
 export const useSearchStyles = makeStyles((theme) => ({
-  container: {
-    display: "grid",
-    // gridAutoFlow: "column",
-    gridTemplateColumns: "minmax(auto, 600px) 300px",
-    gridGap: 35,
-    [theme.breakpoints.down("sm")]: {
-      gridTemplateColumns: "minmax(auto, 600px)",
-      justifyContent: "center",
-    },
-    "&.slickSlider": {
-      display: "grid",
-    },
-  },
-  sidebarContainer: {
-    display: "grid",
-    margin: "0px 28px 24px",
-    justifyContent: "center",
-    gridTemplateColumns: "minmax(auto, 300px)",
-  },
-  sidebarWrapper: { position: "fixed", width: 293 },
+  
 }));
 
 export const useMoviesStyles = makeStyles((theme) => ({
-  container: {
-    display: "grid",
-    // gridAutoFlow: "column",
-    gridTemplateColumns: "minmax(auto, 600px) 300px",
-    gridGap: 35,
-    [theme.breakpoints.down("sm")]: {
-      gridTemplateColumns: "minmax(auto, 600px)",
-      justifyContent: "center",
-    },
-    "&.slickSlider": {
-      display: "grid",
-    },
-  },
-  sidebarContainer: {
-    display: "grid",
-    margin: "0px 28px 24px",
-    justifyContent: "center",
-    gridTemplateColumns: "minmax(auto, 300px)",
-  },
-  sidebarWrapper: { position: "fixed", width: 293 },
+  
 }));
 
 /* ExploreSuggestions component: /components/explore/ExploreSuggestions.js */

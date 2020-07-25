@@ -68,9 +68,17 @@ export function getTrailerCard() {
 
 export const actor = {
   id: uuid(),
-  image: 'https://i.ibb.co/jH8SF2m/imgActor.png',
-  realName: 'Ian De Caestecker',
-  name: 'Leo Fitz'
+  image: "https://i.ibb.co/jH8SF2m/imgActor.png",
+  realName: "Ian De Caestecker",
+  name: "Leo Fitz",
+};
+export function getActorCard() {
+  return {
+    id: uuid(),
+    image: "https://i.ibb.co/jH8SF2m/imgActor.png",
+    realName: "Ian De Caestecker",
+    name: "Leo Fitz",
+  };
 }
 
 export const defaultMovie = {
@@ -82,7 +90,8 @@ export const defaultMovie = {
   backgroundImage: "https://i.ibb.co/BHpXCkS/movie-Large.png",
   rating: "6.7",
   trailer: "https://youtu.be/-pNgAZVrf40",
-  overview: "Agent Phil Coulson of S.H.I.E.L.D. (Strategic Homeland Intervention, Enforcement and Logistics Division) puts together a team of agents to investigate the new, the strange and the unknown around the globe, protecting the ordinary from the extraordinary.",
+  overview:
+    "Agent Phil Coulson of S.H.I.E.L.D. (Strategic Homeland Intervention, Enforcement and Logistics Division) puts together a team of agents to investigate the new, the strange and the unknown around the globe, protecting the ordinary from the extraordinary.",
   directors: ["Joss Whedon", "Jed Whedon", "Mauriss Tahncharoan"],
-  seriesCast: [actor]
+  seriesCast: [actor],
 };
