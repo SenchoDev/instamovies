@@ -184,14 +184,14 @@ export const useMainPageStyles = makeStyles((theme) => ({
     boxShadow: "0px 2px 4px #00000029",
     borderRadius: "52px",
     color: "#ffffff",
-    fontSize: '16px',
-    padding: '8px 20px',
-    fontWeight: '500',
-    marginTop: '20px'
+    fontSize: "16px",
+    padding: "8px 20px",
+    fontWeight: "500",
+    marginTop: "20px",
   },
-  buttonWrap:{
-    marginTop: '40px',
-  }
+  buttonWrap: {
+    marginTop: "40px",
+  },
 }));
 
 const iconProps = {
@@ -269,58 +269,56 @@ export const useSmallCardStyles = makeStyles((theme) => ({
   },
 }));
 
-
 export const useFooterStyles = makeStyles((theme) => ({
   container: {
-    background: '#AA2CA812 0% 0% no-repeat',
-    display: 'flex',
-    flexDirection: 'column',
-    paddingTop: '50px',
-    marginBottom: '55',
-    
+    background: "#AA2CA812 0% 0% no-repeat",
+    display: "flex",
+    flexDirection: "column",
+    paddingTop: "50px",
+    marginBottom: "55",
   },
   logoContainer: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
     [theme.breakpoints.down("xs")]: {
-      flexDirection: 'column',
-      "&>*:first-child":{
-        marginBottom: '25px'
-      }
+      flexDirection: "column",
+      "&>*:first-child": {
+        marginBottom: "25px",
+      },
     },
   },
 
-  sections:{
+  sections: {
     display: "grid",
-    margin: '80px 180px',
-    gridTemplateColumns: 'repeat(auto-fit, minmax(173px, 1fr))',
-    gridGap: '20px',
-    alignItems: 'center',
+    margin: "80px 180px",
+    gridTemplateColumns: "repeat(auto-fit, minmax(173px, 1fr))",
+    gridGap: "20px",
+    alignItems: "center",
     "&>*": {
-      justifySelf: 'center',
-      alignSelf: 'center',
+      justifySelf: "center",
+      alignSelf: "center",
     },
     [theme.breakpoints.down("xs")]: {
-      margin: '40px'
+      margin: "40px",
     },
   },
 
   text: {
-    marginRight: '30px',
+    marginRight: "30px",
   },
-  created:{
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingBottom: '20px',
+  created: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    paddingBottom: "20px",
     [theme.breakpoints.down("xs")]: {
-      paddingLeft: '10px',
+      paddingLeft: "10px",
     },
-  }
-  
+  },
 }));
 
+export const useMovieStyles = makeStyles((theme) => ({}));
 
 export const useSearchStyles = makeStyles((theme) => ({
   container: {
@@ -825,6 +823,10 @@ export const useLayoutStyles = makeStyles((theme) => ({
     margin: "0 auto",
     flexFlow: "row nowrap",
     maxWidth: "1110px !important",
+  },
+  image: {
+    height: "500px",
+    
   },
   children: {
     width: "100%",
