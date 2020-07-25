@@ -254,6 +254,7 @@ export const useBigCardStyles = makeStyles((theme) => ({
 
 export const useSmallCardStyles = makeStyles((theme) => ({
   container: {
+    position: 'relative',
     width: "150px",
     display: "flex",
     flexDirection: "column",
@@ -266,6 +267,19 @@ export const useSmallCardStyles = makeStyles((theme) => ({
     paddingLeft: 10,
     color: "#00000080",
     marginTop: 2,
+  },
+  rating:{
+    position: 'absolute',
+    background: '#0C7A29',
+    top: -25,
+    left: 44,
+    borderRadius: 25,
+    width: '62px',
+    height: '21px',
+    display: "flex",
+    alignItems: 'center',
+    justifyContent: 'center',
+    color: '#fff',
   },
 }));
 
@@ -520,7 +534,51 @@ export const useMovieStyles = makeStyles((theme) => ({
 
 }));
 
-export const useSearchStyles = makeStyles((theme) => ({}));
+export const useSearchStyles = makeStyles((theme) => ({
+  section: {
+    width: '1110px',
+    margin: '0 auto',
+  },
+  urlInput: {
+    borderRadius: 5,
+    width: 800,
+  },
+
+  searchField: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  root: {
+    fontSize: "14px !important",
+    
+  },
+  searchButton:{
+    marginBottom: '-5px',
+  },
+  underline: {
+    
+    "&::before": {
+      border: "none !important"
+    },
+    "&::after": {
+      border: "none !important"
+    },
+    "&:hover&:before": {
+      border: "none !important"
+    }
+  },
+  moviesWrapper:{
+    display: 'grid',
+    gridTemplateColumns: 'repeat(auto-fill, 150px)',
+    gridGap: 25,
+    justifyContent: 'center',
+    marginTop: '30px',
+  },
+
+
+
+}));
 
 export const useMoviesStyles = makeStyles((theme) => ({}));
 

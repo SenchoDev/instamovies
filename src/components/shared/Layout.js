@@ -15,7 +15,7 @@ function Layout({
   const classes = useLayoutStyles();
 
   return (
-    <div className={classes.sliderContainer}>
+    
       <section className={classes.section}>
         <SEO title={title} />
         <Navbar minimalNavbar={minimalNavbar} />
@@ -34,10 +34,10 @@ function Layout({
           <section className={classes.childrenWrapper}>
             <div className={classes.children}>{children}</div>
           </section>
-          <Footer />
+          <Footer /> 
         </main>
       </section>
-    </div>
+    
   );
 }
 

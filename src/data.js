@@ -55,6 +55,7 @@ export function getSmallCard() {
     title: "Marvel's Agents of S.H.I.E.L.D",
     date: "Sep 24, 2013",
     image: "https://i.ibb.co/j6GS0gV/ImgSmall.png",
+    rating: '6.5'
   };
 }
 
