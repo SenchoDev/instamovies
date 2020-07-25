@@ -1,9 +1,15 @@
 import React from "react";
 import { useMovieStyles, PurpleTooltip } from "../styles";
 import Layout from "../components/shared/Layout";
-import { Typography, Zoom, Tooltip, Fab } from "@material-ui/core";
+import { Typography, Zoom, Fab, Button } from "@material-ui/core";
 import { defaultMovie } from "../data";
-import { SaveIcon, RemoveIcon } from "../icons";
+import PlayArrowRoundedIcon from "@material-ui/icons/PlayArrowRounded";
+import {
+  SaveIcon,
+  RemoveIcon,
+  LikeIconWhite,
+  LikeActiveIconWhite,
+} from "../icons";
 
 function MoviePage() {
   const classes = useMovieStyles();
@@ -13,6 +19,13 @@ function MoviePage() {
   function handleToggleTooltip() {
     setTooltip((prev) => !prev);
   }
+
+  function listElementsWithComma(array) {
+    return array.map(
+      (el, index) => `${el}${index === array.length - 1 ? "" : ","} `
+    );
+  }
+
   const {
     id,
     title,
@@ -36,11 +49,7 @@ function MoviePage() {
             {title}
           </Typography>
           <Typography variant="body1">
-            {genres.map(
-              (genre, index) =>
-                `${genre}${index === genres.length - 1 ? "" : ","} `
-            )}
-            · {time}
+            {listElementsWithComma(genres)}· {time}
           </Typography>
           <div className={classes.buttons}>
             <p
@@ -54,13 +63,39 @@ function MoviePage() {
             <PurpleTooltip
               arrow
               TransitionComponent={Zoom}
-              title="Add movie to watchlist"
+              title="Add this movie to watchlist"
             >
               <div>
                 <SaveButton />
               </div>
             </PurpleTooltip>
+            <PurpleTooltip
+              arrow
+              TransitionComponent={Zoom}
+              title="Add this move to your favorite list"
+            >
+              <div>
+                <LikeButton />
+              </div>
+            </PurpleTooltip>
+            <Button className={classes.trailer}>
+              <PlayArrowRoundedIcon />
+              <Typography variant="h5" className={classes.trailerText}>
+                Play trailer
+              </Typography>
+            </Button>
           </div>
+          <Typography variant="h4">Overview</Typography>
+          <Typography
+            variant="body2"
+            style={{ width: "45vw", marginBottom: "15px" }}
+          >
+            {overview}
+          </Typography>
+          <Typography variant="h4">Directors & Creators</Typography>
+          <Typography variant="body2" style={{ width: "45vw" }}>
+            {listElementsWithComma(directors)}
+          </Typography>
         </div>
       </section>
     </Layout>
@@ -81,6 +116,29 @@ function SaveButton() {
   function handleRemove() {
     console.log("remove");
     setSaved(false);
+  }
+
+  return (
+    <Fab className={classes.fab} onClick={onClick}>
+      <Icon className={classes.saveIcon} />
+    </Fab>
+  );
+}
+
+function LikeButton() {
+  const classes = useMovieStyles();
+  const [liked, setLiked] = React.useState(false);
+  const Icon = liked ? LikeActiveIconWhite : LikeIconWhite;
+  const onClick = liked ? handleRemove : handleLike;
+
+  function handleLike() {
+    console.log("liked");
+    setLiked(true);
+  }
+
+  function handleRemove() {
+    console.log("");
+    setLiked(false);
   }
 
   return (

@@ -322,10 +322,16 @@ export const useMovieStyles = makeStyles((theme) => ({
   about: {
     position: "absolute",
     top: "30px",
-    left: "220px",
+    left: '15%',
+    
     display: "flex",
+    [theme.breakpoints.up("xl")]: {
+      left: '20%',
+    },
+    [theme.breakpoints.down("md")]: {
+      left: '10%',
+    },
   },
-
   heading: {
     fontWeight: "500",
     marginBottom: "7px",
@@ -334,11 +340,15 @@ export const useMovieStyles = makeStyles((theme) => ({
     marginTop: "60px",
     marginLeft: "40px",
     color: "#ffffff",
+    marginRight: '20px',
   },
   buttons: {
     marginTop: "15px",
     display: "flex",
     alignItems: "center",
+    "&>*:not(:last-child)": {
+      marginRight: 15,
+    },
   },
   rating: {
     width: 42,
@@ -369,6 +379,14 @@ export const useMovieStyles = makeStyles((theme) => ({
     height: "450px",
     borderRadius: "10px",
   },
+  trailer: {
+    display: 'flex',
+    alignItems: "center",
+    color: '#fff',
+  },
+  trailerText: {
+    marginBottom : '5px',
+  }
 }));
 
 export const useSearchStyles = makeStyles((theme) => ({
