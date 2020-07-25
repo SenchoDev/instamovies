@@ -384,6 +384,9 @@ export const useMovieStyles = makeStyles((theme) => ({
     alignItems: "center",
     color: '#fff',
   },
+  trailerVideo:{
+    background: 'transparent'
+  },
   trailerText: {
     marginBottom : '5px',
   }

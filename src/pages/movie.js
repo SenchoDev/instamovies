@@ -1,9 +1,20 @@
 import React from "react";
 import { useMovieStyles, PurpleTooltip } from "../styles";
 import Layout from "../components/shared/Layout";
-import { Typography, Zoom, Fab, Button } from "@material-ui/core";
+import {
+  Typography,
+  Zoom,
+  Fab,
+  Button,
+  Dialog,
+  DialogActions,
+  DialogTitle,
+  DialogContent,
+} from "@material-ui/core";
 import { defaultMovie } from "../data";
 import PlayArrowRoundedIcon from "@material-ui/icons/PlayArrowRounded";
+import ReactPlayer from "react-player";
+
 import {
   SaveIcon,
   RemoveIcon,
@@ -15,9 +26,14 @@ function MoviePage() {
   const classes = useMovieStyles();
 
   const [showTooltip, setTooltip] = React.useState(true);
+  const [showDialog, setDialog] = React.useState(false);
 
   function handleToggleTooltip() {
     setTooltip((prev) => !prev);
+  }
+
+  function handleCloseDialog() {
+    setDialog(false);
   }
 
   function listElementsWithComma(array) {
@@ -41,6 +57,31 @@ function MoviePage() {
   } = defaultMovie;
   return (
     <Layout movieLarge image={backgroundImage}>
+      <Dialog
+        open={showDialog}
+        onClose={handleCloseDialog}
+        className={classes.trailerVideo}
+        fullWidth={true}
+        maxWidth={"md"}
+        PaperProps={{
+          style: {
+            backgroundColor: "transparent",
+            boxShadow: "none",
+            border: "transparent",
+          },
+        }}
+      >
+        <DialogContent>
+          <div className={classes.trailerVideo}>
+            <ReactPlayer
+              url={trailer}
+              width={800}
+              height={500}
+              style={{ marginLeft: "50px" }}
+            />
+          </div>
+        </DialogContent>
+      </Dialog>
       <section className={classes.about}>
         <img src={movieImage} alt="movie" className={classes.image} />
 
@@ -78,7 +119,7 @@ function MoviePage() {
                 <LikeButton />
               </div>
             </PurpleTooltip>
-            <Button className={classes.trailer}>
+            <Button className={classes.trailer} onClick={() => setDialog(true)}>
               <PlayArrowRoundedIcon />
               <Typography variant="h5" className={classes.trailerText}>
                 Play trailer
