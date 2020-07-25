@@ -13,7 +13,7 @@ function Footer() {
         <Typography variant="h4" className={classes.text}>
           Powered by:
         </Typography>
-        <Logo />
+        <Logo className={classes.logo}/>
       </div>
       <div className={classes.sections}>
         <Typography variant="h5">

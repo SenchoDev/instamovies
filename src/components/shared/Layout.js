@@ -34,7 +34,7 @@ function Layout({
           <section className={classes.childrenWrapper}>
             <div className={classes.children}>{children}</div>
           </section>
-          <Footer /> 
+          <Footer />
         </main>
       </section>
     </div>

@@ -274,7 +274,7 @@ export const useFooterStyles = makeStyles((theme) => ({
     background: "#AA2CA812 0% 0% no-repeat",
     display: "flex",
     flexDirection: "column",
-    paddingTop: "50px",
+    paddingTop: "20px",
     marginBottom: "55",
   },
   logoContainer: {
@@ -284,14 +284,15 @@ export const useFooterStyles = makeStyles((theme) => ({
     [theme.breakpoints.down("xs")]: {
       flexDirection: "column",
       "&>*:first-child": {
-        marginBottom: "25px",
+        marginBottom: "10px",
       },
     },
+    
   },
 
   sections: {
     display: "grid",
-    margin: "80px 180px",
+    margin: "32px 180px 50px",
     gridTemplateColumns: "repeat(auto-fit, minmax(173px, 1fr))",
     gridGap: "20px",
     alignItems: "center",
@@ -316,6 +317,10 @@ export const useFooterStyles = makeStyles((theme) => ({
       paddingLeft: "10px",
     },
   },
+  logo:{
+    width: 120,
+    height: 120,
+  }
 }));
 
 export const useMovieStyles = makeStyles((theme) => ({
