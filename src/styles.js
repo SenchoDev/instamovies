@@ -320,43 +320,55 @@ export const useFooterStyles = makeStyles((theme) => ({
 
 export const useMovieStyles = makeStyles((theme) => ({
   about: {
-    position: 'absolute',
-    top: '30px',
-    left: '220px',
-    display: 'flex',
-  },
-  
-  heading:{
-    fontWeight: '500',
-    marginBottom: '7px'
-  },
-  info: {
-    marginTop: '60px',
-    marginLeft: '40px',
-    color: '#ffffff',
-  },
-  buttons: {
-    marginTop: '15px',
-  },
-  rating: {
-    width: 36,
-    height: 36,
-    borderRadius: '50%',
-    display: 'flex',
-    alignItems: "center",
-    justifyContent: "center",
-    fontSize: '15px',
-    fontWeight: '500'
-  },
-  saveIcon:{
-    cursor: 'pointer',
+    position: "absolute",
+    top: "30px",
+    left: "220px",
+    display: "flex",
   },
 
-  image:{
-    width: '300px',
-    height: '450px',
-    borderRadius: '10px',
-  }
+  heading: {
+    fontWeight: "500",
+    marginBottom: "7px",
+  },
+  info: {
+    marginTop: "60px",
+    marginLeft: "40px",
+    color: "#ffffff",
+  },
+  buttons: {
+    marginTop: "15px",
+    display: "flex",
+    alignItems: "center",
+  },
+  rating: {
+    width: 42,
+    height: 42,
+    borderRadius: "50%",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    fontSize: "15px",
+    fontWeight: "500",
+
+    boxShadow:  "0 0 5px rgba(var(--jb7,0,0,0),.0975)"
+  },
+  saveIcon: {
+    cursor: "pointer",
+  },
+  fab: {
+    width: 42,
+    height: 42,
+    background: "#AA2CA8",
+    "&:hover": {
+      background: "#AA2CA8",
+    },
+  },
+
+  image: {
+    width: "300px",
+    height: "450px",
+    borderRadius: "10px",
+  },
 }));
 
 export const useSearchStyles = makeStyles((theme) => ({
@@ -823,6 +835,20 @@ export const RedTooltip = withStyles({
   },
 })(Tooltip);
 
+export const PurpleTooltip = withStyles({
+  popper: {
+    zIndex: "1100 !important",
+  },
+  arrow: {
+    color: "#AA2CA8",
+  },
+  tooltip: {
+    backgroundColor: "#AA2CA8",
+    color: "#fff",
+    fontSize: '14px',
+  },
+})(Tooltip);
+
 export const WhiteTooltip = withStyles({
   arrow: {
     color: "#fff",
@@ -865,7 +891,7 @@ export const useLayoutStyles = makeStyles((theme) => ({
   },
   image: {
     height: "500px",
-    position: 'relative'
+    position: "relative",
   },
   children: {
     width: "100%",

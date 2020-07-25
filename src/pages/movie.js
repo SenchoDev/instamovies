@@ -1,7 +1,7 @@
 import React from "react";
-import { useMovieStyles, RedTooltip } from "../styles";
+import { useMovieStyles, PurpleTooltip } from "../styles";
 import Layout from "../components/shared/Layout";
-import { Typography, Zoom, Tooltip } from "@material-ui/core";
+import { Typography, Zoom, Tooltip, Fab } from "@material-ui/core";
 import { defaultMovie } from "../data";
 import { SaveIcon, RemoveIcon } from "../icons";
 
@@ -51,13 +51,15 @@ function MoviePage() {
             >
               {rating}
             </p>
-            <RedTooltip
+            <PurpleTooltip
               arrow
               TransitionComponent={Zoom}
-              title={<div>Hello</div>}
+              title="Add movie to watchlist"
             >
-              <SaveButton/>
-            </RedTooltip>
+              <div>
+                <SaveButton />
+              </div>
+            </PurpleTooltip>
           </div>
         </div>
       </section>
@@ -81,7 +83,11 @@ function SaveButton() {
     setSaved(false);
   }
 
-  return <Icon className={classes.saveIcon} onClick={onClick} />;
+  return (
+    <Fab className={classes.fab} onClick={onClick}>
+      <Icon className={classes.saveIcon} />
+    </Fab>
+  );
 }
 
 export default MoviePage;
