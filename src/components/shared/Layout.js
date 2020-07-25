@@ -17,7 +17,6 @@ function Layout({
   return (
     <section className={classes.section}>
       <SEO title={title} />
-
       <Navbar minimalNavbar={minimalNavbar} />
       <main className={classes.main} style={{ marginTop }}>
         {movieLarge && (
@@ -26,7 +25,7 @@ function Layout({
               background: `linear-gradient(to right bottom, #AA2CA8BF, #AA2CA8AF), url(${image})`,
               backgroundSize: "cover",
               backgroundPosition: "top",
-              position: 'aboslute',
+              position: "aboslute",
             }}
             className={classes.image}
           />

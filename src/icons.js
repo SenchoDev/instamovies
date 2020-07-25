@@ -23,7 +23,7 @@ export const SaveIcon = props => (
   <svg
     aria-label="Save"
     className="_8-yf5"
-    fill="#262626"
+    fill="#ffffff"
     height={24}
     viewBox="0 0 48 48"
     width={24}
@@ -447,7 +447,7 @@ export const RemoveIcon = props => (
   <svg
     aria-label="Remove"
     className="_8-yf5"
-    fill="#262626"
+    fill="#ffffff"
     height={24}
     viewBox="0 0 48 48"
     width={24}

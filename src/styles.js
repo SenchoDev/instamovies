@@ -318,7 +318,46 @@ export const useFooterStyles = makeStyles((theme) => ({
   },
 }));
 
-export const useMovieStyles = makeStyles((theme) => ({}));
+export const useMovieStyles = makeStyles((theme) => ({
+  about: {
+    position: 'absolute',
+    top: '30px',
+    left: '220px',
+    display: 'flex',
+  },
+  
+  heading:{
+    fontWeight: '500',
+    marginBottom: '7px'
+  },
+  info: {
+    marginTop: '60px',
+    marginLeft: '40px',
+    color: '#ffffff',
+  },
+  buttons: {
+    marginTop: '15px',
+  },
+  rating: {
+    width: 36,
+    height: 36,
+    borderRadius: '50%',
+    display: 'flex',
+    alignItems: "center",
+    justifyContent: "center",
+    fontSize: '15px',
+    fontWeight: '500'
+  },
+  saveIcon:{
+    cursor: 'pointer',
+  },
+
+  image:{
+    width: '300px',
+    height: '450px',
+    borderRadius: '10px',
+  }
+}));
 
 export const useSearchStyles = makeStyles((theme) => ({
   container: {
@@ -826,7 +865,7 @@ export const useLayoutStyles = makeStyles((theme) => ({
   },
   image: {
     height: "500px",
-    
+    position: 'relative'
   },
   children: {
     width: "100%",
