@@ -6,7 +6,8 @@ import { LoadingLargeIcon } from "../../icons";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import SmallCard from './SmallCard'
+import MainSkeleton from "./MainSkeleton";
+const SmallCard = React.lazy(() => import("./SmallCard"));
 
 
 function SliderA() {
@@ -30,17 +31,15 @@ function SliderA() {
           slidesToScroll={3}
           easing="ease-in-out"
         >
-          {Array.from({ length: 10 }, () => getSmallCard()).map(card => (
-            <SmallCard key={card.id} card={card}/>
+          {Array.from({ length: 10 }, () => getSmallCard()).map((card) => (
+            <React.Suspense key={card.id} fallback={<MainSkeleton />}>
+              <SmallCard card={card} />
+            </React.Suspense>
           ))}
         </Slider>
       )}
     </div>
   );
 }
-
-
-
-
 
 export default SliderA;

@@ -8,10 +8,16 @@ import SliderA from "../components/shared/Slider";
 import Heading from "../components/shared/Heading";
 import BigCard from "../components/shared/BigCard";
 import { getTrailerCard } from "../data";
-import Footer from '../components/shared/Footer';
+import Footer from "../components/shared/Footer";
+import LoadingScreen from "../components/shared/LoadingScreen";
+import SecondSkeleton from "../components/shared/MainSkeleton";
 
 function MainPage() {
   const classes = useMainPageStyles();
+
+  const loading = false;
+
+  if (loading) return <LoadingScreen />;
 
   return (
     <Layout>
@@ -28,7 +34,9 @@ function MainPage() {
         <Heading textHeader="Whats Popular" textButton="Trailers" />
         <div className={classes.trailerContainer}>
           {Array.from({ length: 3 }, () => getTrailerCard()).map((card) => (
-            <BigCard key={card.id} card={card} />
+            <React.Suspense key={card.id} fallback={<SecondSkeleton/>}>
+              <BigCard card={card} />
+            </React.Suspense>
           ))}
         </div>
       </div>

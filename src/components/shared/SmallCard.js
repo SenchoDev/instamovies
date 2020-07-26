@@ -2,9 +2,16 @@ import React from "react";
 import { useSmallCardStyles } from "../../styles";
 import { Typography } from "@material-ui/core";
 import { Link } from "react-router-dom";
+import MainSkeleton from "./MainSkeleton";
 
 function SmallCard({card, showRating = false}) {
   const classes = useSmallCardStyles();
+  
+  const [loading, setLoading] = React.useState(true)
+
+  setTimeout(() => setLoading(false), 2000)
+
+  if(loading) return <MainSkeleton/>
 
   const { title, date, image, rating} = card;
 
