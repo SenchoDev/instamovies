@@ -11,6 +11,7 @@ function Layout({
   marginTop = 40,
   minimalNavbar = false,
   movieLarge = false,
+  hideFooter = false,
 }) {
   const classes = useLayoutStyles();
 
@@ -34,7 +35,7 @@ function Layout({
           <section className={classes.childrenWrapper}>
             <div className={classes.children}>{children}</div>
           </section>
-          <Footer /> 
+          {!hideFooter && <Footer /> }
         </main>
       </section>
     
