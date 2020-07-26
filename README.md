@@ -34,7 +34,8 @@ Components:
 
 - Movie
 - MovieSkeleton
-- MovieCast
+- MovieCastSlider
+- MovieAddComment
 - MovieComments
 - Slider
 
