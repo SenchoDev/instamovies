@@ -7,7 +7,7 @@ import TertiarySkeleton from "./TertiarySkeleton";
 function SemiCard({ card, showRating = false}) {
   const classes = useSemiCardStyles();
 
-  const [loading, setLoading] = React.useState(false);
+  const [loading, setLoading] = React.useState(true);
 
   setTimeout(() => setLoading(false), 2000);
 

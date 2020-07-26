@@ -3,7 +3,7 @@ import { useSearchStyles } from "../styles";
 import Layout from "../components/shared/Layout";
 import { Button, TextField } from "@material-ui/core";
 import { getSmallCard } from "../data";
-import SmallCard from "../components/shared/SmallCard";
+import SmallCard from "../components/Cards/SmallCard";
 import Pagination from '@material-ui/lab/Pagination'
 
 function SearchPage() {

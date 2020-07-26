@@ -6,7 +6,7 @@ function MainSkeleton() {
   return <div className={classes.container}>
     <div className={classes.mediaSkeleton}/>
     <div className={classes.title}/>
-    <div className={classes.rating}/>
+    <div className={classes.release}/>
   </div>
 }
 

@@ -2,7 +2,7 @@ import React from "react";
 import { useSmallCardStyles } from "../../styles";
 import { Typography } from "@material-ui/core";
 import { Link } from "react-router-dom";
-import MainSkeleton from "./MainSkeleton";
+import MainSkeleton from "../Cards/MainSkeleton";
 
 function SmallCard({card, showRating = false}) {
   const classes = useSmallCardStyles();

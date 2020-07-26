@@ -6,8 +6,8 @@ import { LoadingLargeIcon } from "../../icons";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import MainSkeleton from "./MainSkeleton";
-const SmallCard = React.lazy(() => import("./SmallCard"));
+import MainSkeleton from "../Cards/MainSkeleton";
+const SmallCard = React.lazy(() => import("../Cards/SmallCard"));
 
 
 function SliderA() {

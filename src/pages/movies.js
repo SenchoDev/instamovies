@@ -3,8 +3,8 @@ import { useMoviesStyles } from "../styles";
 import { Typography } from "@material-ui/core";
 import { getSemiCard } from "../data";
 import Layout from "../components/shared/Layout";
-import SemiCard from "../components/shared/SemiCard";
-import TertiarySkeleton from "../components/shared/TertiarySkeleton";
+import SemiCard from "../components/Cards/SemiCard";
+import TertiarySkeleton from "../components/Cards/TertiarySkeleton";
 
 function MoviesPage() {
   const classes = useMoviesStyles();
