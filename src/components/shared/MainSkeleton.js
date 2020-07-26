@@ -1,15 +1,13 @@
 import React from "react";
-import { useSecondSkeletonStyles } from "../../styles";
+import { useMainSkeletonStyles } from "../../styles";
 
-function SecondSkeleton() {
-  const classes = useSecondSkeletonStyles();
-  return (
-    <div className={classes.container}>
-      <div className={classes.mediaSkeleton} />
-      <div className={classes.title} />
-      <div className={classes.trailer} />
-    </div>
-  );
+function MainSkeleton() {
+  const classes = useMainSkeletonStyles();
+  return <div className={classes.container}>
+    <div className={classes.mediaSkeleton}/>
+    <div className={classes.title}/>
+    <div className={classes.rating}/>
+  </div>
 }
 
-export default SecondSkeleton;
+export default MainSkeleton;

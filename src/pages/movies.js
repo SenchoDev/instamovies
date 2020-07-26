@@ -1,10 +1,28 @@
 import React from "react";
 import { useMoviesStyles } from "../styles";
+import { Typography } from "@material-ui/core";
+import { getSemiCard } from "../data";
+import Layout from "../components/shared/Layout";
+import SemiCard from "../components/shared/SemiCard";
+import TertiarySkeleton from "../components/shared/TertiarySkeleton";
 
 function MoviesPage() {
-  useMoviesStyles();
+  const classes = useMoviesStyles();
 
-  return <div>MoviesPage</div>;
+  return (
+    <Layout>
+      <Typography variant="h4" color="secondary" className={classes.heading}>
+        Top Rated Tv Shows
+      </Typography>
+      <div className={classes.movies}>
+        {Array.from({ length: 20 }, () => getSemiCard()).map((card) => (
+          <React.Suspense key={card.id} fallback={<TertiarySkeleton />}>
+            <SemiCard showRating card={card} />
+          </React.Suspense>
+        ))}
+      </div>
+    </Layout>
+  );
 }
 
-export default MoviesPage
+export default MoviesPage;

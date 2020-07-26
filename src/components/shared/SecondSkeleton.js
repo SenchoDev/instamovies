@@ -1,8 +1,8 @@
 import React from "react";
-import { useMainSkeletonStyles } from "../../styles";
+import { useSecondSkeletonStyles } from "../../styles";
 
-function MainSkeleton() {
-  const classes = useMainSkeletonStyles();
+function SecondSkeleton() {
+  const classes = useSecondSkeletonStyles();
   return (
     <div className={classes.container}>
       <div className={classes.mediaSkeleton} />
@@ -12,4 +12,4 @@ function MainSkeleton() {
   );
 }
 
-export default MainSkeleton;
+export default SecondSkeleton;

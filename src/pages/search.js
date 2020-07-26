@@ -4,6 +4,7 @@ import Layout from "../components/shared/Layout";
 import { Button, TextField } from "@material-ui/core";
 import { getSmallCard } from "../data";
 import SmallCard from "../components/shared/SmallCard";
+import Pagination from '@material-ui/lab/Pagination'
 
 function SearchPage() {
   const classes = useSearchStyles();
@@ -18,6 +19,7 @@ function SearchPage() {
           <SmallCard key={card.id} card={card} showRating/>
         ))}
       </div>
+      <Pagination count={10} color="secondary" className={classes.pagination} />
     </Layout>
   );
 }

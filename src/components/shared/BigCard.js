@@ -2,14 +2,14 @@ import React from "react";
 import { useBigCardStyles } from "../../styles";
 import { Typography } from "@material-ui/core";
 import { Link } from "react-router-dom";
-import SecondSkeleton from "./MainSkeleton";
+import SecondSkeleton from "./SecondSkeleton";
 
 function BigCard({ card }) {
   const classes = useBigCardStyles();
 
   const [loading, setLoading] = React.useState(true);
 
-  setTimeout(() => setLoading(true), 2000);
+  setTimeout(() => setLoading(false), 2000);
 
   if (loading) return <SecondSkeleton />;
 

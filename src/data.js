@@ -58,6 +58,17 @@ export function getSmallCard() {
     rating: '6.5'
   };
 }
+export function getSemiCard() {
+  return {
+    id: uuid(),
+    title: "Marvel's Agents of S.H.I.E.L.D",
+    date: "Sep 24, 2013",
+    image: "https://i.ibb.co/r7dGpNb/semiCard.png",
+    rating: '6.5'
+  };
+}
+
+
 
 export function getTrailerCard() {
   return {
