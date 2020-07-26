@@ -2270,6 +2270,11 @@ export const useProfileTabsStyles = makeStyles((theme) => {
       backgroundSize: "410px 396px",
       width: 12,
     },
+    likeIcon:{
+      width: 12,
+    },
+
+
     savedIconLarge: {
       ...commonIconProps,
       backgroundSize: "410px 396px",

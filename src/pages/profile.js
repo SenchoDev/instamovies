@@ -1,11 +1,23 @@
 import React from "react";
 import { useProfilePageStyles } from "../styles";
 import Layout from "../components/shared/Layout";
-import { Hidden, Card, CardContent, Button, Typography, Dialog, Avatar, Divider, Zoom } from "@material-ui/core";
+import {
+  Hidden,
+  Card,
+  CardContent,
+  Button,
+  Typography,
+  Dialog,
+  Avatar,
+  Divider,
+  Zoom,
+  DialogTitle,
+} from "@material-ui/core";
 import { defaultCurrentUser } from "../data";
 import ProfilePicture from "../components/shared/ProfilePicture";
 import { Link } from "react-router-dom";
 import { GearIcon } from "../icons";
+import ProfileTabs from "../components/Profile/ProfileTabs";
 
 function ProfilePage() {
   const classes = useProfilePageStyles();
@@ -34,9 +46,29 @@ function ProfilePage() {
                 isOwner={isOwner}
                 handleOptionsMenuClick={handleOptionsMenuClick}
               />
+              <PostCountSection user={defaultCurrentUser} />
+              <NameBioSection user={defaultCurrentUser} />
             </CardContent>
           </Card>
         </Hidden>
+        <Hidden smUp>
+          <Card className={classes.cardSmall}>
+            <CardContent>
+              <section className={classes.sectionSmall}>
+                <ProfilePicture size={77} isOwner={isOwner} />
+                <ProfileNameSection
+                  user={defaultCurrentUser}
+                  isOwner={isOwner}
+                  handleOptionsMenuClick={handleOptionsMenuClick}
+                />
+              </section>
+              <NameBioSection user={defaultCurrentUser} />
+            </CardContent>
+            <PostCountSection user={defaultCurrentUser} />
+          </Card>
+        </Hidden>
+        {showOptionsMenu && <OptionsMenu handleCloseMenu={handleCloseMenu} />}
+        <ProfileTabs user={defaultCurrentUser} isOwner={isOwner} />
       </div>
     </Layout>
   );
@@ -128,7 +160,6 @@ function ProfileNameSection({ user, isOwner, handleOptionsMenuClick }) {
   );
 }
 
-
 function UnfollowDialog({ onClose, user }) {
   const classes = useProfilePageStyles();
 
@@ -136,7 +167,7 @@ function UnfollowDialog({ onClose, user }) {
     <Dialog
       open
       classes={{
-        scrollPaper: classes.unfollowDialogScrollPaper
+        scrollPaper: classes.unfollowDialogScrollPaper,
       }}
       onClose
       TransitionComponent={Zoom}
@@ -162,6 +193,103 @@ function UnfollowDialog({ onClose, user }) {
         Cancel
       </Button>
     </Dialog>
+  );
+}
+
+function PostCountSection({ user }) {
+  const classes = useProfilePageStyles();
+  const options = ["favorites", "followers", "following"];
+
+  return (
+    <React.Fragment>
+      <Hidden smUp>
+        <Divider />
+      </Hidden>
+      <section className={classes.followingSection}>
+        {options.map((option) => (
+          <div key={option} className={classes.followingText}>
+            <Typography className={classes.followingCount}>
+              {user[option].length}
+            </Typography>
+            <Hidden xsDown>
+              <Typography>{option}</Typography>
+            </Hidden>
+            <Hidden smUp>
+              <Typography color="textSecondary">{option}</Typography>
+            </Hidden>
+          </div>
+        ))}
+      </section>
+      <Hidden smUp>
+        <Divider />
+      </Hidden>
+    </React.Fragment>
+  );
+}
+
+function NameBioSection({ user }) {
+  const classes = useProfilePageStyles();
+
+  return (
+    <section className={classes.section}>
+      <Typography className={classes.typography}>{user.name}</Typography>
+      <Typography>{user.bio}</Typography>
+      <a href={user.website} target="_blank" rel="noopener noreferrer">
+        <Typography color="secondary" className={classes.typography}>
+          {user.website}
+        </Typography>
+      </a>
+    </section>
+  );
+}
+
+function OptionsMenu({ handleCloseMenu }) {
+  const classes = useProfilePageStyles();
+  const [showLogOutMessage, setLogOutMessage] = React.useState(false);
+
+  function handleLogOutClick() {
+    setLogOutMessage(true);
+  }
+
+  return (
+    <Dialog
+      open
+      classes={{
+        scrollPaper: classes.dialogScrollPaper,
+        paper: classes.dialogPaper,
+      }}
+      TransitionComponent={Zoom}
+    >
+      {showLogOutMessage ? (
+        <DialogTitle className={classes.dialogTitle}>
+          Logging Out
+          <Typography color="textSecondary">
+            You need to log back in to continue using Instagram.
+          </Typography>
+        </DialogTitle>
+      ) : (
+        <React.Fragment>
+          <OptionsItem text="Change Password" />
+          <OptionsItem text="Nametag" />
+          <OptionsItem text="Authorized Apps" />
+          <OptionsItem text="Notifications" />
+          <OptionsItem text="Privacy and Security" />
+          <OptionsItem text="Log Out" onClick={handleLogOutClick} />
+          <OptionsItem text="Cancel" onClick={handleCloseMenu} />
+        </React.Fragment>
+      )}
+    </Dialog>
+  );
+}
+
+function OptionsItem({ text, onClick }) {
+  return (
+    <React.Fragment>
+      <Button style={{ padding: "12px 8px" }} onClick={onClick}>
+        {text}
+      </Button>
+      <Divider />
+    </React.Fragment>
   );
 }
 
