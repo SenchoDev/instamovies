@@ -56,7 +56,7 @@ export const defaultCurrentUser = {
   phone_number: "555-555-5555",
   followers: [defaultUser],
   following: [defaultUser],
-  favorites: [card]
+  favorites: [card, card, card, card, card, card, card]
 };
 
 

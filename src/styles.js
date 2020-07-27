@@ -1778,7 +1778,7 @@ export const useEditProfilePageStyles = makeStyles((theme) => ({
   permanentDrawerRoot: {
     height: "100% !important",
     "& div": {
-      zIndex: "888 !important",
+      zIndex: "1 !important",
     },
   },
   temporaryDrawer: {
@@ -2386,8 +2386,9 @@ export const useProfileTabsStyles = makeStyles((theme) => {
         gridGap: 2,
       },
       display: "grid",
-      gridTemplateColumns: "repeat(3, 1fr)",
+      gridTemplateColumns: "repeat(4, 1fr)",
       gridGap: 20,
+
     },
   };
 });
@@ -2411,9 +2412,10 @@ export const useGridPostStyles = makeStyles((theme) => ({
     placeItems: "center",
     gridAutoFlow: "column",
     width: "100%",
-    height: "100%",
+    height: "98.5%",
     justifyContent: "space-evenly",
     "&:hover": {
+      borderRadius: 10,
       background: "rgba(0,0,0,0.6)",
       cursor: "pointer",
       "& > div": {
