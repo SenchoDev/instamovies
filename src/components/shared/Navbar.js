@@ -89,7 +89,7 @@ function Links({ path }) {
       {showList && <NotificationList handleHideList={handleHideList} />}
 
       <div className={classes.linksWrapper}>
-        <Typography className={classes.navLink} onClick={handleToggleMovies}>
+        <Typography className={classes.navLink1} onClick={handleToggleMovies}>
           Movies
         </Typography>
         {showMovies && <MoviesList handleHideMovies={handleHideMovies} />}
@@ -163,7 +163,7 @@ function MoviesList({ handleHideMovies }) {
     <Grid ref={listContainerRef} container className={classes.listContainer}>
       <Grid item className={classes.listWrapper}>
         <Link to="/movies">
-          <Typography variant="subtitle2">Popular</Typography>
+          <Typography variant="subtitle2" >Popular</Typography>
         </Link>
         <Link to="/movies">
           <Typography variant="subtitle2">Upcoming</Typography>

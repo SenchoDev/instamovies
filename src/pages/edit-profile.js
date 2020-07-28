@@ -10,7 +10,7 @@ import {
   ListItem,
   ListItemText,
   Typography,
-  TextField,
+  TextField
 } from "@material-ui/core";
 import { Menu } from "@material-ui/icons";
 import { defaultCurrentUser } from "../data";
@@ -22,7 +22,7 @@ function EditProfilePage({ history }) {
   const [showDrawer, setDrawer] = React.useState(false);
 
   function handleToggleDrawer() {
-    setDrawer((prev) => !prev);
+    setDrawer(prev => !prev);
   }
 
   function handleSelected(index) {
@@ -53,7 +53,7 @@ function EditProfilePage({ history }) {
     "Manage Contacts",
     "Privacy and Security",
     "Login Activity",
-    "Emails from Instagram",
+    "Emails from Instagram"
   ];
 
   const drawer = (
@@ -66,7 +66,7 @@ function EditProfilePage({ history }) {
           onClick={() => handleListClick(index)}
           classes={{
             selected: classes.listItemSelected,
-            button: classes.listItemButton,
+            button: classes.listItemButton
           }}
         >
           <ListItemText primary={option} />
@@ -107,7 +107,7 @@ function EditProfilePage({ history }) {
               open
               classes={{
                 paper: classes.permanentDrawerPaper,
-                root: classes.permanentDrawerRoot,
+                root: classes.permanentDrawerRoot
               }}
             >
               {drawer}
@@ -137,7 +137,6 @@ function EditUserInfo({ user }) {
             color="primary"
             variant="body2"
             className={classes.typographyChangePic}
-            color="secondary"
           >
             Change Profile Photo
           </Typography>
@@ -209,7 +208,7 @@ function SectionItem({ type = "text", text, formItem }) {
         type={type}
         className={classes.textField}
         inputProps={{
-          className: classes.textFieldInput,
+          className: classes.textFieldInput
         }}
       />
     </div>
