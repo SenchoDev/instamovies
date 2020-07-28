@@ -10,8 +10,12 @@ import MainPage from "./pages/main";
 import MoviePage from "./pages/movie";
 import SearchPage from "./pages/search";
 import MoviesPage from "./pages/movies";
+import { AuthContext } from './auth';
 
 function App() {
+  const { authState } = React.useContext(AuthContext);
+
+  console.log({ authState })
   return (
     <Router>
       <Switch>

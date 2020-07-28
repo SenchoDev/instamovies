@@ -44,6 +44,17 @@ export const card = {
   watchlists: 16,
   comments: []
 };
+export function getCard(){
+  return {
+    id: uuid(),
+    title: "Marvel's Agents of S.H.I.E.L.D",
+    date: "Sep 24, 2013",
+    image: "https://i.ibb.co/j6GS0gV/ImgSmall.png",
+    rating: '6.5',
+    watchlists: 16,
+    comments: []
+  };
+}
 export const defaultCurrentUser = {
   id: uuid(),
   username: "me",
@@ -56,7 +67,7 @@ export const defaultCurrentUser = {
   phone_number: "555-555-5555",
   followers: [defaultUser],
   following: [defaultUser],
-  favorites: [card, card, card, card, card, card, card]
+  favorites: Array.from({length: 5}, () => getCard())
 };
 
 
