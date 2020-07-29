@@ -5,12 +5,8 @@ import { Link } from "react-router-dom";
 import MainSkeleton from "../Cards/MainSkeleton";
 import { limitRecipeTitle } from "../../utils/liimitMovieTitle";
 
-function SmallCard({card, showRating = false}) {
+function SmallCard({card, showRating = false}, loading){
   const classes = useSmallCardStyles();
-  
-  const [loading, setLoading] = React.useState(true)
-
-  setTimeout(() => setLoading(false), 2000)
 
   if(loading) return <MainSkeleton/>
   

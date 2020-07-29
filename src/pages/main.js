@@ -17,7 +17,6 @@ function MainPage() {
 
   const { data , loading, error} = useFetchMovies();
 
-  if (loading || error) return <LoadingScreen />;
 
   return (
     <Layout>
@@ -27,7 +26,7 @@ function MainPage() {
       {/* Slider 1 */}
       <div className={classes.slider}>
         <Heading textHeader="Whats Popular" textButton="Movies" />
-        <SliderA data={data.popularMovies}/>
+        <SliderA data={data.popularMovies} loading={loading}/>
       </div>
       {/* Trailer */}
       <div className={classes.trailer}>

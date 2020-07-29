@@ -8,37 +8,51 @@ const ACTIONS = {
 };
 
 const key = `08f4c34f1c690e232fe2e660f41ed739`;
+const cors = `https://cors-anywhere.herokuapp.com/`;
 
-const BASE_URL1 = `https://cors-anywhere.herokuapp.com/https://api.themoviedb.org/3/movie/popular?api_key=${key}&language=en-US&page=1`;
-const BASE_URL2 = `https://cors-anywhere.herokuapp.com/https://api.themoviedb.org/3/tv/popular?api_key=${key}&language=en-US&page=1`;
-const BASE_URL3 = `https://cors-anywhere.herokuapp.com/https://api.themoviedb.org/3/movie/upcoming?api_key=${key}&language=en-US&page=1`;
+const BASE_URL1 = `${cors}https://api.themoviedb.org/3/movie/popular?api_key=${key}&language=en-US&page=1`;
+const BASE_URL2 = `${cors}https://api.themoviedb.org/3/tv/popular?api_key=${key}&language=en-US&page=1`;
+const BASE_URL3 = `${cors}https://api.themoviedb.org/3/movie/upcoming?api_key=${key}&language=en-US&page=1`;
 
 function reducer(state, action) {
   switch (action.type) {
     case ACTIONS.FETCH_MOVIES_START:
-      return { loading: true, data: {} };
+      return {
+        loading: true,
+        data: { popularMovies: [], popularTvShows: [], upcoming: [] },
+      };
     case ACTIONS.FETCH_MOVIES_SUCCESS:
-      return { ...state, loading: false, data: { popularMovies: action.payload.popularMovies, popularTvShows: action.payload.popularTvShows, upcoming: action.payload.upcoming,  }};
+      return {
+        ...state,
+        loading: false,
+        data: {
+          popularMovies: action.payload.popularMovies,
+          popularTvShows: action.payload.popularTvShows,
+          upcoming: action.payload.upcoming,
+        },
+      };
     case ACTIONS.FETCH_MOVIES_FAILURE:
       return {
         ...state,
         loading: false,
         error: action.payload.error,
-        data: {},
+        data: { popularMovies: [], popularTvShows: [], upcoming: [] },
       };
     default:
       return state;
   }
 }
 
+const requestOne = axios.get(BASE_URL1);
+const requestTwo = axios.get(BASE_URL2);
+const requestThree = axios.get(BASE_URL3);
+
 export default function useFetchMovies() {
   const [state, dispatch] = useReducer(reducer, {
     data: {},
     loading: true,
   });
-  const requestOne = axios.get(BASE_URL1);
-  const requestTwo = axios.get(BASE_URL2);
-  const requestThree = axios.get(BASE_URL3);
+
   useEffect(() => {
     const cancelToken1 = axios.CancelToken.source();
     dispatch({ type: ACTIONS.FETCH_MOVIES_START });

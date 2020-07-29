@@ -10,16 +10,12 @@ import MainSkeleton from "../Cards/MainSkeleton";
 const SmallCard = React.lazy(() => import("../Cards/SmallCard"));
 
 
-function SliderA({ data }) {
+function SliderA({ data, loading }) {
   const classes = useSliderStyles();
-  let loading = false;
-  console.log(data);
 
   return (
     <div className={classes.container}>
-      {loading ? (
-        <LoadingLargeIcon />
-      ) : (
+     
         <Slider
           className={classes.slide}
           dots={false}
@@ -34,11 +30,10 @@ function SliderA({ data }) {
         >
           {data.map((card) => (
             <React.Suspense key={card.id} fallback={<MainSkeleton />}>
-              <SmallCard card={card} />
+              <SmallCard card={card} loading={loading}/>
             </React.Suspense>
           ))}
         </Slider>
-      )}
     </div>
   );
 }
