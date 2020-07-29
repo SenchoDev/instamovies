@@ -10,13 +10,14 @@ import BigCard from "../components/Cards/BigCard";
 import { getTrailerCard } from "../data";
 import LoadingScreen from "../components/shared/LoadingScreen";
 import SecondSkeleton from "../components/Cards/MainSkeleton";
+import useFetchMovies from "../utils/useFetchMovies";
 
 function MainPage() {
   const classes = useMainPageStyles();
 
-  const loading = false;
+  const { data , loading, error} = useFetchMovies();
 
-  if (loading) return <LoadingScreen />;
+  if (loading || error) return <LoadingScreen />;
 
   return (
     <Layout>
@@ -26,7 +27,7 @@ function MainPage() {
       {/* Slider 1 */}
       <div className={classes.slider}>
         <Heading textHeader="Whats Popular" textButton="Movies" />
-        <SliderA />
+        <SliderA data={data.popularMovies}/>
       </div>
       {/* Trailer */}
       <div className={classes.trailer}>
@@ -42,16 +43,17 @@ function MainPage() {
       {/* Slider 2*/}
       <div className={classes.slider}>
         <Heading textHeader="Trending" textButton="TV Shows" />
-        <SliderA />
+        <SliderA  data={data.popularTvShows}/>
       </div>
       {/* About */}
       <MainAbout />
-      {/*  Slider  3 */}
+      {/*  Slider  3  */}
 
       <div className={classes.slider}>
-        <Heading textHeader="Upcoming" textButton="TV Shows & Movies" />
-        <SliderA />
+        <Heading  textHeader="Upcoming" textButton="TV Shows & Movies" />
+        <SliderA data={data.upcoming}/>
       </div>
+      
     </Layout>
   );
 }

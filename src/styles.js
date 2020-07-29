@@ -112,7 +112,7 @@ export const useMainPageStyles = makeStyles((theme) => ({
   slider: {
     width: "1040px",
     margin: "0 auto",
-    marginTop: "20px",
+    marginTop: "30px",
     padding: "0 10px",
     display: "flex",
     flexDirection: "column",
@@ -175,7 +175,7 @@ export const useMainPageStyles = makeStyles((theme) => ({
     },
     gridAutoFlow: "column",
     gridGap: 25,
-    marginTop: "30px",
+    marginTop: "10px",
   },
   profileButton: {
     background:
@@ -199,7 +199,7 @@ const iconProps = {
   height: 12,
 };
 
-const marginBottom = "20px !important";
+const marginBottom = "10px !important";
 
 export const useSliderStyles = makeStyles((theme) => ({
   container: {
@@ -208,14 +208,15 @@ export const useSliderStyles = makeStyles((theme) => ({
     },
   },
   slide: {
-    padding: "10px 0px 20px 0px !important",
-    marginBottom,
+    padding: "10px 0px 10px 0px !important",
+    
     // border,
     borderTop: "none",
     "& .slick-slide > div": {
       background: "transparent",
       margin: "0px 8px !important",
       padding: "20px !important",
+      marginBottom: "-30px !important"
     },
     [theme.breakpoints.down("xs")]: {
       margin: "0px 0px !important",
@@ -318,6 +319,11 @@ export const useSmallCardStyles = makeStyles((theme) => ({
     paddingLeft: 10,
     color: "#00000080",
     marginTop: 2,
+  },
+  smallImage:{
+    width: 150,
+    height: 225,
+    borderRadius: '5px'
   },
   rating: {
     position: "absolute",
@@ -638,6 +644,7 @@ export const useMainSkeletonStyles = makeStyles((theme) => ({
     marginLeft: "-1px",
     marginRight: "-1px",
     width: "150px",
+    marginBottom: '40px'
   },
   mediaSkeleton: {
     backgroundColor: "rgba(var(--c90,239,239,239),1)",
