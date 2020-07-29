@@ -1,7 +1,7 @@
 import React from "react";
 import { useProfileTabsStyles } from "../../styles";
 import { Divider, Hidden, Tabs, Tab, Typography } from "@material-ui/core";
-import { GridIcon, SaveIcon, LikeIcon } from "../../icons";
+import { SaveIcon, LikeIcon } from "../../icons";
 import GridPost from "../shared/GridPost";
 
 function ProfileTabs({ user, isOwner }) {

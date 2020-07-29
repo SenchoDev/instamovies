@@ -8,7 +8,6 @@ import SliderA from "../components/shared/Slider";
 import Heading from "../components/shared/Heading";
 import BigCard from "../components/Cards/BigCard";
 import { getTrailerCard } from "../data";
-import Footer from "../components/shared/Footer";
 import LoadingScreen from "../components/shared/LoadingScreen";
 import SecondSkeleton from "../components/Cards/MainSkeleton";
 

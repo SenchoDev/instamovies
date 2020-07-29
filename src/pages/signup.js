@@ -3,7 +3,6 @@ import { useSignUpPageStyles } from "../styles";
 import SEO from "../components/shared/Seo";
 import { Card, Typography, TextField, Button } from "@material-ui/core";
 import { LoginWithFacebook } from "./login";
-import theme from "../theme";
 import { Link, useHistory } from "react-router-dom";
 import { AuthContext } from "../auth";
 

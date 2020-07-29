@@ -1,7 +1,6 @@
 import { makeStyles, withStyles, Tooltip } from "@material-ui/core";
 import IconSheet from "./images/icon-sheet.png";
 import IconSheet2 from "./images/icon-sheet-2.png";
-import theme from "./theme";
 import MainBg from "./images/background1.png";
 import AboutBg from "./images/background2.png";
 
@@ -635,7 +634,6 @@ export const useMainSkeletonStyles = makeStyles((theme) => ({
     flexDirection: "column",
     overflow: "hidden",
     position: "relative",
-    width: "100% !important",
     borderRadius: "3px",
     marginLeft: "-1px",
     marginRight: "-1px",
@@ -680,11 +678,10 @@ export const useSecondSkeletonStyles = makeStyles((theme) => ({
     flexDirection: "column",
     overflow: "hidden",
     position: "relative",
-    width: "100% !important",
     borderRadius: "3px",
     marginLeft: "-1px",
     marginRight: "10px",
-    width: "300px",
+    width: "300px !important",
   },
   mediaSkeleton: {
     backgroundColor: "rgba(var(--c90,239,239,239),1)",
@@ -726,11 +723,10 @@ export const useTertiarySkeletonStyles = makeStyles((theme) => ({
     flexDirection: "column",
     overflow: "hidden",
     position: "relative",
-    width: "100% !important",
     borderRadius: "3px",
     marginLeft: "-1px",
     marginRight: "10px",
-    width: "205pxs",
+    width: "205pxs !important",
     height: "420px",
   },
   mediaSkeleton: {
@@ -756,7 +752,6 @@ export const useTertiarySkeletonStyles = makeStyles((theme) => ({
     backgroundColor: "rgba(var(--c90,239,239,239),1)",
   },
   release: {
-    marginTop: 3,
     flexGrow: "0",
     height: "20px",
     marginTop: "8px",

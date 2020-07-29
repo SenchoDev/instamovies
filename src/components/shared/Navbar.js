@@ -5,7 +5,7 @@ import { Link, useHistory } from "react-router-dom";
 import logo from "../../images/instamovies.png";
 import { LikeIcon, LikeActiveIcon } from "../../icons";
 
-import { defaultCurrentUser, getDefaultUser } from "../../data";
+import { defaultCurrentUser } from "../../data";
 import NotificationList from "../notification/NotificationList";
 import NotificationTooltip from "../notification/NotificationTooltip";
 import { useNProgress } from "@tanem/react-nprogress";

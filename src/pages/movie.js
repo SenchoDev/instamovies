@@ -7,7 +7,7 @@ import {
   DialogContent,
   Divider,
 } from "@material-ui/core";
-import { defaultMovie, defaultUser } from "../data";
+import { defaultMovie } from "../data";
 import ReactPlayer from "react-player";
 
 import SliderA from "../components/shared/Slider";
