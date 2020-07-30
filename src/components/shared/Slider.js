@@ -1,7 +1,5 @@
 import React from "react";
 import { useSliderStyles } from "../../styles";
-import { getSmallCard } from "../../data";
-import { LoadingLargeIcon } from "../../icons";
 
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -9,13 +7,18 @@ import "slick-carousel/slick/slick-theme.css";
 import MainSkeleton from "../Cards/MainSkeleton";
 const SmallCard = React.lazy(() => import("../Cards/SmallCard"));
 
-
 function SliderA({ data, loading }) {
   const classes = useSliderStyles();
 
   return (
     <div className={classes.container}>
-     
+      {loading ? (
+        <div className={classes.wrap}>
+          {Array.from({ length: 5 }).map((_, index) => (
+            <MainSkeleton key={index}/>
+          ))}
+        </div>
+      ) : (
         <Slider
           className={classes.slide}
           dots={false}
@@ -28,12 +31,13 @@ function SliderA({ data, loading }) {
           slidesToScroll={3}
           easing="ease-in-out"
         >
-          {data.map((card) => (
-            <React.Suspense key={card.id} fallback={<MainSkeleton />}>
-              <SmallCard card={card} loading={loading}/>
+          {data.map((card, index) => (
+            <React.Suspense key={index} fallback={<MainSkeleton />}>
+              <SmallCard card={card} />
             </React.Suspense>
           ))}
         </Slider>
+      )}
     </div>
   );
 }

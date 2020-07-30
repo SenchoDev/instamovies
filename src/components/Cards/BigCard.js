@@ -13,18 +13,23 @@ function BigCard({ card }) {
 
   if (loading) return <SecondSkeleton />;
 
-  const { title, image } = card;
+
+
+  const {
+    original_title,
+    poster_path,
+  } = card;
 
   return (
     <Link to={`/${title}`} className={classes.card}>
-      <img src={image} alt="trailer" className={classes.image} />
+      <img src={`https://image.tmdb.org/t/p/w154/${poster_path}`} alt="trailer" className={classes.image} />
       <Typography
         variant="h5"
         color="secondary"
         align="center"
         className={classes.heading}
       >
-        {title}
+        {original_title}
       </Typography>
       <Typography variant="body2" color="secondary" align="center">
         Official Trailer

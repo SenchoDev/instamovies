@@ -14,26 +14,24 @@ import useFetchMovies from "../utils/useFetchMovies";
 
 function MainPage() {
   const classes = useMainPageStyles();
-
-  const { data , loading, error} = useFetchMovies();
-
+  
+  const { data, loading, error } = useFetchMovies();
 
   return (
     <Layout>
       {/* Header */}
       <MainHeader />
-
       {/* Slider 1 */}
       <div className={classes.slider}>
         <Heading textHeader="Whats Popular" textButton="Movies" />
-        <SliderA data={data.popularMovies} loading={loading}/>
+        <SliderA data={data.popularMovies} loading={loading} />
       </div>
       {/* Trailer */}
       <div className={classes.trailer}>
         <Heading textHeader="Whats Popular" textButton="Trailers" />
         <div className={classes.trailerContainer}>
-          {Array.from({ length: 3 }, () => getTrailerCard()).map((card) => (
-            <React.Suspense key={card.id} fallback={<SecondSkeleton/>}>
+          {data.popularMovies.map((card) => (
+            <React.Suspense key={card.id} fallback={<SecondSkeleton />}>
               <BigCard card={card} />
             </React.Suspense>
           ))}
@@ -42,17 +40,15 @@ function MainPage() {
       {/* Slider 2*/}
       <div className={classes.slider}>
         <Heading textHeader="Trending" textButton="TV Shows" />
-        <SliderA  data={data.popularTvShows}/>
+        <SliderA data={data.popularTvShows} loading={loading} />
       </div>
       {/* About */}
       <MainAbout />
       {/*  Slider  3  */}
-
       <div className={classes.slider}>
-        <Heading  textHeader="Upcoming" textButton="TV Shows & Movies" />
-        <SliderA data={data.upcoming}/>
+        <Heading textHeader="Upcoming" textButton="TV Shows & Movies" />
+        <SliderA data={data.upcoming} loading={loading} />
       </div>
-      
     </Layout>
   );
 }
