@@ -1,28 +1,24 @@
 import React from "react";
 import { useBigCardStyles } from "../../styles";
 import { Typography } from "@material-ui/core";
-import { Link } from "react-router-dom";
-import SecondSkeleton from "./SecondSkeleton";
 
-function BigCard({ card }) {
+function BigCard({ card, setDialog, setTrailerVideo }) {
   const classes = useBigCardStyles();
-
-  const [loading, setLoading] = React.useState(true);
-
-  setTimeout(() => setLoading(false), 2000);
-
-  if (loading) return <SecondSkeleton />;
-
-
 
   const {
     original_title,
-    poster_path,
+    backdrop_path,
+    videos
   } = card;
 
+  function handleTrailerSettings(){
+    setDialog(true)
+    setTrailerVideo(`https://www.youtube.com/watch?v=${videos.results[0].key}`);
+  }
+
   return (
-    <Link to={`/${title}`} className={classes.card}>
-      <img src={`https://image.tmdb.org/t/p/w154/${poster_path}`} alt="trailer" className={classes.image} />
+    <div className={classes.card} onClick={handleTrailerSettings}>
+      <img src={`https://image.tmdb.org/t/p/w300/${backdrop_path}`} alt="trailer" className={classes.image} />
       <Typography
         variant="h5"
         color="secondary"
@@ -34,7 +30,7 @@ function BigCard({ card }) {
       <Typography variant="body2" color="secondary" align="center">
         Official Trailer
       </Typography>
-    </Link>
+    </div>
   );
 }
 

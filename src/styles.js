@@ -11,6 +11,9 @@ export const useMainPageStyles = makeStyles((theme) => ({
     width: "1100px",
     margin: "0 auto",
   },
+  trailerVideo: {
+    background: "transparent",
+  },
   imageHeader: {
     width: "100%",
     backgroundImage: `url(${MainBg})`,
@@ -238,15 +241,19 @@ export const useSliderStyles = makeStyles((theme) => ({
   },
 }));
 export const useBigCardStyles = makeStyles((theme) => ({
-  container: {
-    position: "relative",
-    width: "150px",
-    display: "flex",
-    flexDirection: "column",
+  card: {
+    marginTop: 20,
+    cursor: 'pointer'
+  },
+  image:{
+    width: 300,
+    height: 170,
+    borderRadius: '10px',
   },
   title: {
     paddingTop: 8,
     paddingLeft: 10,
+    objectFit: 'cover'
   },
   date: {
     paddingLeft: 10,
