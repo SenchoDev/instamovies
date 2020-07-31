@@ -6,15 +6,18 @@ import theme from "./theme";
 import App from "./App";
 import client from "./graphql/client";
 import AuthProvider from "./auth";
+import { BrowserRouter as Router } from "react-router-dom";
 
 ReactDOM.render(
   <ApolloProvider client={client}>
-    <AuthProvider>
-      <MuiThemeProvider theme={theme}>
-        <CssBaseline />
-        <App />
-      </MuiThemeProvider>
-    </AuthProvider>
-  </ApolloProvider>,
+      <AuthProvider>
+        <MuiThemeProvider theme={theme}>
+          <CssBaseline />
+          <Router>
+            <App />
+          </Router>
+        </MuiThemeProvider>
+      </AuthProvider>
+    </ApolloProvider>,
   document.getElementById("root")
 );

@@ -2,13 +2,13 @@ import React from "react";
 import { useSmallCardStyles } from "../../styles";
 import { Typography } from "@material-ui/core";
 import { Link } from "react-router-dom";
-import MainSkeleton from "../Cards/MainSkeleton";
+import { formatDate } from "../../utils/formatDate"
 import { limitRecipeTitle } from "../../utils/liimitMovieTitle";
 import Img from "react-graceful-image";
 
 function SmallCard({ card, showRating = false }) {
   const classes = useSmallCardStyles();
-
+ 
   const {
     original_title,
     original_name,
@@ -29,7 +29,7 @@ function SmallCard({ card, showRating = false }) {
       <Typography variant="subtitle2" className={classes.title}>
         {limitRecipeTitle(original_title || original_name)}
       </Typography>
-      <p className={classes.date}>{release_date || first_air_date}</p>
+      <p className={classes.date}>{formatDate(release_date || first_air_date)}</p>
       {showRating && <p className={classes.rating}>{vote_average}</p>}
     </Link>
   );

@@ -30,7 +30,6 @@ function reducer(state, action) {
           popularMovies: action.payload.popularMovies,
           popularTvShows: action.payload.popularTvShows,
           upcoming: action.payload.upcoming,
-          trailers: action.payload.trailers,
         },
       };
     case ACTIONS.FETCH_MOVIES_FAILURE:
@@ -64,6 +63,7 @@ export function useFetchMovies() {
         axios.spread((...responses) => {
           const responseOne = responses[0];
           const responseTwo = responses[1];
+
           const responesThree = responses[2];
           dispatch({
             type: ACTIONS.FETCH_MOVIES_SUCCESS,

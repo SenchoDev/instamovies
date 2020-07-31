@@ -21,6 +21,8 @@ function MainPage() {
   const [trailerVideo, setTrailerVideo] = React.useState('');
   const [showDialog, setDialog] = React.useState(false);
 
+  console.log(data);
+
   function handleCloseDialog() {
     setDialog(false);
   }
