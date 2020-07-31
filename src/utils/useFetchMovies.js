@@ -4,19 +4,21 @@ import axios from "axios";
 const ACTIONS = {
   FETCH_MOVIES_START: "FETCH_MOVIES_START",
   FETCH_MOVIES_SUCCESS: "FETCH_MOVIES_SUCCESS",
-  FETCH_TRAILERS_SUCCESS: "FETCH_TRAILERS_SUCCESS",
+  FETCH_MOVIES_FAILURE: "FETCH_MOVIES_FAILURE",
 };
 
-const key = `08f4c34f1c690e232fe2e660f41ed739`;
+const key = process.env.REACT_APP_API;
+
 const cors = `https://cors-anywhere.herokuapp.com/`;
+const base = `https://api.themoviedb.org/3/`
 
-const BASE_URL1 = `${cors}https://api.themoviedb.org/3/movie/popular?api_key=${key}&language=en-US&page=1`;
-const BASE_URL2 = `${cors}https://api.themoviedb.org/3/tv/popular?api_key=${key}&language=en-US&page=1`;
-const BASE_URL3 = `${cors}https://api.themoviedb.org/3/movie/upcoming?api_key=${key}&language=en-US&page=1`;
+const BASE_URL1 = `${cors}${base}movie/popular?api_key=${key}&language=en-US&page=1`;
+const BASE_URL2 = `${cors}${base}tv/popular?api_key=${key}&language=en-US&page=1`;
+const BASE_URL3 = `${cors}${base}movie/upcoming?api_key=${key}&language=en-US&page=1`;
 
-const BASE_URL4 = `${cors}https://api.themoviedb.org/3/movie/157336?api_key=${key}&append_to_response=videos`;
-const BASE_URL5 = `${cors}https://api.themoviedb.org/3/movie/583083?api_key=${key}&append_to_response=videos`;
-const BASE_URL6 = `${cors}https://api.themoviedb.org/3/movie/516486?api_key=${key}&append_to_response=videos`;
+const BASE_URL4 = `${cors}${base}movie/157336?api_key=${key}&append_to_response=videos`;
+const BASE_URL5 = `${cors}${base}movie/583083?api_key=${key}&append_to_response=videos`;
+const BASE_URL6 = `${cors}${base}movie/516486?api_key=${key}&append_to_response=videos`;
 
 function reducer(state, action) {
   switch (action.type) {

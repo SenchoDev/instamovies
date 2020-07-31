@@ -1,17 +1,15 @@
 import React from "react";
 import { useMainPageStyles } from "../../styles";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Typography, Hidden } from "@material-ui/core";
 import { SearchContext } from "../../App";
 
 function MainHeader() {
   const classes = useMainPageStyles();
   const [query, setQuery] = React.useState('');
-  const history = useHistory();
   const { dispatch } = React.useContext(SearchContext);
 
   function moveToSearchPage(){
-    history.push('/search');
     dispatch({ type: "ADD_QUERY", payload: { searchMovie: query } } );
   }
 
@@ -39,7 +37,7 @@ function MainHeader() {
                 value={query}
               />
             </Hidden>
-            <Link className={classes.btnSearch} onClick={moveToSearchPage} >
+            <Link to='/search' className={classes.btnSearch} onClick={moveToSearchPage} >
               Search
             </Link>
           </div>

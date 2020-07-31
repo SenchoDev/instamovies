@@ -340,7 +340,9 @@ export const useSmallCardStyles = makeStyles((theme) => ({
   },
   rating: {
     position: "absolute",
-    background: "#0C7A29",
+    background: ({ vote_average }) => `${
+      vote_average >= 7.5 && "#0C7A29" || vote_average >= 4 && "#FFB008" || vote_average < 4 && "#FF414E"
+    }`,
     top: -25,
     left: 44,
     borderRadius: 25,

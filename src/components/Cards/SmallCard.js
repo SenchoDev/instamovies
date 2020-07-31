@@ -7,7 +7,6 @@ import { limitRecipeTitle } from "../../utils/liimitMovieTitle";
 import Img from "react-graceful-image";
 
 function SmallCard({ card, showRating = false }) {
-  const classes = useSmallCardStyles();
  
   const {
     original_title,
@@ -17,6 +16,8 @@ function SmallCard({ card, showRating = false }) {
     poster_path,
     vote_average,
   } = card;
+
+  const classes = useSmallCardStyles({ vote_average });
 
   return (
     <Link to="/m/asdf" className={classes.container}>
