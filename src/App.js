@@ -17,10 +17,17 @@ import MoviePage from "./pages/movie";
 import SearchPage from "./pages/search";
 import MoviesPage from "./pages/movies";
 import { AuthContext } from "./auth";
+import searchReducer from "./reducer";
+
+export const SearchContext = React.createContext({
+  searchMovie: '',
+});
 
 function App() {
   const { authState } = React.useContext(AuthContext);
   const isAuth = authState.status === "in";
+  const initialSearchState = React.useContext(SearchContext);
+  const [state, dispatch] = React.useReducer(searchReducer, initialSearchState);
 
   if (!isAuth) {
     return (
@@ -31,19 +38,22 @@ function App() {
       </Switch>
     );
   }
+
   return (
-    <Switch>
-      <Route exact path="/" component={MainPage} />
-      <Route path="/search" component={SearchPage} />
-      <Route path="/movies" component={MoviesPage} />
-      {/*<Route path="/tv" component={TVPage} />*/}
-      <Route exact path="/:username" component={ProfilePage} />
-      <Route exact path="/m/:movieId" component={MoviePage} />
-      <Route path="/accounts/edit" component={EditProfilePage} />
-      <Route path="/accounts/login" component={LoginPage} />
-      <Route path="/accounts/emailsignup" component={SignUpPage} />
-      <Route path="*" component={NotFoundPage} />
-    </Switch>
+    <SearchContext.Provider value={{ state, dispatch }}>
+      <Switch>
+        <Route exact path="/" component={MainPage} />
+        <Route path="/search" component={SearchPage} />
+        <Route path="/movies" component={MoviesPage} />
+        {/*<Route path="/tv" component={TVPage} />*/}
+        <Route exact path="/:username" component={ProfilePage} />
+        <Route exact path="/m/:movieId" component={MoviePage} />
+        <Route path="/accounts/edit" component={EditProfilePage} />
+        <Route path="/accounts/login" component={LoginPage} />
+        <Route path="/accounts/emailsignup" component={SignUpPage} />
+        <Route path="*" component={NotFoundPage} />
+      </Switch>
+    </SearchContext.Provider>
   );
 }
 

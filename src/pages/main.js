@@ -15,13 +15,10 @@ import ReactPlayer from "react-player";
 
 function MainPage() {
   const classes = useMainPageStyles();
-
   const { data, loading, error } = useFetchMovies();
   const [trailers, setTrailers] = React.useState([]);
-  const [trailerVideo, setTrailerVideo] = React.useState('');
+  const [trailerVideo, setTrailerVideo] = React.useState("");
   const [showDialog, setDialog] = React.useState(false);
-
-  console.log(data);
 
   function handleCloseDialog() {
     setDialog(false);
@@ -74,7 +71,11 @@ function MainPage() {
           {trailers &&
             trailers.map((card, id) => (
               <React.Suspense key={id} fallback={<SecondSkeleton />}>
-                <BigCard card={card} setDialog={setDialog} setTrailerVideo={setTrailerVideo}/>
+                <BigCard
+                  card={card}
+                  setDialog={setDialog}
+                  setTrailerVideo={setTrailerVideo}
+                />
               </React.Suspense>
             ))}
         </div>

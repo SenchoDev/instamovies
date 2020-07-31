@@ -1,10 +1,19 @@
 import React from "react";
 import { useMainPageStyles } from "../../styles";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { Typography, Hidden } from "@material-ui/core";
+import { SearchContext } from "../../App";
 
 function MainHeader() {
   const classes = useMainPageStyles();
+  const [query, setQuery] = React.useState('');
+  const history = useHistory();
+  const { dispatch } = React.useContext(SearchContext);
+
+  function moveToSearchPage(){
+    history.push('/search');
+    dispatch({ type: "ADD_QUERY", payload: { searchMovie: query } } );
+  }
 
   return (
     <main className={classes.header}>
@@ -23,12 +32,14 @@ function MainHeader() {
           <div className={classes.box}>
             <Hidden xsDown>
               <input
+                onChange={(event) => setQuery(event.target.value)}
                 type="text"
                 className={classes.field}
                 placeholder="Search over 100 000 movies and TV shows"
+                value={query}
               />
             </Hidden>
-            <Link to="/search" className={classes.btnSearch}>
+            <Link className={classes.btnSearch} onClick={moveToSearchPage} >
               Search
             </Link>
           </div>
