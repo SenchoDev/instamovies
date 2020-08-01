@@ -15,12 +15,13 @@ function SmallCard({ card, showRating = false }) {
     first_air_date,
     poster_path,
     vote_average,
+    id
   } = card;
 
   const classes = useSmallCardStyles({ vote_average });
 
   return (
-    <Link to="/m/asdf" className={classes.container}>
+    <Link to={`/m/${id}`} className={classes.container}>
       <Img
         noLazyLoad
         src={`https://image.tmdb.org/t/p/w154/${poster_path}`}

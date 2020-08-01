@@ -1,4 +1,3 @@
-import { format } from "date-fns";
 
 export function formatDate(d) {
   var date = new Date(d);
@@ -6,7 +5,7 @@ export function formatDate(d) {
   if (isNaN(date.getTime())) {
     return d;
   } else {
-    var month = new Array();
+    let month = []
     month[0] = "Jan";
     month[1] = "Feb";
     month[2] = "Mar";

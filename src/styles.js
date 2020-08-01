@@ -341,7 +341,7 @@ export const useSmallCardStyles = makeStyles((theme) => ({
   rating: {
     position: "absolute",
     background: ({ vote_average }) => `${
-      vote_average >= 7.5 && "#0C7A29" || vote_average >= 4 && "#FFB008" || vote_average < 4 && "#FF414E"
+      vote_average >= 7.5 ? "#0C7A29" : vote_average >= 4 ? "#FFB008" : vote_average < 4 ? "#FF414E" : vote_average === 0 ? "#636363" : ''
     }`,
     top: -25,
     left: 44,
@@ -635,8 +635,17 @@ export const useSearchStyles = makeStyles((theme) => ({
     },
   },
   returnText:{
-    width:'1000px',
-    height: '40vw',
+    width:'1110px',
+    height: '35vw',
+    paddingBottom: "300px",
+    display: "flex",
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginLeft: '-50px',
+  },
+  loading:{
+    width:'1110px',
+    height: '35vw',
     display: "flex",
     alignItems: 'center',
     justifyContent: 'center',

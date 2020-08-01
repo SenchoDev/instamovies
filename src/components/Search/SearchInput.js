@@ -2,7 +2,7 @@ import React from "react";
 import { useSearchStyles } from "../../styles";
 import { Button, TextField } from "@material-ui/core";
 
-function SearchInput({handleSearchChange, search}) {
+function SearchInput({handleSearchChange, search, submitSearch}) {
   const classes = useSearchStyles();
 
   return (
@@ -28,6 +28,7 @@ function SearchInput({handleSearchChange, search}) {
         variant="contained"
         disabled={!search.trim()}
         className={classes.searchButton}
+        onClick={submitSearch}
       >
         Search
       </Button>

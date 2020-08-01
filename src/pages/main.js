@@ -7,13 +7,13 @@ import MainAbout from "../components/Main/MainAbout";
 import SliderA from "../components/shared/Slider";
 import Heading from "../components/shared/Heading";
 import BigCard from "../components/Cards/BigCard";
-import LoadingScreen from "../components/shared/LoadingScreen";
 import SecondSkeleton from "../components/Cards/MainSkeleton";
 import { useFetchMovies, fetchTrailer } from "../utils/useFetchMovies";
 import { Dialog, DialogContent } from "@material-ui/core";
 import ReactPlayer from "react-player";
 
 function MainPage() {
+  
   const classes = useMainPageStyles();
   const { data, loading, error } = useFetchMovies();
   const [trailers, setTrailers] = React.useState([]);

@@ -9,7 +9,10 @@ function MainHeader() {
   const [query, setQuery] = React.useState('');
   const { dispatch } = React.useContext(SearchContext);
 
-  function moveToSearchPage(){
+  function moveToSearchPage(event){
+    if(query.trim().length === 0) {
+      event.preventDefault();
+    }
     dispatch({ type: "ADD_QUERY", payload: { searchMovie: query } } );
   }
 

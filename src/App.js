@@ -2,8 +2,6 @@ import React from "react";
 import {
   Switch,
   Route,
-  useHistory,
-  useLocation,
   Redirect,
 } from "react-router-dom";
 
@@ -25,6 +23,7 @@ export const SearchContext = React.createContext({
 
 function App() {
   const { authState } = React.useContext(AuthContext);
+  console.log(authState);
   const isAuth = authState.status === "in";
   const initialSearchState = React.useContext(SearchContext);
   const [state, dispatch] = React.useReducer(searchReducer, initialSearchState);

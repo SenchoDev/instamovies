@@ -1,12 +1,7 @@
 import React from "react";
 import { useMovieStyles } from "../styles";
 import Layout from "../components/shared/Layout";
-import {
-  Typography,
-  Dialog,
-  DialogContent,
-  Divider,
-} from "@material-ui/core";
+import { Typography, Dialog, DialogContent, Divider } from "@material-ui/core";
 import { defaultMovie } from "../data";
 import ReactPlayer from "react-player";
 
@@ -16,15 +11,21 @@ import Movie from "../components/Movie/Movie";
 import MovieCastSlider from "../components/Movie/MovieCastSlider";
 import MovieComments from "../components/Movie/MovieComments";
 import MovieAddComment from "../components/Movie/MovieAddComment";
+import { fetchIndividualMovie } from "../utils/useSearchMovies";
+import { useParams } from "react-router-dom";
 
 function MoviePage() {
+  const { movieId } = useParams();
   const classes = useMovieStyles();
   const [showDialog, setDialog] = React.useState(false);
+  const [movieInfo, setMovieInfo] = React.useState([]);
 
   function handleCloseDialog() {
     setDialog(false);
   }
-
+  React.useEffect(() => {
+    fetchIndividualMovie(setMovieInfo, movieId);
+  }, [movieId]);
   const { backgroundImage, trailer, seriesCast, comments } = defaultMovie;
   return (
     <Layout movieLarge image={backgroundImage}>
@@ -43,7 +44,7 @@ function MoviePage() {
           },
         }}
       >
-        <DialogContent movie={defaultMovie}>
+        <DialogContent>
           <div className={classes.trailerVideo}>
             <ReactPlayer
               url={trailer}
@@ -70,14 +71,14 @@ function MoviePage() {
 
       {/* Add Comment */}
       <MovieAddComment />
-      
+
       {/* Suggestions Slider */}
       <div className={classes.moviesRecommendation}>
         <Heading textHeader="Recommendations" textButton="TV Shows & Movies" />
-        <SliderA />
+        
       </div>
     </Layout>
   );
 }
-
+// <SliderA />
 export default MoviePage;
