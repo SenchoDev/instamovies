@@ -1,20 +1,15 @@
 import React from "react";
 import { useSearchStyles } from "../../styles";
 import { Button, TextField } from "@material-ui/core";
-import { SearchContext } from "../../App";
 
-function SearchInput() {
+function SearchInput({handleSearchChange, search}) {
   const classes = useSearchStyles();
-  const [search, setSearch] = React.useState("");
-  const { state } = React.useContext(SearchContext);
-  React.useEffect(() => {
-    state.searchMovie && setSearch(state.searchMovie);
-  }, [])
+
   return (
     <div className={classes.searchField}>
       <TextField
         className={classes.urlInput}
-        onChange={(event) => setSearch(event.target.value)}
+        onChange={handleSearchChange}
         fullWidth
         margin="normal"
         placeholder="Search for a movie, tv show, person..."

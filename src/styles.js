@@ -634,7 +634,15 @@ export const useSearchStyles = makeStyles((theme) => ({
       border: "none !important",
     },
   },
+  returnText:{
+    width:'1000px',
+    height: '40vw',
+    display: "flex",
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   moviesWrapper: {
+    
     display: "grid",
     gridTemplateColumns: "repeat(auto-fill, 150px)",
     gridGap: 25,

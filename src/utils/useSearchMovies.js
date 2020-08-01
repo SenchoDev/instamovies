@@ -9,7 +9,7 @@ const ACTIONS = {
 const cors = `https://cors-anywhere.herokuapp.com/`;
 const key = process.env.REACT_APP_API;
 
-const BASE_URL = `${cors}https://api.themoviedb.org/3/search/movie?api_key=${key}&language=en-US&page=1&include_adult=false&query=avengers`;
+
 
 function reducer(state, action) {
   switch (action.type) {
@@ -32,16 +32,16 @@ function reducer(state, action) {
       return state;
   }
 }
-export function useSearchMovies() {
+export function useSearchMovies(search) {
   const [state, dispatch] = useReducer(reducer, {
     data: {},
     loading: true,
   });
   useEffect(() => {
-
     const cancelToken1 = axios.CancelToken.source();
     dispatch({ type: ACTIONS.FETCH_MOVIES_START });
-
+    let BASE_URL = `${cors}https://api.themoviedb.org/3/search/movie?api_key=${key}&language=en-US&page=1&include_adult=false&query=${search}`
+    
     axios.get(BASE_URL, {
       cancelToken: cancelToken1.token,
     }).then(res => {
@@ -54,7 +54,7 @@ export function useSearchMovies() {
     return () => {
       cancelToken1.cancel();
     };
-  }, []);
+  }, [search]);
 
   return state;
 }
