@@ -219,7 +219,7 @@ function SignUpPage() {
   );
 }
 
-function AuthError({ error }){
+export function AuthError({ error }){
   return Boolean(error) && (
     <Typography
     align='center'

@@ -62,13 +62,9 @@ function SearchPage() {
               <SmallCard card={card} showRating />
             </React.Suspense>
           ))
-        ) : data.length === undefined ? (
+        ) :(
           <Typography variant="h4" className={classes.returnText}>
-            Search movies
-          </Typography>
-        ) : (
-          <Typography variant="h4" className={classes.returnText}>
-            Search again
+            Search movies & tv shows
           </Typography>
         )}
       </div>
