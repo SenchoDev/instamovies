@@ -41,7 +41,7 @@ export function useSearchMovies(search, page) {
   useEffect(() => {
     const cancelToken1 = axios.CancelToken.source();
     dispatch({ type: ACTIONS.FETCH_MOVIES_START });
-    let BASE_URL = `${cors}https://api.themoviedb.org/3/search/multi?api_key=${key}&language=en-US&page=${page}&include_adult=false&query=${search}`
+    let BASE_URL = `${cors}https://api.themoviedb.org/3/search/multi?api_key=${key}&language=en-US&page=${page}&include_adult=false&query=${search}`;
     
     axios.get(BASE_URL, {
       cancelToken: cancelToken1.token,
@@ -61,7 +61,8 @@ export function useSearchMovies(search, page) {
 }
 
 export function fetchIndividualMovie(setMovieInfo, movieId) {
-  let BASE_URL = `${cors}https://api.themoviedb.org/3/multi/${movieId}?api_key=${key}&append_to_response=videos`;
+  let BASE_URL = `${cors}https://api.themoviedb.org/3/movie/${movieId}?api_key=${key}&append_to_response=videos`;
+  
   let cancelToken1 = axios.CancelToken.source();
   axios.get(BASE_URL, {
     cancelToken: cancelToken1.token,

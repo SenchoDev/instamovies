@@ -18,7 +18,7 @@ function MoviePage() {
   const { movieId } = useParams();
   const classes = useMovieStyles();
   const [showDialog, setDialog] = React.useState(false);
-  const [movieInfo, setMovieInfo] = React.useState([]);
+  const [movieInfo, setMovieInfo] = React.useState({});
 
   function handleCloseDialog() {
     setDialog(false);
@@ -26,6 +26,8 @@ function MoviePage() {
   React.useEffect(() => {
     fetchIndividualMovie(setMovieInfo, movieId);
   }, [movieId]);
+
+  console.log(movieInfo)
   const { backgroundImage, trailer, seriesCast, comments } = defaultMovie;
   return (
     <Layout movieLarge image={backgroundImage}>

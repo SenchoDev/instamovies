@@ -9,6 +9,7 @@ import { CREATE_USER } from "./graphql/mutations";
 const provider = new firebase.auth.GoogleAuthProvider();
 
 // Find these options in your Firebase console
+
 firebase.initializeApp({
   apiKey: "AIzaSyC2j3iD4WoliDhtxSgcl2Jqo8W9i84x0uY",
   authDomain: "instamovies-714a5.firebaseapp.com",
@@ -33,9 +34,11 @@ function AuthProvider({ children }) {
         const idTokenResult = await user.getIdTokenResult();
         const hasuraClaim =
           idTokenResult.claims["https://hasura.io/jwt/claims"];
+          
 
         if (hasuraClaim) {
           setAuthState({ status: "in", user, token });
+          
         } else {
           // Check if refresh is required.
           const metadataRef = firebase
@@ -47,6 +50,7 @@ function AuthProvider({ children }) {
             // Force refresh to pick up the latest custom claims changes.
             const token = await user.getIdToken(true);
             setAuthState({ status: "in", user, token });
+        
           });
         }
       } else {
@@ -57,9 +61,10 @@ function AuthProvider({ children }) {
 
   async function logInWithGoogle() {
     const data = await firebase.auth().signInWithPopup(provider);
-    if(data.additionalUserInfo.isNewUser){
-      const { uid, displayName, email, photoURL} = data.user;
-      const username = `${displayName.replace(/\s+/g, "")}${uid.slice(-5)}}`
+    if (data.additionalUserInfo.isNewUser) {
+      // console.log({ data });
+      const { uid, displayName, email, photoURL } = data.user;
+      const username = `${displayName.replace(/\s+/g, "")}${uid.slice(-5)}`;
       const variables = {
         userId: uid,
         name: displayName,
@@ -106,6 +111,10 @@ function AuthProvider({ children }) {
     setAuthState({ status: "out" });
   }
 
+  async function updateEmail(email) {
+    await authState.user.updateEmail(email);
+  }
+
   if (authState.status === "loading") {
     return null;
   } else {
@@ -114,9 +123,10 @@ function AuthProvider({ children }) {
         value={{
           authState,
           logInWithGoogle,
+          logInWithEmailAndPassword,
           signOut,
           signUpWithEmailAndPassword,
-          logInWithEmailAndPassword
+          updateEmail,
         }}
       >
         {children}
@@ -126,3 +136,5 @@ function AuthProvider({ children }) {
 }
 
 export default AuthProvider;
+
+

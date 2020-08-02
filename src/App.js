@@ -1,9 +1,5 @@
 import React from "react";
-import {
-  Switch,
-  Route,
-  Redirect,
-} from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 
 import ProfilePage from "./pages/profile";
 import EditProfilePage from "./pages/edit-profile";
@@ -16,17 +12,26 @@ import SearchPage from "./pages/search";
 import MoviesPage from "./pages/movies";
 import { AuthContext } from "./auth";
 import searchReducer from "./reducer";
+import { useSubscription } from "@apollo/react-hooks";
+import { ME } from "./graphql/subscriptions";
+import LoadingScreen from "./components/shared/LoadingScreen";
 
 export const SearchContext = React.createContext({
-  searchMovie: '',
+  searchMovie: "",
 });
+
+export const UserContext = React.createContext();
 
 function App() {
   const { authState } = React.useContext(AuthContext);
-  console.log(authState)
-  const isAuth = authState.status === "in";
+   const isAuth = authState.status === "in";
+  const userId = isAuth ? authState.user.uid : null;
+  const variables = { userId };
+  const { data, loading } = useSubscription(ME, { variables });
   const initialSearchState = React.useContext(SearchContext);
   const [state, dispatch] = React.useReducer(searchReducer, initialSearchState);
+
+  if (loading) return <LoadingScreen />;
 
   if (!isAuth) {
     return (
@@ -38,21 +43,28 @@ function App() {
     );
   }
 
+  const me = isAuth && data ? data.users[0] : null;
+  const currentUserId = me.id;
+
   return (
-    <SearchContext.Provider value={{ state, dispatch }}>
-      <Switch>
-        <Route exact path="/" component={MainPage} />
-        <Route path="/search" component={SearchPage} />
-        <Route path="/movies" component={MoviesPage} />
-        {/*<Route path="/tv" component={TVPage} />*/}
-        <Route exact path="/:username" component={ProfilePage} />
-        <Route exact path="/m/:movieId" component={MoviePage} />
-        <Route path="/accounts/edit" component={EditProfilePage} />
-        <Route path="/accounts/login" component={LoginPage} />
-        <Route path="/accounts/emailsignup" component={SignUpPage} />
-        <Route path="*" component={NotFoundPage} />
-      </Switch>
-    </SearchContext.Provider>
+    <UserContext.Provider value={{
+      me, currentUserId
+    }}>
+      <SearchContext.Provider value={{ state, dispatch }}>
+        <Switch>
+          <Route exact path="/" component={MainPage} />
+          <Route path="/search" component={SearchPage} />
+          <Route path="/movies" component={MoviesPage} />
+          {/*<Route path="/tv" component={TVPage} />*/}
+          <Route exact path="/:username" component={ProfilePage} />
+          <Route exact path="/m/:movieId" component={MoviePage} />
+          <Route path="/accounts/edit" component={EditProfilePage} />
+          <Route path="/accounts/login" component={LoginPage} />
+          <Route path="/accounts/emailsignup" component={SignUpPage} />
+          <Route path="*" component={NotFoundPage} />
+        </Switch>
+      </SearchContext.Provider>
+   </UserContext.Provider>
   );
 }
 
