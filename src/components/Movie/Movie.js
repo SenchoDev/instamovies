@@ -30,7 +30,7 @@ function Movie({ movie, setDialog }) {
 
   return (
     <section className={classes.about}>
-      <Img
+      <img
         src={`https://image.tmdb.org/t/p/w342/${poster_path}`}
         alt="movie"
         className={classes.image}

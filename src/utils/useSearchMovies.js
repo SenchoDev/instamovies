@@ -83,3 +83,21 @@ export function fetchIndividualMovie(setMovieInfo, movieId) {
     cancelToken1.cancel();
   };
 }
+
+
+export function fetchRecommendations(setRecommendations, movieId) {
+  let BASE_URL = `${cors}https://api.themoviedb.org/3/movie/${movieId}/recommendations?api_key=${key}&language=en-US&page=1`;
+  
+  let cancelToken1 = axios.CancelToken.source();
+  axios.get(BASE_URL, {
+    cancelToken: cancelToken1.token,
+  }).then(res => {
+    setRecommendations(res.data.results)
+  }).catch(e => {
+    if (axios.isCancel(e)) return;
+  })
+  
+  return () => {
+    cancelToken1.cancel();
+  };
+}

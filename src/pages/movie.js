@@ -11,7 +11,7 @@ import Movie from "../components/Movie/Movie";
 import MovieCastSlider from "../components/Movie/MovieCastSlider";
 import MovieComments from "../components/Movie/MovieComments";
 import MovieAddComment from "../components/Movie/MovieAddComment";
-import { fetchIndividualMovie } from "../utils/useSearchMovies";
+import { fetchIndividualMovie, fetchRecommendations } from "../utils/useSearchMovies";
 import { useParams } from "react-router-dom";
 
 function MoviePage() {
@@ -19,6 +19,7 @@ function MoviePage() {
   const classes = useMovieStyles();
   const [showDialog, setDialog] = React.useState(false);
   const [movieInfo, setMovieInfo] = React.useState({});
+  const [recommendations, setRecommendations] = React.useState([]);
   /*
     comments: id, movieId, indvidualComments(array relationship).
 
@@ -36,9 +37,11 @@ function MoviePage() {
     setDialog(false);
   }
   React.useEffect(() => {
+    fetchRecommendations(setRecommendations, movieId);
+    window.scrollTo(0, 0);
     fetchIndividualMovie(setMovieInfo, movieId);
   }, [movieId]);
-  console.log(movieInfo)
+  console.log(recommendations)
   const { backdrop_path, videos, cast, original_title, genres, runtime, poster_path, vote_average, overview, crew } = movieInfo;
   const otherData = { original_title, genres, runtime, poster_path, vote_average, overview, crew}
   const { comments } = defaultMovie;
@@ -62,7 +65,7 @@ function MoviePage() {
         <DialogContent>
           <div className={classes.trailerVideo}>
             <ReactPlayer
-              url={`https://www.youtube.com/watch?v=${videos?.results[0].key}`}
+              url={`https://www.youtube.com/watch?v=${videos && videos.results[0].key}`}
               width={760}
               height={500}
               style={{ marginLeft: "50px" }}
@@ -90,7 +93,7 @@ function MoviePage() {
       {/* Suggestions Slider */}
       <div className={classes.moviesRecommendation}>
         <Heading textHeader="Recommendations" textButton="TV Shows & Movies" />
-
+        <SliderA data={recommendations} />
       </div>
     </Layout>
   );
