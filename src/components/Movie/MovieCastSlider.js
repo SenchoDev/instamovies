@@ -23,7 +23,7 @@ function MovieCastSlider({ seriesCast }) {
         slidesToScroll={4}
         easing="ease-in-out"
       >
-        {Array.from({ length: 10 }, () => getActorCard()).map((card) => (
+        {seriesCast?.slice(0, 25).map((card) => (
           <ActorCard key={card.id} card={card} />
         ))}
       </Slider>
@@ -33,14 +33,15 @@ function MovieCastSlider({ seriesCast }) {
 
 function ActorCard({ card }) {
   const classes = useMovieStyles();
+  const { profile_path, character, name } = card;
   return (
     <div className={classes.actor}>
-      <img src={card.image} alt="actor" className={classes.imageCard} />
+      <img src={profile_path ? `https://image.tmdb.org/t/p/w154/${profile_path}` : `https://i.ibb.co/s23qmSS/Group-40.png` } alt="actor" className={classes.imageCard} />
       <div className={classes.imgTextContainer}>
         <Typography variant="body2" className={classes.realName}>
-          {card.realName}
+          {name}
         </Typography>
-        <p className={classes.name}>{card.name}</p>
+        <p className={classes.name}>{character}</p>
       </div>
     </div>
   );

@@ -62,13 +62,20 @@ export function useSearchMovies(search, page) {
 
 export function fetchIndividualMovie(setMovieInfo, movieId) {
   let BASE_URL = `${cors}https://api.themoviedb.org/3/movie/${movieId}?api_key=${key}&append_to_response=videos`;
+  let BASE_URL2 = `${cors}https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=${key}`
   
+
+  const requestMovie = axios.get(BASE_URL);
+  const requestCredits = axios.get(BASE_URL2);
+
   let cancelToken1 = axios.CancelToken.source();
-  axios.get(BASE_URL, {
+  axios.all([ requestMovie,  requestCredits], {
     cancelToken: cancelToken1.token,
-  }).then(res => {
-    setMovieInfo(res.data)
-  }).catch(e => {
+  }).then(axios.spread((...responses) => {
+    const res1 = responses[0];
+    const res2 = responses[1];
+    setMovieInfo({...res1.data, ...res2.data})
+  })).catch(e => {
     if (axios.isCancel(e)) return;
   })
   

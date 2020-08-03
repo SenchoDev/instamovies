@@ -24,7 +24,7 @@ function Layout({
           {movieLarge && (
             <div
               style={{
-                background: `linear-gradient(to right bottom, #AA2CA8BF, #AA2CA8AF), url(${image})`,
+                background: `linear-gradient(to right bottom, #AA2CA8BF, #AA2CA8AF), url(https://image.tmdb.org/t/p/original/${image})`,
                 backgroundSize: "cover",
                 backgroundPosition: "top",
                 position: "aboslute",

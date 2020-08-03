@@ -24,7 +24,7 @@ export const UserContext = React.createContext();
 
 function App() {
   const { authState } = React.useContext(AuthContext);
-   const isAuth = authState.status === "in";
+  const isAuth = authState.status === "in";
   const userId = isAuth ? authState.user.uid : null;
   const variables = { userId };
   const { data, loading } = useSubscription(ME, { variables });
@@ -47,9 +47,12 @@ function App() {
   const currentUserId = me.id;
 
   return (
-    <UserContext.Provider value={{
-      me, currentUserId
-    }}>
+    <UserContext.Provider
+      value={{
+        me,
+        currentUserId,
+      }}
+    >
       <SearchContext.Provider value={{ state, dispatch }}>
         <Switch>
           <Route exact path="/" component={MainPage} />
@@ -64,7 +67,7 @@ function App() {
           <Route path="*" component={NotFoundPage} />
         </Switch>
       </SearchContext.Provider>
-   </UserContext.Provider>
+    </UserContext.Provider>
   );
 }
 

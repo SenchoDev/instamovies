@@ -521,15 +521,17 @@ export const useMovieStyles = makeStyles((theme) => ({
   },
   imageCard: {
     width: "100%",
-    borderRadiusTopRight: "10px",
-    borderRadiusTopLeft: "10px",
+    borderRadiusTopRight: "10px !important",
+    borderRadiusTopLeft: "10px !important",
+    height: '175px',
+    objectFit: 'cover',
   },
   realName: {
-    fontSize: "16px",
+    fontSize: "14px",
     fontWeight: 500,
   },
   name: {
-    fontSize: "12pxs",
+    fontSize: "13px",
     color: "#00000080",
     marginTop: 2,
   },

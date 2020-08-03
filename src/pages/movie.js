@@ -19,6 +19,18 @@ function MoviePage() {
   const classes = useMovieStyles();
   const [showDialog, setDialog] = React.useState(false);
   const [movieInfo, setMovieInfo] = React.useState({});
+  /*
+    comments: id, movieId, indvidualComments(array relationship).
+
+    indvidualComments: id, commentsId(object realtionship), userId(opbject realtionship), created_at, content,
+   
+
+    ---------------
+    we are making table with movie id
+    it will have object relationship with user
+    it will use subscription to fetch data, if there is not table with that id, create new table
+    mutation to add new comment to comments
+  */
 
   function handleCloseDialog() {
     setDialog(false);
@@ -27,10 +39,10 @@ function MoviePage() {
     fetchIndividualMovie(setMovieInfo, movieId);
   }, [movieId]);
 
-  console.log(movieInfo)
-  const { backgroundImage, trailer, seriesCast, comments } = defaultMovie;
+  const { backdrop_path, videos, cast, otherStuff } = movieInfo;
+  const { comments } = defaultMovie;
   return (
-    <Layout movieLarge image={backgroundImage}>
+    <Layout movieLarge image={backdrop_path}>
       {/* Trailer Dialog */}
       <Dialog
         open={showDialog}
@@ -49,7 +61,7 @@ function MoviePage() {
         <DialogContent>
           <div className={classes.trailerVideo}>
             <ReactPlayer
-              url={trailer}
+              url={`https://www.youtube.com/watch?v=${videos?.results[0].key}`}
               width={760}
               height={500}
               style={{ marginLeft: "50px" }}
@@ -63,7 +75,7 @@ function MoviePage() {
       {/* Movie Cast */}
       <div className={classes.seriesCast}>
         <Typography variant="h4">Series Cast</Typography>
-        <MovieCastSlider seriesCast={seriesCast} />
+        <MovieCastSlider seriesCast={cast} />
       </div>
       <Divider style={{ marginBottom: "20px" }} />
 
@@ -77,7 +89,7 @@ function MoviePage() {
       {/* Suggestions Slider */}
       <div className={classes.moviesRecommendation}>
         <Heading textHeader="Recommendations" textButton="TV Shows & Movies" />
-        
+
       </div>
     </Layout>
   );
