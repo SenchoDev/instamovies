@@ -521,8 +521,7 @@ export const useMovieStyles = makeStyles((theme) => ({
   },
   imageCard: {
     width: "100%",
-    borderRadiusTopRight: "10px !important",
-    borderRadiusTopLeft: "10px !important",
+    borderRadius: "10px 10px 0 0",
     height: '175px',
     objectFit: 'cover',
   },
@@ -1298,7 +1297,8 @@ export const useLayoutStyles = makeStyles((theme) => ({
   },
   image: {
     height: "500px",
-    position: "relative",
+    width: '100%',
+    backgroundSize: 'cover'
   },
   children: {
     width: "100%",

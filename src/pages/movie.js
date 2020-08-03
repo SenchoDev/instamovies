@@ -38,8 +38,9 @@ function MoviePage() {
   React.useEffect(() => {
     fetchIndividualMovie(setMovieInfo, movieId);
   }, [movieId]);
-
-  const { backdrop_path, videos, cast, otherStuff } = movieInfo;
+  console.log(movieInfo)
+  const { backdrop_path, videos, cast, original_title, genres, runtime, poster_path, vote_average, overview, crew } = movieInfo;
+  const otherData = { original_title, genres, runtime, poster_path, vote_average, overview, crew}
   const { comments } = defaultMovie;
   return (
     <Layout movieLarge image={backdrop_path}>
@@ -70,7 +71,7 @@ function MoviePage() {
         </DialogContent>
       </Dialog>
       {/* About Movie */}
-      <Movie movie={defaultMovie} setDialog={setDialog} />
+      <Movie movie={otherData} setDialog={setDialog} />
 
       {/* Movie Cast */}
       <div className={classes.seriesCast}>

@@ -2,6 +2,7 @@ import React from "react";
 import { useMovieStyles, PurpleTooltip } from "../../styles";
 import { Typography, Zoom, Fab, Button } from "@material-ui/core";
 import PlayArrowRoundedIcon from "@material-ui/icons/PlayArrowRounded";
+import Img from "react-graceful-image";
 
 import {
   SaveIcon,
@@ -13,38 +14,51 @@ import {
 function Movie({ movie, setDialog }) {
   const classes = useMovieStyles();
   const {
-    title,
+    original_title,
     genres,
-    time,
-    movieImage,
-    rating,
+    runtime,
+    poster_path,
+    vote_average,
     overview,
-    directors,
+    crew,
   } = movie;
   function listElementsWithComma(array) {
     return array.map(
-      (el, index) => `${el}${index === array.length - 1 ? "" : ","} `
+      (el, index) => `${el.name}${index === array.length - 1 ? "" : ","} `
     );
   }
+
   return (
     <section className={classes.about}>
-      <img src={movieImage} alt="movie" className={classes.image} />
-
+      <Img
+        src={`https://image.tmdb.org/t/p/w342/${poster_path}`}
+        alt="movie"
+        className={classes.image}
+      />
       <div className={classes.info}>
         <Typography variant="h4" className={classes.heading}>
-          {title}
+          {original_title}
         </Typography>
         <Typography variant="body1">
-          {listElementsWithComma(genres)}· {time}
+          {genres && listElementsWithComma(genres)} · {`${runtime}m`}
         </Typography>
         <div className={classes.buttons}>
           <p
             className={classes.rating}
             style={{
-              background: "#0C7A29",
+              background:
+                vote_average >= 7.5
+                  ? "#0C7A29"
+                  : vote_average >= 4
+                  ? "#FFB008"
+                  : vote_average < 4
+                  ? "#FF414E"
+                  : vote_average === 0
+                  ? "#636363"
+                  : "",
             }}
           >
-            {rating}
+            {vote_average}
           </p>
           <PurpleTooltip
             arrow
@@ -80,7 +94,7 @@ function Movie({ movie, setDialog }) {
         </Typography>
         <Typography variant="h4">Directors & Creators</Typography>
         <Typography variant="body2" style={{ width: "45vw" }}>
-          {listElementsWithComma(directors)}
+          {crew && listElementsWithComma(crew.slice(0, 4))}
         </Typography>
       </div>
     </section>

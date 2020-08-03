@@ -24,10 +24,7 @@ function Layout({
           {movieLarge && (
             <div
               style={{
-                background: `linear-gradient(to right bottom, #AA2CA8BF, #AA2CA8AF), url(https://image.tmdb.org/t/p/original/${image})`,
-                backgroundSize: "cover",
-                backgroundPosition: "top",
-                position: "aboslute",
+                background: `linear-gradient(to right bottom, #AA2CA8BF, #AA2CA8AF), url(https://image.tmdb.org/t/p/original/${image}) no-repeat center center fixed`,
               }}
               className={classes.image}
             />
