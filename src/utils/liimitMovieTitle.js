@@ -1,4 +1,5 @@
 export const limitRecipeTitle = (title, limit = 32) => {
+  if(title === undefined) return 'Not Found'
   const newTitle = [];
   if (title.length > limit) {
       title.split(' ').reduce((acc, cur) => {
