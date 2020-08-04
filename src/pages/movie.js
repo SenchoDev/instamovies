@@ -13,8 +13,9 @@ import MovieComments from "../components/Movie/MovieComments";
 import MovieAddComment from "../components/Movie/MovieAddComment";
 import { fetchIndividualMovie, fetchRecommendations } from "../utils/useSearchMovies";
 import { useParams } from "react-router-dom";
-import { useMutation } from "@apollo/react-hooks";
+import { useMutation, useSubscription } from "@apollo/react-hooks";
 import { ADD_COMMENTS } from "../graphql/mutations";
+import { CHECK_IF_THERE_IS_MOVIE } from "../graphql/subscriptions";
 
 function MoviePage() {
   const { movieId } = useParams();
@@ -23,16 +24,19 @@ function MoviePage() {
   const [movieInfo, setMovieInfo] = React.useState({});
   const [recommendations, setRecommendations] = React.useState([]);
   const [addComments] = useMutation(ADD_COMMENTS);
+  const variables = { movieId };
+  const {data, loading} = useSubscription(CHECK_IF_THERE_IS_MOVIE, {variables});
 
   function handleCloseDialog() {
     setDialog(false);
   }
-  
-  React.useEffect(() => {
-    const variables = { movieId };
-    addComments({ variables });
-  }, [])
 
+  React.useEffect(() => {
+    if(data?.comments.length === 0 && !loading){
+      addComments({variables})
+    }
+  }, [loading, data])
+  
   React.useEffect(() => {
     fetchRecommendations(setRecommendations, movieId);
     window.scrollTo(0, 0);
@@ -42,6 +46,7 @@ function MoviePage() {
   const { backdrop_path, videos, cast, original_title, genres, runtime, poster_path, vote_average, overview, crew } = movieInfo;
   const otherData = { original_title, genres, runtime, poster_path, vote_average, overview, crew}
   const { comments } = defaultMovie;
+  
   return (
     <Layout movieLarge image={backdrop_path}>
       {/* Trailer Dialog */}
@@ -85,7 +90,7 @@ function MoviePage() {
       <Divider />
 
       {/* Add Comment */}
-      <MovieAddComment />
+      <MovieAddComment movieId={movieId} />
 
       {/* Suggestions Slider */}
       <div className={classes.moviesRecommendation}>

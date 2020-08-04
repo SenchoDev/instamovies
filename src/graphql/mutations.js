@@ -72,3 +72,13 @@ export const ADD_COMMENTS = gql`
     }
   }
 `;
+
+export const CREATE_COMMENT = gql`
+  mutation createComment($movieId: String!, $userId: uuid!, $content: String!) {
+    insert_comment(
+      objects: { comment_id: $movieId, user_id: $userId, content: $content }
+    ) {
+      affected_rows
+    }
+  }
+`;

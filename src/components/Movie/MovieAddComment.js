@@ -2,11 +2,26 @@ import React from "react";
 import { useMovieStyles } from "../../styles";
 import { Avatar, TextField, Button } from "@material-ui/core";
 import { defaultUser } from "../../data";
+import { UserContext } from "../../App";
+import { useMutation } from "@apollo/react-hooks";
+import { CREATE_COMMENT } from "../../graphql/mutations";
 
-function MovieAddComment({ comments }) {
+
+function MovieAddComment({ movieId }) {
   const classes = useMovieStyles();
+  const [content, setContent] = React.useState("");
+  const { currentUserId } = React.useContext(UserContext);
+  const [createComment] = useMutation(CREATE_COMMENT)
 
-  const [comment, setComment] = React.useState("");
+  function handleAddComment() {
+    const variables = {
+      content,
+      movieId,
+      userId: currentUserId,
+    };
+    createComment({ variables });
+    setContent('')
+  }
   return (
     <div className={classes.addComment}>
       <Avatar
@@ -15,19 +30,20 @@ function MovieAddComment({ comments }) {
       />
       <TextField
         className={classes.urlInput}
-        onChange={(event) => setComment(event.target.value)}
+        onChange={(event) => setContent(event.target.value)}
         fullWidth
         margin="normal"
         placeholder="Add a comment..."
         color="secondary"
-        value={comment}
+        value={content}
         type="comment"
       />
       <Button
         color="secondary"
         variant="contained"
-        disabled={!comment.trim()}
+        disabled={!content.trim()}
         className={classes.commentButton}
+        onClick={handleAddComment}
       >
         Post
       </Button>

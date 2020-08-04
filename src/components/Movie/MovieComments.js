@@ -4,6 +4,7 @@ import { Typography, Avatar } from "@material-ui/core";
 import { Link } from "react-router-dom";
 
 function MovieComments({ comments }) {
+  
   const classes = useMovieStyles();
   return (
     <div className={classes.comments}>
@@ -34,6 +35,13 @@ function MovieComments({ comments }) {
     </div>
   );
 }
+
+/**const variables = {
+      content,
+      postId,
+      userId: currentUserId,
+    };
+    createComment({ variables, update: handleUpdate }); */
 
 
 export default MovieComments;
