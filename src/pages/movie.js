@@ -47,9 +47,8 @@ function MoviePage() {
 
   const { backdrop_path, videos, cast, original_title, genres, runtime, poster_path, vote_average, overview, crew } = movieInfo;
   const otherData = { original_title, genres, runtime, poster_path, vote_average, overview, crew}
-  const comments = data2?.comments_by_pk.comment;
+  const comments = data2?.comments_by_pk?.comment;
 
-  
   return (
     <Layout movieLarge image={backdrop_path}>
       {/* Trailer Dialog */}
@@ -89,7 +88,7 @@ function MoviePage() {
       <Divider style={{ marginBottom: "20px" }} />
 
       {/* Comments */}
-      <MovieComments comments={comments} loading={loading2}/>
+      <MovieComments comments={comments ? comments : undefined} loading={loading2}/>
       <Divider />
 
       {/* Add Comment */}
@@ -103,5 +102,4 @@ function MoviePage() {
     </Layout>
   );
 }
-// <SliderA />
 export default MoviePage;

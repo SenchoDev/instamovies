@@ -7,7 +7,7 @@ import { LoadingIcon } from "../../icons";
 
 function MovieComments({ comments, loading }) {
   const classes = useMovieStyles();
-  if (loading) return <div />;
+  if (loading || comments === undefined) return <div />;
   return (
     <div className={classes.comments}>
       <Typography variant="h4">Comments section</Typography>
