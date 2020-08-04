@@ -15,7 +15,7 @@ import { fetchIndividualMovie, fetchRecommendations } from "../utils/useSearchMo
 import { useParams } from "react-router-dom";
 import { useMutation, useSubscription } from "@apollo/react-hooks";
 import { ADD_COMMENTS } from "../graphql/mutations";
-import { CHECK_IF_THERE_IS_MOVIE } from "../graphql/subscriptions";
+import { CHECK_IF_THERE_IS_MOVIE, GET_COMMENTS } from "../graphql/subscriptions";
 
 function MoviePage() {
   const { movieId } = useParams();
@@ -25,17 +25,19 @@ function MoviePage() {
   const [recommendations, setRecommendations] = React.useState([]);
   const [addComments] = useMutation(ADD_COMMENTS);
   const variables = { movieId };
-  const {data, loading} = useSubscription(CHECK_IF_THERE_IS_MOVIE, {variables});
+
+  const {data: data1, loading: loading1} = useSubscription(CHECK_IF_THERE_IS_MOVIE, {variables});
+  const {data: data2, loading: loading2} = useSubscription(GET_COMMENTS, { variables });
 
   function handleCloseDialog() {
     setDialog(false);
   }
 
   React.useEffect(() => {
-    if(data?.comments.length === 0 && !loading){
+    if(data1?.comments.length === 0 && !loading1){
       addComments({variables})
     }
-  }, [loading, data])
+  }, [loading1, data1])
   
   React.useEffect(() => {
     fetchRecommendations(setRecommendations, movieId);
@@ -45,7 +47,8 @@ function MoviePage() {
 
   const { backdrop_path, videos, cast, original_title, genres, runtime, poster_path, vote_average, overview, crew } = movieInfo;
   const otherData = { original_title, genres, runtime, poster_path, vote_average, overview, crew}
-  const { comments } = defaultMovie;
+  const comments = data2?.comments_by_pk.comment;
+
   
   return (
     <Layout movieLarge image={backdrop_path}>
@@ -86,11 +89,11 @@ function MoviePage() {
       <Divider style={{ marginBottom: "20px" }} />
 
       {/* Comments */}
-      <MovieComments comments={comments} />
+      <MovieComments comments={comments} loading={loading2}/>
       <Divider />
 
       {/* Add Comment */}
-      <MovieAddComment movieId={movieId} />
+      <MovieAddComment movieId={movieId}  />
 
       {/* Suggestions Slider */}
       <div className={classes.moviesRecommendation}>

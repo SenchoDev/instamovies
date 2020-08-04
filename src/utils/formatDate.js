@@ -1,3 +1,5 @@
+import { format } from "date-fns";
+import { formatDistanceStrict } from "date-fns/esm";
 
 export function formatDate(d) {
   var date = new Date(d);
@@ -24,5 +26,14 @@ export function formatDate(d) {
     }
     return day + " " + month[date.getMonth()] + " " + date.getFullYear();
   }
+}
+
+export function formatDateToNowShort(date) {
+  // 5 days ago -> 5d
+  // 7 week ago -> 7d
+  return formatDistanceStrict(new Date(date), new Date(Date.now()))
+    .split(" ")
+    .map((s, i) => (i === 1 ? s[0] : s))
+    .join("");
 }
 

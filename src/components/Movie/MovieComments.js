@@ -2,13 +2,24 @@ import React from "react";
 import { useMovieStyles } from "../../styles";
 import { Typography, Avatar } from "@material-ui/core";
 import { Link } from "react-router-dom";
+import { formatDateToNowShort } from "../../utils/formatDate";
+import { LoadingIcon } from "../../icons";
 
-function MovieComments({ comments }) {
-  
+function MovieComments({ comments, loading }) {
   const classes = useMovieStyles();
+  if (loading) return <div />;
   return (
     <div className={classes.comments}>
-      <Typography variant="h5">Comments section</Typography>
+      <Typography variant="h4">Comments section</Typography>
+      {comments.length === 0 ? (
+        <Typography
+          variant="h5"
+          color="secondary"
+          style={{ marginTop: "20px" }}
+        >
+          No commments
+        </Typography>
+      ) : null}
       {comments.map((comment) => (
         <div key={comment.id} className={classes.commentContainer}>
           <Link to={`/${comment.user.username}`}>
@@ -23,7 +34,7 @@ function MovieComments({ comments }) {
                 {comment.user.username}
               </Typography>
               <Typography variant="body1" className={classes.commentDate}>
-                {comment.date}
+                {formatDateToNowShort(comment.created_at)}
               </Typography>
             </div>
             <Typography variant="body2" className={classes.commentContent}>
@@ -42,6 +53,5 @@ function MovieComments({ comments }) {
       userId: currentUserId,
     };
     createComment({ variables, update: handleUpdate }); */
-
 
 export default MovieComments;

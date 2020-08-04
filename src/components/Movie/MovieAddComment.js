@@ -1,17 +1,18 @@
 import React from "react";
 import { useMovieStyles } from "../../styles";
-import { Avatar, TextField, Button } from "@material-ui/core";
+import { Avatar, TextField, Button, Typography } from "@material-ui/core";
 import { defaultUser } from "../../data";
 import { UserContext } from "../../App";
 import { useMutation } from "@apollo/react-hooks";
 import { CREATE_COMMENT } from "../../graphql/mutations";
-
+import { Link } from "react-router-dom";
 
 function MovieAddComment({ movieId }) {
   const classes = useMovieStyles();
   const [content, setContent] = React.useState("");
   const { currentUserId } = React.useContext(UserContext);
-  const [createComment] = useMutation(CREATE_COMMENT)
+  const [createComment] = useMutation(CREATE_COMMENT);
+  const { me } = React.useContext(UserContext);
 
   function handleAddComment() {
     const variables = {
@@ -20,14 +21,13 @@ function MovieAddComment({ movieId }) {
       userId: currentUserId,
     };
     createComment({ variables });
-    setContent('')
+    setContent("");
   }
   return (
     <div className={classes.addComment}>
-      <Avatar
-        src={defaultUser.profile_image}
-        className={classes.addCommentImage}
-      />
+      <Link to={`/${me.username}`}>
+        <Avatar src={me.profile_image} className={classes.addCommentImage} />
+      </Link>
       <TextField
         className={classes.urlInput}
         onChange={(event) => setContent(event.target.value)}
