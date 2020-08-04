@@ -13,6 +13,8 @@ import MovieComments from "../components/Movie/MovieComments";
 import MovieAddComment from "../components/Movie/MovieAddComment";
 import { fetchIndividualMovie, fetchRecommendations } from "../utils/useSearchMovies";
 import { useParams } from "react-router-dom";
+import { useMutation } from "@apollo/react-hooks";
+import { ADD_COMMENTS } from "../graphql/mutations";
 
 function MoviePage() {
   const { movieId } = useParams();
@@ -20,28 +22,23 @@ function MoviePage() {
   const [showDialog, setDialog] = React.useState(false);
   const [movieInfo, setMovieInfo] = React.useState({});
   const [recommendations, setRecommendations] = React.useState([]);
-  /*
-    comments: id, movieId, indvidualComments(array relationship).
-
-    indvidualComments: id, commentsId(object realtionship), userId(opbject realtionship), created_at, content,
-   
-
-    ---------------
-    we are making table with movie id
-    it will have object relationship with user
-    it will use subscription to fetch data, if there is not table with that id, create new table
-    mutation to add new comment to comments
-  */
+  const [addComments] = useMutation(ADD_COMMENTS);
 
   function handleCloseDialog() {
     setDialog(false);
   }
+  
+  React.useEffect(() => {
+    const variables = { movieId };
+    addComments({ variables });
+  }, [])
+
   React.useEffect(() => {
     fetchRecommendations(setRecommendations, movieId);
     window.scrollTo(0, 0);
     fetchIndividualMovie(setMovieInfo, movieId);
   }, [movieId]);
-  console.log(recommendations)
+
   const { backdrop_path, videos, cast, original_title, genres, runtime, poster_path, vote_average, overview, crew } = movieInfo;
   const otherData = { original_title, genres, runtime, poster_path, vote_average, overview, crew}
   const { comments } = defaultMovie;

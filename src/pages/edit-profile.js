@@ -24,8 +24,9 @@ import { useForm } from "react-hook-form";
 import isURL from "validator/lib/isURL";
 import isEmail from "validator/lib/isEmail";
 import isMobilePhone from "validator/lib/isMobilePhone";
-import { EDIT_USER } from "../graphql/mutations";
+import { EDIT_USER, EDIT_USER_AVATAR} from "../graphql/mutations";
 import { AuthContext } from "../auth";
+import handleImageUpload from "../utils/hanldeImageUpload";
 
 function EditProfilePage({ history }) {
   const { me, currentUserId } = React.useContext(UserContext);
@@ -138,26 +139,28 @@ function EditProfilePage({ history }) {
   );
 }
 
-const DEFAULT_ERROR = { type: "", message: ""}
+const DEFAULT_ERROR = { type: "", message: "" };
 
 function EditUserInfo({ user }) {
   const { register, handleSubmit } = useForm({ mode: "onBlur" });
   const classes = useEditProfilePageStyles();
   const [editUser] = useMutation(EDIT_USER);
-  const { updateEmail } = React.useContext(AuthContext)
+  const [profileImage, setProfileImage] = React.useState(user.profile_image)
+  const { updateEmail } = React.useContext(AuthContext);
   const [error, setError] = React.useState(DEFAULT_ERROR);
-  const [open, setOpen] = React.useState(false)
+  const [editUserAvatar] = useMutation(EDIT_USER_AVATAR)
+  const [open, setOpen] = React.useState(false);
 
-  async function onSubmit(data){
-    try{
-      setError(DEFAULT_ERROR)
+  async function onSubmit(data) {
+    try {
+      setError(DEFAULT_ERROR);
       const variables = { ...data, id: user.id };
-      await updateEmail(data.email)
-      await editUser({ variables })
+      await updateEmail(data.email);
+      await editUser({ variables });
       setOpen(true);
-    } catch(error){
+    } catch (error) {
       console.error("error updating profile", error);
-      handleError(error)
+      handleError(error);
     }
   }
 
@@ -172,22 +175,37 @@ function EditUserInfo({ user }) {
     }
   }
 
+  async function handleUpdateProfilePic(event) {
+    const url = await handleImageUpload(event.target.files[0]);
+    const variables =  { id: user.id, profileImage: url };
+    await editUserAvatar({ variables });
+    setProfileImage(url);
+  }
 
   return (
     <section className={classes.container}>
       <div className={classes.pictureSectionItem}>
-        <ProfilePicture size={38} image={user.profile_image} />
+        <ProfilePicture size={38} image={profileImage} />
         <div className={classes.justifySelfStart}>
           <Typography className={classes.typography}>
             {user.username}
           </Typography>
-          <Typography
-            color="primary"
-            variant="body2"
-            className={classes.typographyChangePic}
-          >
-            Change Profile Photo
-          </Typography>
+          <input
+            accept="image/*"
+            id="image"
+            type="file"
+            style={{ display: "none" }}
+            onChange={handleUpdateProfilePic}
+          />
+          <label htmlFor="image">
+            <Typography
+              color="primary"
+              variant="body2"
+              className={classes.typographyChangePic}
+            >
+              Change Profile Photo
+            </Typography>
+          </label>
         </div>
       </div>
       <form onSubmit={handleSubmit(onSubmit)} className={classes.form}>
@@ -265,10 +283,10 @@ function EditUserInfo({ user }) {
           type="email"
         />
         <SectionItem
-        name="phoneNumber"
-        inputRef={register({
-          validate: (input) => (Boolean(input) ? isMobilePhone(input) : true),
-        })}
+          name="phoneNumber"
+          inputRef={register({
+            validate: (input) => (Boolean(input) ? isMobilePhone(input) : true),
+          })}
           text="Phone Number"
           formItem={user.phone_number}
         />
@@ -284,12 +302,12 @@ function EditUserInfo({ user }) {
           </Button>
         </div>
       </form>
-      <Snackbar open={open}
+      <Snackbar
+        open={open}
         autoHideDuration={6000}
         TransitionComponent={Slide}
         message={<span>Profile updated</span>}
         onClose={() => setOpen(false)}
-        
       />
     </section>
   );

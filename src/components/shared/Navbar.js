@@ -10,6 +10,7 @@ import NotificationList from "../notification/NotificationList";
 import NotificationTooltip from "../notification/NotificationTooltip";
 import { useNProgress } from "@tanem/react-nprogress";
 import useOutsideClick from "@rooks/use-outside-click";
+import { UserContext } from "../../App";
 
 function Navbar({ minimalNavbar }) {
   const classes = useNavbarStyles();
@@ -50,7 +51,8 @@ function Logo() {
 
 function Links({ path }) {
   const classes = useNavbarStyles();
-
+  
+  const { me }= React.useContext(UserContext)
   const [showList, setList] = React.useState(false);
   const [showTooltip, setTooltip] = React.useState(true);
   const [showMovies, setMovies] = React.useState(false);
@@ -121,7 +123,7 @@ function Links({ path }) {
             }
           ></div>
           <Avatar
-            src={defaultCurrentUser.profile_image}
+            src={me.profile_image}
             className={classes.profileImage}
           />
         </Link>

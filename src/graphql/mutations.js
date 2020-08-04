@@ -28,7 +28,6 @@ export const CREATE_USER = gql`
   }
 `;
 
-
 export const EDIT_USER = gql`
   mutation editUser(
     $id: uuid!
@@ -50,6 +49,25 @@ export const EDIT_USER = gql`
         phone_number: $phoneNumber
       }
     ) {
+      affected_rows
+    }
+  }
+`;
+
+export const EDIT_USER_AVATAR = gql`
+  mutation editUserAvatar($id: uuid!, $profileImage: String!) {
+    update_users(
+      where: { id: { _eq: $id } }
+      _set: { profile_image: $profileImage }
+    ) {
+      affected_rows
+    }
+  }
+`;
+
+export const ADD_COMMENTS = gql`
+  mutation addComments($movieId: String!) {
+    insert_comments(objects: { movie_id: $movieId }) {
       affected_rows
     }
   }

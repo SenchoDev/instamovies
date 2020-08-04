@@ -30,7 +30,8 @@ function Movie({ movie, setDialog }) {
 
   return (
     <section className={classes.about}>
-      <img
+      <Img
+        placeholderColor='rgba(170, 44, 168, 0.5)'
         src={`https://image.tmdb.org/t/p/w342/${poster_path}`}
         alt="movie"
         className={classes.image}
@@ -51,7 +52,7 @@ function Movie({ movie, setDialog }) {
                   ? "#0C7A29"
                   : vote_average >= 4
                   ? "#FFB008"
-                  : vote_average < 4
+                  : vote_average > 0
                   ? "#FF414E"
                   : vote_average === 0
                   ? "#636363"
