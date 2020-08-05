@@ -7,7 +7,7 @@ import { LoadingIcon } from "../../icons";
 
 function MovieComments({ comments, loading }) {
   const classes = useMovieStyles();
-  if (loading || comments === undefined) return <div />;
+  if (loading || comments === undefined) return <LoadingIcon />;
   return (
     <div className={classes.comments}>
       <Typography variant="h4">Comments section</Typography>
@@ -34,7 +34,7 @@ function MovieComments({ comments, loading }) {
                 {comment.user.username}
               </Typography>
               <Typography variant="body1" className={classes.commentDate}>
-                {formatDateToNowShort(comment.created_at)}
+                {formatDateToNowShort(comment.created_at)} 
               </Typography>
             </div>
             <Typography variant="body2" className={classes.commentContent}>

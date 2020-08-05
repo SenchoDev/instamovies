@@ -13,9 +13,10 @@ import MovieComments from "../components/Movie/MovieComments";
 import MovieAddComment from "../components/Movie/MovieAddComment";
 import { fetchIndividualMovie, fetchRecommendations } from "../utils/useSearchMovies";
 import { useParams } from "react-router-dom";
-import { useMutation, useSubscription } from "@apollo/react-hooks";
+import { useMutation, useSubscription, useQuery } from "@apollo/react-hooks";
 import { ADD_COMMENTS } from "../graphql/mutations";
-import { CHECK_IF_THERE_IS_MOVIE, GET_COMMENTS } from "../graphql/subscriptions";
+import { GET_COMMENTS } from "../graphql/subscriptions";
+import { CHECK_IF_THERE_IS_MOVIE } from "../graphql/queries";
 
 function MoviePage() {
   const { movieId } = useParams();
@@ -23,11 +24,10 @@ function MoviePage() {
   const [showDialog, setDialog] = React.useState(false);
   const [movieInfo, setMovieInfo] = React.useState({});
   const [recommendations, setRecommendations] = React.useState([]);
-  const [addComments] = useMutation(ADD_COMMENTS);
   const variables = { movieId };
-
-  const {data: data1, loading: loading1} = useSubscription(CHECK_IF_THERE_IS_MOVIE, {variables});
+  const {data: data1, loading: loading1} = useQuery(CHECK_IF_THERE_IS_MOVIE, {variables});
   const {data: data2, loading: loading2} = useSubscription(GET_COMMENTS, { variables });
+  const [addComments] = useMutation(ADD_COMMENTS);
 
   function handleCloseDialog() {
     setDialog(false);
@@ -35,14 +35,15 @@ function MoviePage() {
 
   React.useEffect(() => {
     if(data1?.comments.length === 0 && !loading1){
+      console.log('hey')
       addComments({variables})
     }
-  }, [loading1, data1])
+  }, [data1])
   
   React.useEffect(() => {
+    fetchIndividualMovie(setMovieInfo, movieId);
     fetchRecommendations(setRecommendations, movieId);
     window.scrollTo(0, 0);
-    fetchIndividualMovie(setMovieInfo, movieId);
   }, [movieId]);
 
   const { backdrop_path, videos, cast, original_title, genres, runtime, poster_path, vote_average, overview, crew } = movieInfo;
@@ -97,7 +98,7 @@ function MoviePage() {
       {/* Suggestions Slider */}
       <div className={classes.moviesRecommendation}>
         <Heading textHeader="Recommendations" textButton="TV Shows & Movies" />
-        <SliderA data={recommendations} />
+        <SliderA data={recommendations} loading={loading1}/>
       </div>
     </Layout>
   );

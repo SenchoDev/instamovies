@@ -34,3 +34,12 @@ export const GET_EDIT_USER_PROFILE = gql`
     }
   }
 `;
+
+
+export const CHECK_IF_THERE_IS_MOVIE = gql`
+  query checkIfThereIsMovie($movieId: String!) {
+    comments(where: { movie_id: { _eq: $movieId } }) {
+      movie_id
+    }
+  }
+`;

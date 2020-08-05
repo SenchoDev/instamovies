@@ -35,13 +35,14 @@ function Movie({ movie, setDialog }) {
         src={`https://image.tmdb.org/t/p/w342/${poster_path}`}
         alt="movie"
         className={classes.image}
+        
       />
       <div className={classes.info}>
         <Typography variant="h4" className={classes.heading}>
           {original_title}
         </Typography>
         <Typography variant="body1">
-          {genres && listElementsWithComma(genres)} · {`${runtime}m`}
+          {genres && listElementsWithComma(genres)} · {`${runtime || '0'}m`}
         </Typography>
         <div className={classes.buttons}>
           <p
@@ -54,9 +55,7 @@ function Movie({ movie, setDialog }) {
                   ? "#FFB008"
                   : vote_average > 0
                   ? "#FF414E"
-                  : vote_average === 0
-                  ? "#636363"
-                  : "",
+                  : "#636363"
             }}
           >
             {vote_average}

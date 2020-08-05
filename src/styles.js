@@ -554,6 +554,7 @@ export const useMovieStyles = makeStyles((theme) => ({
   commentsInfo: {
     display: "flex",
     flexDirection: "column",
+    width: '90%',
   },
   commentsInfoHeader: {
     display: "flex",

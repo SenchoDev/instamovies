@@ -62,11 +62,11 @@ function SearchPage() {
               <SmallCard card={card} showRating />
             </React.Suspense>
           ))
-        ) :(
+        ) : loading === false ? (
           <Typography variant="h4" className={classes.returnText}>
             Search movies & tv shows
           </Typography>
-        )}
+        ) : null}
       </div>
       {data.length > 0 && (
         <Pagination
