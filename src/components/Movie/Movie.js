@@ -115,7 +115,7 @@ function SaveButton({ watchlistMovies, movieId, movieImage}) {
   const { currentUserId } = React.useContext(UserContext);
   const isAlreadySaved = watchlistMovies.some(
     ({ user_id }) => user_id === currentUserId
-  )
+  ) || '';
   const [addToWatchlist] = useMutation(ADD_TO_WATCHLIST);
   const [removeFromWatchlist] = useMutation(REMOVE_FROM_WATCHLIST);
   const [saved, setSaved] = React.useState(isAlreadySaved);

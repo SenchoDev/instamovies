@@ -13,7 +13,7 @@ import { LoadingLargeIcon } from "../icons";
 
 function SearchPage() {
   const classes = useSearchStyles();
-  const [search, setSearch] = React.useState(JSON.parse(localStorage.getItem('searchData')) || '');
+  const [search, setSearch] = React.useState('');
   const [page, setPage] = React.useState(1);
   const { state } = React.useContext(SearchContext);
   const [searchRequest, setSearchRequest] = React.useState("");
@@ -32,11 +32,7 @@ function SearchPage() {
   const handleChange = (event, value) => {
     setPage(value);
   };
-
-  React.useEffect(() => {
-    localStorage.setItem('searchData', JSON.stringify(search))
-  }, [submitSearch])
-
+  
   React.useEffect(() => {
     state.searchMovie && setSearchRequest(state.searchMovie);
   }, [state.searchMovie]);

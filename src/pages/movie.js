@@ -40,17 +40,18 @@ function MoviePage() {
     fetchRecommendations(setRecommendations, movieId);
     window.scrollTo(0, 0);
   }, [movieId]);
-
-  if(loading1 || loading2 ) return <LoadingScreen/>
+  
+  if(loading2) return <LoadingScreen/>
+  
 
   function handleCloseDialog() {
     setDialog(false);
   }
-
+ 
   const { backdrop_path, videos, cast, original_title, genres, runtime, poster_path, vote_average, overview, crew } = movieInfo;
-  const otherData = { original_title, genres, runtime, poster_path, vote_average, overview, crew}
-  const { comment, favorite_movies, watchlist_movies }  = data2.comments_by_pk;
+  const otherData = { original_title, genres, runtime, poster_path, vote_average, overview, crew};
 
+  const { comment, favorite_movies, watchlist_movies  } = data2?.comments_by_pk;
 
   return (
     <Layout movieLarge image={backdrop_path}>
