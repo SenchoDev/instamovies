@@ -43,7 +43,7 @@ function LoginPage() {
         input = await getUserEmail(input);
       }
       await logInWithEmailAndPassword(input, password);
-      setTimeout(() => history.push("/"), 10);
+      setTimeout(() => history.push("/"), 1000);
     } catch (error) {
       console.error("Error logging in", error);
       handleError(error);
@@ -168,7 +168,7 @@ export function LoginWithFacebook({ color, iconColor, variant, blue }) {
     try {
       setError('')
       await logInWithGoogle();
-      setTimeout(() => history.push('/'), 100)
+      setTimeout(() => history.push('/'), 1000)
     } catch (error) {
       console.error("Error logging in with google", error);
       setError(error.message);

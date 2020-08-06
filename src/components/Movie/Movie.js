@@ -13,10 +13,10 @@ import {
 import { limitMovieText } from "../../utils/limitMovieText";
 import { useMutation } from "@apollo/react-hooks";
 import { UserContext } from "../../App";
-import { ADD_TO_FAVORITES } from "../../graphql/mutations";
+import { ADD_TO_FAVORITES, REMOVE_FROM_FAVORITES, ADD_TO_WATCHLIST, REMOVE_FROM_WATCHLIST} from "../../graphql/mutations";
 import { useParams } from "react-router-dom";
 
-function Movie({ movie, setDialog, favoriteMovies}) {
+function Movie({ movie, setDialog, favoriteMovies, watchlistMovies}) {
   const classes = useMovieStyles();
   const { movieId } = useParams();
   const {
@@ -75,7 +75,7 @@ function Movie({ movie, setDialog, favoriteMovies}) {
             title="Add this movie to watchlist"
           >
             <div>
-              <SaveButton />
+              <SaveButton watchlistMovies={watchlistMovies} movieId={movieId} movieImage={poster_path}/>
             </div>
           </PurpleTooltip>
           <PurpleTooltip
@@ -110,22 +110,34 @@ function Movie({ movie, setDialog, favoriteMovies}) {
   );
 }
 
-function SaveButton() {
+function SaveButton({ watchlistMovies, movieId, movieImage}) {
   const classes = useMovieStyles();
   const { currentUserId } = React.useContext(UserContext);
-  // const isAlreadySaved = savedPosts.some(
-  //   ({ user_id }) => user_id === currentUserId
-  // )
-  const [saved, setSaved] = React.useState(false);
+  const isAlreadySaved = watchlistMovies.some(
+    ({ user_id }) => user_id === currentUserId
+  )
+  const [addToWatchlist] = useMutation(ADD_TO_WATCHLIST);
+  const [removeFromWatchlist] = useMutation(REMOVE_FROM_WATCHLIST);
+  const [saved, setSaved] = React.useState(isAlreadySaved);
   const Icon = saved ? RemoveIcon : SaveIcon;
   const onClick = saved ? handleRemove : handleSave;
   
-
   function handleSave() {
+    const variables = { 
+      movieId,
+      userId: currentUserId,
+      movieImage,
+    }
+    addToWatchlist({ variables })
     setSaved(true);
   }
 
   function handleRemove() {
+    const variables = { 
+      movieId,
+      userId: currentUserId,
+    }
+    removeFromWatchlist({ variables })
     setSaved(false);
   }
 
@@ -139,28 +151,30 @@ function SaveButton() {
 function LikeButton({ favoriteMovies, movieId, movieImage}) {
   const classes = useMovieStyles();
   const { currentUserId } = React.useContext(UserContext);
-  console.log(favoriteMovies)
-  const isAlreadySaved = favoriteMovies.some(
-    ({ user_id }) => user_id === currentUserId
-  );
-  const [addToFavorites] = useMutation(ADD_TO_FAVORITES)
+  const isAlreadySaved = favoriteMovies.some(({ user_id }) => user_id === currentUserId);
+  const [addToFavorites] = useMutation(ADD_TO_FAVORITES);
+  const [removeFromFavorites] = useMutation(REMOVE_FROM_FAVORITES);
   const [liked, setLiked] = React.useState(isAlreadySaved);
   const Icon = liked ? LikeActiveIconWhite : LikeIconWhite;
   const onClick = liked ? handleRemoveFromFavorites : handleAddToFavorites;
 
-  const variables = { 
-    movieId,
-    userId: currentUserId,
-    movieImage,
-  }
-
   function handleAddToFavorites() {
+    const variables = { 
+      movieId,
+      userId: currentUserId,
+      movieImage,
+    }
     setLiked(true);
     addToFavorites({ variables })
   }
 
   function handleRemoveFromFavorites() {
+    const variables = { 
+      movieId,
+      userId: currentUserId,
+    }
     setLiked(false);
+    removeFromFavorites({ variables })
   }
 
   return (

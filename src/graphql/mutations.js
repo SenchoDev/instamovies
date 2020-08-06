@@ -84,8 +84,57 @@ export const CREATE_COMMENT = gql`
 `;
 
 export const ADD_TO_FAVORITES = gql`
-  mutation addToFavorites($userId: uuid!, $movieId: String!, $movieImage: String!) {
-    insert_favorite_movies(objects: { user_id: $userId, movie_id: $movieId, movie_image: $movieImage }) {
+  mutation addToFavorites(
+    $userId: uuid!
+    $movieId: String!
+    $movieImage: String!
+  ) {
+    insert_favorite_movies(
+      objects: {
+        user_id: $userId
+        movie_id: $movieId
+        movie_image: $movieImage
+      }
+    ) {
+      affected_rows
+    }
+  }
+`;
+
+export const REMOVE_FROM_FAVORITES = gql`
+  mutation removeFromFavorites($movieId: String!, $userId: uuid!) {
+    delete_favorite_movies(
+      where: { movie_id: { _eq: $movieId }, user_id: { _eq: $userId } }
+    ) {
+      affected_rows
+    }
+  }
+`;
+
+
+export const ADD_TO_WATCHLIST = gql`
+  mutation addToWatchlist(
+    $userId: uuid!
+    $movieId: String!
+    $movieImage: String!
+  ) {
+    insert_watchlist_movies(
+      objects: {
+        user_id: $userId
+        movie_id: $movieId
+        movie_image: $movieImage
+      }
+    ) {
+      affected_rows
+    }
+  }
+`;
+
+export const REMOVE_FROM_WATCHLIST = gql`
+  mutation removeFromWatchlist($movieId: String!, $userId: uuid!) {
+    delete_watchlist_movies(
+      where: { movie_id: { _eq: $movieId }, user_id: { _eq: $userId } }
+    ) {
       affected_rows
     }
   }

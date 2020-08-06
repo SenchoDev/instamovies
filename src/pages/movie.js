@@ -2,7 +2,6 @@ import React from "react";
 import { useMovieStyles } from "../styles";
 import Layout from "../components/shared/Layout";
 import { Typography, Dialog, DialogContent, Divider } from "@material-ui/core";
-import { defaultMovie } from "../data";
 import ReactPlayer from "react-player";
 
 import SliderA from "../components/shared/Slider";
@@ -17,6 +16,7 @@ import { useMutation, useSubscription, useQuery } from "@apollo/react-hooks";
 import { ADD_COMMENTS } from "../graphql/mutations";
 import { GET_COMMENTS } from "../graphql/subscriptions";
 import { CHECK_IF_THERE_IS_MOVIE } from "../graphql/queries";
+import LoadingScreen from "../components/shared/LoadingScreen";
 
 function MoviePage() {
   const { movieId } = useParams();
@@ -28,10 +28,7 @@ function MoviePage() {
   const {data: data1, loading: loading1} = useQuery(CHECK_IF_THERE_IS_MOVIE, {variables});
   const {data: data2, loading: loading2} = useSubscription(GET_COMMENTS, { variables });
   const [addComments] = useMutation(ADD_COMMENTS);
-  function handleCloseDialog() {
-    setDialog(false);
-  }
-
+  
   React.useEffect(() => {
     if(data1?.comments.length === 0 && !loading1){
       addComments({variables})
@@ -44,10 +41,15 @@ function MoviePage() {
     window.scrollTo(0, 0);
   }, [movieId]);
 
+  if(loading1 || loading2 ) return <LoadingScreen/>
+
+  function handleCloseDialog() {
+    setDialog(false);
+  }
+
   const { backdrop_path, videos, cast, original_title, genres, runtime, poster_path, vote_average, overview, crew } = movieInfo;
   const otherData = { original_title, genres, runtime, poster_path, vote_average, overview, crew}
-  const comments = data2?.comments_by_pk?.comment;
-  const favorite_movies = data2?.comments_by_pk?.favorite_movies;
+  const { comment, favorite_movies, watchlist_movies }  = data2.comments_by_pk;
 
 
   return (
@@ -79,7 +81,7 @@ function MoviePage() {
         </DialogContent>
       </Dialog>
       {/* About Movie */}
-      <Movie movie={otherData} setDialog={setDialog}  favoriteMovies={favorite_movies} loading={loading2}/>
+      <Movie movie={otherData} setDialog={setDialog}  favoriteMovies={favorite_movies} watchlistMovies={watchlist_movies}/>
 
       {/* Movie Cast */}
       <div className={classes.seriesCast}>
@@ -89,7 +91,7 @@ function MoviePage() {
       <Divider style={{ marginBottom: "20px" }} />
 
       {/* Comments */}
-      <MovieComments comments={comments ? comments : undefined} />
+      <MovieComments comments={comment} loading={loading2} />
       <Divider />
 
       {/* Add Comment */}

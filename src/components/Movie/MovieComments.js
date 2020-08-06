@@ -7,7 +7,7 @@ import { LoadingIcon } from "../../icons";
 
 function MovieComments({ comments, loading }) {
   const classes = useMovieStyles();
-  if (loading || comments === undefined) return <LoadingIcon />;
+  if (loading) return <LoadingIcon />;
   return (
     <div className={classes.comments}>
       <Typography variant="h4">Comments section</Typography>
@@ -46,12 +46,4 @@ function MovieComments({ comments, loading }) {
     </div>
   );
 }
-
-/**const variables = {
-      content,
-      postId,
-      userId: currentUserId,
-    };
-    createComment({ variables, update: handleUpdate }); */
-
 export default MovieComments;

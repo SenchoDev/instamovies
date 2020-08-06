@@ -30,6 +30,9 @@ export const GET_COMMENTS = gql`
     favorite_movies {
       user_id
     }
+    watchlist_movies{
+      user_id
+    }
   }
 }
 

@@ -28,14 +28,7 @@ function SignUpPage() {
   
   const client = useApolloClient();
 
-
   const history = useHistory();
-
-  // async function handleSubmit(event) {
-  //   event.preventDefault();
-  //   await signUpWithEmailAndPassword(values);
-  //   history.push("/");
-  // }
 
   const errorIcon = (
     <InputAdornment>
@@ -65,7 +58,7 @@ function SignUpPage() {
     try{
       setError('');
       await signUpWithEmailAndPassword(data);
-      history.push("/");
+      setTimeout(() => history.push("/"), 1000);
     } catch(error) {
       handleError(error)
     }
