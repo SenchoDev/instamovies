@@ -7,7 +7,7 @@ const ACTIONS = {
   FETCH_TRAILERS_SUCCESS: "FETCH_TRAILERS_SUCCESS",
   UPDATE_HAS_NEXT_PAGE: 'UPDATE_HAS_NEXT_PAGE'
 };
-const cors = `https://cors-anywhere.herokuapp.com/`;
+const cors = `https://cors-anywhere.herokuapp.com`;
 const key = process.env.REACT_APP_API;
 
 
@@ -41,7 +41,7 @@ export function useSearchMovies(search, page) {
   useEffect(() => {
     const cancelToken1 = axios.CancelToken.source();
     dispatch({ type: ACTIONS.FETCH_MOVIES_START });
-    let BASE_URL = `${cors}https://api.themoviedb.org/3/search/multi?api_key=${key}&language=en-US&page=${page}&include_adult=false&query=${search}`;
+    let BASE_URL = `https://api.themoviedb.org/3/search/multi?api_key=${key}&language=en-US&page=${page}&include_adult=false&query=${search}`;
     
     axios.get(BASE_URL, {
       cancelToken: cancelToken1.token,
@@ -61,10 +61,10 @@ export function useSearchMovies(search, page) {
 }
 
 export function fetchIndividualMovie(setMovieInfo, movieId) {
-  let BASE_URL = `${cors}https://api.themoviedb.org/3/movie/${movieId}?api_key=${key}&append_to_response=videos`;
-  let BASE_URL2 = `${cors}https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=${key}`
+  let BASE_URL = `https://api.themoviedb.org/3/movie/${movieId}?api_key=${key}&append_to_response=videos`;
+  let BASE_URL2 = `https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=${key}`
   
-
+  
   const requestMovie = axios.get(BASE_URL);
   const requestCredits = axios.get(BASE_URL2);
 
@@ -86,7 +86,7 @@ export function fetchIndividualMovie(setMovieInfo, movieId) {
 
 
 export function fetchRecommendations(setRecommendations, movieId) {
-  let BASE_URL = `${cors}https://api.themoviedb.org/3/movie/${movieId}/recommendations?api_key=${key}&language=en-US&page=1`;
+  let BASE_URL = `https://api.themoviedb.org/3/movie/${movieId}/recommendations?api_key=${key}&language=en-US&page=1`;
   
   let cancelToken1 = axios.CancelToken.source();
   axios.get(BASE_URL, {

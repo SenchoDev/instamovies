@@ -1,4 +1,4 @@
-export const limitRecipeTitle = (title, limit = 32) => {
+export const limitMovieText = (title, limit = 32) => {
   if(title === undefined) return 'Not Found'
   const newTitle = [];
   if (title.length > limit) {

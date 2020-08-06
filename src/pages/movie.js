@@ -28,7 +28,6 @@ function MoviePage() {
   const {data: data1, loading: loading1} = useQuery(CHECK_IF_THERE_IS_MOVIE, {variables});
   const {data: data2, loading: loading2} = useSubscription(GET_COMMENTS, { variables });
   const [addComments] = useMutation(ADD_COMMENTS);
-
   function handleCloseDialog() {
     setDialog(false);
   }

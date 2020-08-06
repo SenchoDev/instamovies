@@ -3,7 +3,7 @@ import { useSmallCardStyles } from "../../styles";
 import { Typography } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { formatDate } from "../../utils/formatDate"
-import { limitRecipeTitle } from "../../utils/liimitMovieTitle";
+import { limitMovieText } from "../../utils/limitMovieText";
 import Img from "react-graceful-image";
 
 function SmallCard({ card, showRating = false }) {
@@ -29,7 +29,7 @@ function SmallCard({ card, showRating = false }) {
         alt="movie"
       />
       <Typography variant="subtitle2" className={classes.title}>
-        {limitRecipeTitle(original_title || original_name)}
+        {limitMovieText(original_title || original_name)}
       </Typography>
       <p className={classes.date}>{formatDate(release_date || first_air_date)}</p>
       {showRating && <p className={classes.rating}>{vote_average}</p>}

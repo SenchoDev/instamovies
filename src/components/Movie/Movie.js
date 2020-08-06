@@ -10,6 +10,7 @@ import {
   LikeIconWhite,
   LikeActiveIconWhite,
 } from "../../icons";
+import { limitMovieText } from "../../utils/limitMovieText";
 
 function Movie({ movie, setDialog }) {
   const classes = useMovieStyles();
@@ -90,7 +91,7 @@ function Movie({ movie, setDialog }) {
           variant="body2"
           style={{ width: "45vw", marginBottom: "15px" }}
         >
-          {overview}
+          {limitMovieText(overview, 260)}
         </Typography>
         <Typography variant="h4">Directors & Creators</Typography>
         <Typography variant="body2" style={{ width: "45vw" }}>
