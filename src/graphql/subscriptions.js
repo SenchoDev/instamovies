@@ -16,17 +16,21 @@ export const ME = gql`
 
 export const GET_COMMENTS = gql`
   subscription getComments($movieId: String!) {
-    comments_by_pk(movie_id: $movieId) {
-      comment(order_by: { created_at: asc }) {
-        created_at
-        content
+  comments_by_pk(movie_id: $movieId) {
+    comment(order_by: {created_at: asc}) {
+      created_at
+      content
+      id
+      user {
+        profile_image
+        username
         id
-        user {
-          profile_image
-          username
-          id
-        }
       }
     }
+    favorite_movies {
+      user_id
+    }
   }
+}
+
 `;

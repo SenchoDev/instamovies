@@ -82,3 +82,11 @@ export const CREATE_COMMENT = gql`
     }
   }
 `;
+
+export const ADD_TO_FAVORITES = gql`
+  mutation addToFavorites($userId: uuid!, $movieId: String!, $movieImage: String!) {
+    insert_favorite_movies(objects: { user_id: $userId, movie_id: $movieId, movie_image: $movieImage }) {
+      affected_rows
+    }
+  }
+`;

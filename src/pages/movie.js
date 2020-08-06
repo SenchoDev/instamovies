@@ -34,7 +34,6 @@ function MoviePage() {
 
   React.useEffect(() => {
     if(data1?.comments.length === 0 && !loading1){
-      console.log('hey')
       addComments({variables})
     }
   }, [data1])
@@ -48,6 +47,8 @@ function MoviePage() {
   const { backdrop_path, videos, cast, original_title, genres, runtime, poster_path, vote_average, overview, crew } = movieInfo;
   const otherData = { original_title, genres, runtime, poster_path, vote_average, overview, crew}
   const comments = data2?.comments_by_pk?.comment;
+  const favorite_movies = data2?.comments_by_pk?.favorite_movies;
+
 
   return (
     <Layout movieLarge image={backdrop_path}>
@@ -78,7 +79,7 @@ function MoviePage() {
         </DialogContent>
       </Dialog>
       {/* About Movie */}
-      <Movie movie={otherData} setDialog={setDialog} />
+      <Movie movie={otherData} setDialog={setDialog}  favoriteMovies={favorite_movies} loading={loading2}/>
 
       {/* Movie Cast */}
       <div className={classes.seriesCast}>
@@ -88,7 +89,7 @@ function MoviePage() {
       <Divider style={{ marginBottom: "20px" }} />
 
       {/* Comments */}
-      <MovieComments comments={comments ? comments : undefined} loading={loading2}/>
+      <MovieComments comments={comments ? comments : undefined} />
       <Divider />
 
       {/* Add Comment */}
