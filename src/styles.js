@@ -440,6 +440,9 @@ export const useMovieStyles = makeStyles((theme) => ({
       marginRight: 15,
     },
   },
+  noRecommendations:{
+    margin: theme.spacing(5),
+  },
   rating: {
     width: 42,
     height: 42,

@@ -100,7 +100,7 @@ function MoviePage() {
       {/* Suggestions Slider */}
       <div className={classes.moviesRecommendation}>
         <Heading textHeader="Recommendations" textButton="TV Shows & Movies" />
-        <SliderA data={recommendations} loading={loading1}/>
+        {recommendations.length > 0 ? (<SliderA data={recommendations} loading={loading1}/>) : (<Typography variant="h4" color="secondary" align="center" className={classes.noRecommendations}>No recommedations for this movie</Typography>)}
       </div>
     </Layout>
   );
