@@ -6,14 +6,21 @@ import { Link } from "react-router-dom";
 import FollowButton from "../shared/FollowButton";
 import useOutsideClick from "@rooks/use-outside-click";
 
-function NotificationList({ handleHideList }) {
+function NotificationList({ handleHideList,  notifications, currentUserId }) {
   const classes = useNotificationListStyles();
   const listContainerRef = React.useRef();
-  useOutsideClick(listContainerRef, handleHideList)
+  useOutsideClick(listContainerRef, handleHideList);
+
+  React.useEffect(() => {
+    const variables = {
+      userId: currentUserId,
+      lastChecked: newDate().toISOString()
+    }
+  }, [])
 
   return (
     <Grid ref={listContainerRef} container className={classes.listContainer}>
-      {defaultNotifications.map((notification) => {
+      {notifications.map((notification) => {
         return (
           <Grid key={notification.id} item className={classes.listItem}>
             <div className={classes.listItemWrapper}>
@@ -34,12 +41,12 @@ function NotificationList({ handleHideList }) {
                   color="secondary"
                   className={classes.typography}
                 >
-                  started following you. 5d
+                  {`started following you. ${notification.created_at}`}
                 </Typography>
               </div>
             </div>
             <div>
-              <FollowButton />
+              <FollowButton id={notification.user.id}/>
             </div>
           </Grid>
         );

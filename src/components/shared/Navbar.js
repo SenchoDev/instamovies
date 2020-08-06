@@ -5,12 +5,12 @@ import { Link, useHistory } from "react-router-dom";
 import logo from "../../images/instamovies.png";
 import { LikeIcon, LikeActiveIcon } from "../../icons";
 
-import { defaultCurrentUser } from "../../data";
 import NotificationList from "../notification/NotificationList";
 import NotificationTooltip from "../notification/NotificationTooltip";
 import { useNProgress } from "@tanem/react-nprogress";
 import useOutsideClick from "@rooks/use-outside-click";
 import { UserContext } from "../../App";
+import { isAfter } from "date-fns/esm";
 
 function Navbar({ minimalNavbar }) {
   const classes = useNavbarStyles();
@@ -51,10 +51,13 @@ function Logo() {
 
 function Links({ path }) {
   const classes = useNavbarStyles();
-  
-  const { me }= React.useContext(UserContext)
+  const { me, currentUserId }= React.useContext(UserContext)
+  const newNotifications = me.notifications.filter(({ created_at }) => 
+    isAfter(new Date(created_at), new Date(me.last_checked))
+  );
+  const hasNotifications = newNotifications.length > 0;
   const [showList, setList] = React.useState(false);
-  const [showTooltip, setTooltip] = React.useState(true);
+  const [showTooltip, setTooltip] = React.useState(hasNotifications);
   const [showMovies, setMovies] = React.useState(false);
   const [showTv, setTv] = React.useState(false);
 
@@ -88,7 +91,7 @@ function Links({ path }) {
   }
   return (
     <div className={classes.linksContainer}>
-      {showList && <NotificationList handleHideList={handleHideList} />}
+      {showList && <NotificationList notifications={me.notifications} handleHideList={handleHideList} currentUserId={currentUserId}/>}
 
       <div className={classes.linksWrapper}>
         <Typography className={classes.navLink1} onClick={handleToggleMovies}>
@@ -108,7 +111,7 @@ function Links({ path }) {
           open={showTooltip}
           onOpen={handleHideTooltip}
           TransitionComponent={Zoom}
-          title={<NotificationTooltip />}
+          title={<NotificationTooltip notifications={newNotifications}/>}
         >
           <div className={classes.notifications} onClick={handleToggleList}>
             {showList ? <LikeActiveIcon /> : <LikeIcon />}

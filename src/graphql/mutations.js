@@ -139,3 +139,14 @@ export const REMOVE_FROM_WATCHLIST = gql`
     }
   }
 `;
+
+export const CHECK_NOTIFICATIONS = gql`
+  mutation checkNotifications($userId: uuid!, $lastChecked: String!) {
+    update_users(
+      where: { id: { _eq: $userId } }
+      _set: { last_checked: $lastChecked }
+    ) {
+      affected_rows
+    }
+  }
+`;

@@ -9,6 +9,15 @@ export const ME = gql`
       username
       profile_image
       last_checked
+      notifications(order_by: { created_at: desc }){
+        id
+        created_at
+        user {
+          id
+          username
+          profile_image
+        }
+      }
     }
   }
 `;
