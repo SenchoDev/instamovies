@@ -35,11 +35,72 @@ export const GET_EDIT_USER_PROFILE = gql`
   }
 `;
 
-
 export const CHECK_IF_THERE_IS_MOVIE = gql`
   query checkIfThereIsMovie($movieId: String!) {
     comments(where: { movie_id: { _eq: $movieId } }) {
       movie_id
+    }
+  }
+`;
+
+export const GET_USER_PROFILE = gql`
+  query getUserProfile($username: String!) {
+    users(where: { username: { _eq: $username } }) {
+      id
+      name
+      username
+      website
+      bio
+      profile_image
+      favorite_movies_aggregate {
+        aggregate {
+          count
+        }
+      }
+      followers_aggregate {
+        aggregate {
+          count
+        }
+      }
+      following_aggregate {
+        aggregate {
+          count
+        }
+      }
+      favorite_movies {
+        id
+        movie_image
+        movie_id
+        comment {
+          comment_aggregate {
+            aggregate {
+              count
+            }
+          }
+          favorite_movies_aggregate {
+            aggregate {
+              count
+            }
+          }
+        }
+      }
+      watchlist_movies {
+        id
+        movie_image
+        movie_id
+        comment {
+          comment_aggregate {
+            aggregate {
+              count
+            }
+          }
+          favorite_movies_aggregate {
+            aggregate {
+              count
+            }
+          }
+        }
+      }
     }
   }
 `;

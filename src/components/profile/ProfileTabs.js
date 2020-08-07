@@ -23,7 +23,12 @@ function ProfileTabs({ user, isOwner }) {
             classes={{ indicator: classes.tabsIndicator }}
           >
             <Tab
-              icon={<LikeIcon className={classes.likeIcon} fill={value === 0 ? "#AA2CA8" : undefined}/>}
+              icon={
+                <LikeIcon
+                  className={classes.likeIcon}
+                  fill={value === 0 ? "#AA2CA8" : undefined}
+                />
+              }
               label="FAVORITES"
               classes={{
                 root: classes.tabRoot,
@@ -33,7 +38,7 @@ function ProfileTabs({ user, isOwner }) {
             />
             {isOwner && (
               <Tab
-                icon={<span className={classes.savedIconLarge}   />}
+                icon={<span className={classes.savedIconLarge} />}
                 label="WATCHLIST"
                 classes={{
                   root: classes.tabRoot,
@@ -53,7 +58,7 @@ function ProfileTabs({ user, isOwner }) {
             classes={{ indicator: classes.tabsIndicator }}
           >
             <Tab
-              icon={<LikeIcon  fill={value === 0 ? "#AA2CA8" : undefined}/>}
+              icon={<LikeIcon fill={value === 0 ? "#AA2CA8" : undefined} />}
               classes={{ root: classes.tabRoot }}
             />
             {isOwner && (
@@ -64,9 +69,9 @@ function ProfileTabs({ user, isOwner }) {
             )}
           </Tabs>
         </Hidden>
-        <Hidden smUp>{user.favorites.length === 0 && <Divider />}</Hidden>
+        <Hidden smUp>{user.favorite_movies.length === 0 && <Divider />}</Hidden>
         {value === 0 && <ProfilePosts user={user} isOwner={isOwner} />}
-        {value === 1 && <SavedPosts />}
+        {value === 1 && <SavedPosts user={user} />}
       </section>
     </React.Fragment>
   );
@@ -75,13 +80,15 @@ function ProfileTabs({ user, isOwner }) {
 function ProfilePosts({ user, isOwner }) {
   const classes = useProfileTabsStyles();
 
-  if (user.favorites.length === 0) {
+  if (user.favorite_movies.length === 0) {
     return (
       <section className={classes.profilePostsSection}>
         <div className={classes.noContent}>
           <div className={classes.uploadPhotoIcon} />
-          <Typography variant="h4">
-            {isOwner ? "Find and save your favorite movies" : "No favorite movies"}
+          <Typography variant="h4" align="center">
+            {isOwner
+              ? "Find and save your favorite movies"
+              : "No favorite movies"}
           </Typography>
         </div>
       </section>
@@ -91,7 +98,7 @@ function ProfilePosts({ user, isOwner }) {
   return (
     <article className={classes.article}>
       <div className={classes.postContainer}>
-        {user.favorites.map(card => (
+        {user.favorite_movies.map((card) => (
           <GridPost key={card.id} card={card} />
         ))}
       </div>
@@ -99,20 +106,31 @@ function ProfilePosts({ user, isOwner }) {
   );
 }
 
-function SavedPosts() {
+function SavedPosts({ user }) {
   const classes = useProfileTabsStyles();
 
+  if (user.watchlist_movies.length === 0) {
+    return (
+      <section className={classes.savedPostsSection}>
+        <div className={classes.noContent}>
+          <div className={classes.savePhotoIcon} />
+          <Typography variant="h4">Add to watchlist</Typography>
+          <Typography align="center">
+            Save movies and tv that you want to watch. No one is notified, and
+            only you can see what you've added.
+          </Typography>
+        </div>
+      </section>
+    );
+  }
   return (
-    <section className={classes.savedPostsSection}>
-      <div className={classes.noContent}>
-        <div className={classes.savePhotoIcon} />
-        <Typography variant="h4">Add to watchlist</Typography>
-        <Typography align="center">
-          Save movies and tv that you want to watch. No one is notified,
-          and only you can see what you've added.
-        </Typography>
+    <article className={classes.article}>
+      <div className={classes.postContainer}>
+        {user.watchlist_movies.map(card => (
+          <GridPost key={card.id} card={card} />
+        ))}
       </div>
-    </section>
+    </article>
   );
 }
 

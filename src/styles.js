@@ -2395,9 +2395,9 @@ export const useProfileTabsStyles = makeStyles((theme) => {
       width: 18,
     },
     profilePostsSection: {
-      display: "felx",
-      justifyContent: "center",
       paddingTop: 60,
+      display: "grid",
+      justifyContent: "center",
     },
     noPicDivAlt: {
       display: "grid",

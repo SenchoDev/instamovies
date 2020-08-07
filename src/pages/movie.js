@@ -39,6 +39,11 @@ function MoviePage() {
     fetchIndividualMovie(setMovieInfo, movieId);
     fetchRecommendations(setRecommendations, movieId);
     window.scrollTo(0, 0);
+
+    return () => {
+      setMovieInfo({});
+      setRecommendations([])
+    }
   }, [movieId]);
   
   if(loading2) return <LoadingScreen/>
@@ -48,10 +53,11 @@ function MoviePage() {
     setDialog(false);
   }
  
+  const { comment, favorite_movies, watchlist_movies  } = data2?.comments_by_pk;
+
   const { backdrop_path, videos, cast, original_title, genres, runtime, poster_path, vote_average, overview, crew } = movieInfo;
   const otherData = { original_title, genres, runtime, poster_path, vote_average, overview, crew};
-
-  const { comment, favorite_movies, watchlist_movies  } = data2?.comments_by_pk;
+  
 
   return (
     <Layout movieLarge image={backdrop_path}>
@@ -73,7 +79,7 @@ function MoviePage() {
         <DialogContent>
           <div className={classes.trailerVideo}>
             <ReactPlayer
-              url={`https://www.youtube.com/watch?v=${videos && videos.results[0].key}`}
+              url={`https://www.youtube.com/watch?v=${videos?.results[0]?.key}`}
               width={760}
               height={500}
               style={{ marginLeft: "50px" }}

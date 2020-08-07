@@ -13,16 +13,28 @@ import {
   Zoom,
   DialogTitle,
 } from "@material-ui/core";
-import { defaultCurrentUser } from "../data";
 import ProfilePicture from "../components/shared/ProfilePicture";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useHistory, useParams } from "react-router-dom";
 import { GearIcon } from "../icons";
 import ProfileTabs from "../components/Profile/ProfileTabs";
 import { AuthContext } from "../auth";
+import { useQuery } from "@apollo/react-hooks";
+import { GET_USER_PROFILE } from "../graphql/queries";
+import LoadingScreen from "../components/shared/LoadingScreen";
+import { UserContext } from "../App";
 
 function ProfilePage() {
+  const { username } = useParams()
   const classes = useProfilePageStyles();
   const [showOptionsMenu, setOptionsMenu] = React.useState(false);
+  const variables = { username };
+  const { currentUserId } = React.useContext(UserContext)
+  const { data, loading }  = useQuery(GET_USER_PROFILE, { variables });
+  
+  if(loading) return <LoadingScreen />
+
+  const [user] = data.users;
+  const isOwner = user.id === currentUserId
 
   function handleOptionsMenuClick() {
     setOptionsMenu(true);
@@ -30,25 +42,23 @@ function ProfilePage() {
   function handleCloseMenu() {
     setOptionsMenu(false);
   }
-
-  const isOwner = true;
   return (
     <Layout
       hideFooter
-      title={`${defaultCurrentUser.name} (@${defaultCurrentUser.username})`}
+      title={`${user.name} (@${user.username})`}
     >
       <div className={classes.container}>
         <Hidden xsDown>
           <Card className={classes.cardLarge}>
-            <ProfilePicture isOwner={isOwner} />
+            <ProfilePicture isOwner={isOwner} image={user.profile_image} />
             <CardContent className={classes.cardContentLarge}>
               <ProfileNameSection
-                user={defaultCurrentUser}
+                user={user}
                 isOwner={isOwner}
                 handleOptionsMenuClick={handleOptionsMenuClick}
               />
-              <PostCountSection user={defaultCurrentUser} />
-              <NameBioSection user={defaultCurrentUser} />
+              <PostCountSection user={user} />
+              <NameBioSection user={user} />
             </CardContent>
           </Card>
         </Hidden>
@@ -56,20 +66,20 @@ function ProfilePage() {
           <Card className={classes.cardSmall}>
             <CardContent>
               <section className={classes.sectionSmall}>
-                <ProfilePicture size={77} isOwner={isOwner} />
+                <ProfilePicture size={77} isOwner={isOwner} image={user.profile_image}/>
                 <ProfileNameSection
-                  user={defaultCurrentUser}
+                  user={user}
                   isOwner={isOwner}
                   handleOptionsMenuClick={handleOptionsMenuClick}
                 />
               </section>
-              <NameBioSection user={defaultCurrentUser} />
+              <NameBioSection user={user} />
             </CardContent>
-            <PostCountSection user={defaultCurrentUser} />
+            <PostCountSection user={user} />
           </Card>
         </Hidden>
         {showOptionsMenu && <OptionsMenu handleCloseMenu={handleCloseMenu} />}
-        <ProfileTabs user={defaultCurrentUser} isOwner={isOwner} />
+        <ProfileTabs user={user} isOwner={isOwner} /> 
       </div>
     </Layout>
   );
@@ -199,7 +209,7 @@ function UnfollowDialog({ onClose, user }) {
 
 function PostCountSection({ user }) {
   const classes = useProfilePageStyles();
-  const options = ["favorites", "followers", "following"];
+  const options = ["favorite_movies", "followers", "following"];
 
   return (
     <React.Fragment>
@@ -210,13 +220,13 @@ function PostCountSection({ user }) {
         {options.map((option) => (
           <div key={option} className={classes.followingText}>
             <Typography className={classes.followingCount}>
-              {user[option].length}
+              {user[`${option}_aggregate`].aggregate.count}
             </Typography>
             <Hidden xsDown>
-              <Typography>{option}</Typography>
+              <Typography>{option === 'favorite_movies' ? 'favorites' : option}</Typography>
             </Hidden>
             <Hidden smUp>
-              <Typography color="textSecondary">{option}</Typography>
+              <Typography color="textSecondary">{option === 'favorite_movies' ? 'favorites' : option}</Typography>
             </Hidden>
           </div>
         ))}
