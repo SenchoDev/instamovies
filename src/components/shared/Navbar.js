@@ -145,13 +145,13 @@ function TvList({ handleHideTv }) {
       marginLeft: '85px'
     }}>
       <Grid item className={classes.listWrapper}>
-        <Link to="/movies">
+        <Link to="/tv/popular">
           <Typography variant="subtitle2">Popular</Typography>
         </Link>
-        <Link to="/movies">
+        <Link to="/tv/airing_today">
           <Typography variant="subtitle2">On TV</Typography>
         </Link>
-        <Link to="/movies">
+        <Link to="/tv/top_rated">
           <Typography variant="subtitle2">Top Rated</Typography>
         </Link>
       </Grid>

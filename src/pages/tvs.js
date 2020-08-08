@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 import { useMoviesStyles } from "../styles";
 import { Typography } from "@material-ui/core";
 import Layout from "../components/shared/Layout";
@@ -8,35 +8,36 @@ import { useParams } from "react-router-dom";
 import { useFetchList } from "../utils/useFetchList";
 
 function TvsPage() {
-  const { type } = useParams();
-  const [movieData, setMovieData] = React.useState({})
+  const { list } = useParams();
+  const { data, loading, error } = useFetchList(list, "tv");
 
   React.useEffect(() => {
-    //useFetchList(setMovieData, type);
     window.scrollTo(0, 0);
-  }, [type]);
+  }, []);
 
-  
   const classes = useMoviesStyles();
   const displayText =
-    type === "top_rated"
-      ? "Top Rated Movies"
-      : type === "upcoming"
-      ? "Upcoming Movies"
-      : type === "popular"
-      ? "Popular Movies"
+    list === "top_rated"
+      ? "Top Rated Tv Shows"
+      : list === "airing_today"
+      ? "On TV"
+      : list === "popular"
+      ? "Popular Tv Shows"
       : "Not Found";
   return (
     <Layout>
       <Typography variant="h4" color="secondary" className={classes.heading}>
-        {displayText}
+        {error ? "Error. Cannot found movies" : error}
       </Typography>
       <div className={classes.movies}>
-        {movieData.length > 0 && movieData.map((card) => (
-          <React.Suspense key={card.id} fallback={<TertiarySkeleton />}>
-            <SemiCard showRating card={card} />
-          </React.Suspense>
-        ))}
+        {loading &&
+          Array.from({ length: 20 }).map((_, index) => (
+            <TertiarySkeleton key={index} />
+          ))}
+        {data.length > 0 &&
+          data.map((card) => (
+            <SemiCard key={card.id} showRating card={card} loading={loading} />
+          ))}
       </div>
     </Layout>
   );

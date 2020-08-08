@@ -27,7 +27,7 @@ function MoviesPage() {
   return (
     <Layout>
       <Typography variant="h4" color="secondary" className={classes.heading}>
-        {displayText}
+        {error ? 'Error. Cannot found movies' : error }
       </Typography>
       <div className={classes.movies}>
         {loading && Array.from({ length: 20 }).map((_, index) => (

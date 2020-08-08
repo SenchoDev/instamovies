@@ -59,7 +59,7 @@ function App() {
           <Route exact path="/" component={MainPage} />
           <Route path="/search" component={SearchPage} />
           <Route path="/movie/:list" component={MoviesPage} />
-          {/*<Route path="/tv/:type" component={TvsPage} />*/}
+          <Route path="/tv/:list" component={TvsPage} />
           <Route exact path="/:username" component={ProfilePage} />
           <Route exact path="/m/:movieId" component={MoviePage} />
           <Route path="/accounts/edit" component={EditProfilePage} />
