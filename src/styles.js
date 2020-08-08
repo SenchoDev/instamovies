@@ -299,7 +299,9 @@ export const useSemiCardStyles = makeStyles((theme) => ({
   },
   rating: {
     position: "absolute",
-    background: "#0C7A29",
+    background: ({ vote_average }) => `${
+      vote_average >= 7.5 ? "#0C7A29" : vote_average >= 4 ? "#FFB008" : vote_average < 4 ? "#FF414E" : vote_average === 0 ? "#636363" : ''
+    }`,
     top: 295,
     left: 22,
     borderRadius: 25,

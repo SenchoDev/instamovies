@@ -167,13 +167,13 @@ function MoviesList({ handleHideMovies }) {
   return (
     <Grid ref={listContainerRef} container className={classes.listContainer}>
       <Grid item className={classes.listWrapper}>
-        <Link to="/movies">
+        <Link to="/movies/popular">
           <Typography variant="subtitle2" >Popular</Typography>
         </Link>
-        <Link to="/movies">
+        <Link to="/movies/upcoming">
           <Typography variant="subtitle2">Upcoming</Typography>
         </Link>
-        <Link to="/movies">
+        <Link to="/movies/top_rated">
           <Typography variant="subtitle2">Top Rated</Typography>
         </Link>
       </Grid>

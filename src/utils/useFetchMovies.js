@@ -114,3 +114,20 @@ export function fetchTrailer(setTrailers) {
     cancelToken1.cancel();
   };
 }
+
+export function fetchIndividualType(setMovieData, type) {
+  let BASE_URL = `https://api.themoviedb.org/3/movie/${type}?api_key=${key}&language=en-US&page=1`;
+  let cancelToken1 = axios.CancelToken.source();
+  axios.get(BASE_URL, {
+    cancelToken: cancelToken1.token,
+  }).then(res => {
+    setMovieData(res.data.results)
+    
+  }).catch(e => {
+    if (axios.isCancel(e)) return;
+  })
+  
+  return () => {
+    cancelToken1.cancel();
+  };
+}

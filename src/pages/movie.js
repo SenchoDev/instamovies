@@ -28,7 +28,7 @@ function MoviePage() {
   const {data: data1, loading: loading1} = useQuery(CHECK_IF_THERE_IS_MOVIE, {variables});
   const {data: data2, loading: loading2} = useSubscription(GET_COMMENTS, { variables });
   const [addComments] = useMutation(ADD_COMMENTS);
-  
+
   React.useEffect(() => {
     if(data1?.comments.length === 0 && !loading1){
       addComments({variables})
@@ -39,24 +39,21 @@ function MoviePage() {
     fetchIndividualMovie(setMovieInfo, movieId);
     fetchRecommendations(setRecommendations, movieId);
     window.scrollTo(0, 0);
-
-    return () => {
-      setMovieInfo({});
-      setRecommendations([])
-    }
   }, [movieId]);
   
-  if(loading2) return <LoadingScreen/>
+  if(loading2 || (data2?.comments_by_pk === null || data2 === undefined)) {
+    return <LoadingScreen/>
+  }
   
 
   function handleCloseDialog() {
     setDialog(false);
   }
  
-  const { comment, favorite_movies, watchlist_movies  } = data2?.comments_by_pk;
-
+  
   const { backdrop_path, videos, cast, original_title, genres, runtime, poster_path, vote_average, overview, crew } = movieInfo;
   const otherData = { original_title, genres, runtime, poster_path, vote_average, overview, crew};
+  const { comment, favorite_movies, watchlist_movies  } = data2?.comments_by_pk;
   
 
   return (

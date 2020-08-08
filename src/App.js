@@ -57,7 +57,7 @@ function App() {
         <Switch>
           <Route exact path="/" component={MainPage} />
           <Route path="/search" component={SearchPage} />
-          <Route path="/movies" component={MoviesPage} />
+          <Route path="/movies/:type" component={MoviesPage} />
           {/*<Route path="/tv" component={TVPage} />*/}
           <Route exact path="/:username" component={ProfilePage} />
           <Route exact path="/m/:movieId" component={MoviePage} />

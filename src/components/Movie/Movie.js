@@ -29,8 +29,6 @@ function Movie({ movie, setDialog, favoriteMovies, watchlistMovies}) {
     crew,
   } = movie;
 
-
-
   function listElementsWithComma(array) {
     return array.map(
       (el, index) => `${el.name}${index === array.length - 1 ? "" : ","} `
