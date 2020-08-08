@@ -58,7 +58,7 @@ function App() {
         <Switch>
           <Route exact path="/" component={MainPage} />
           <Route path="/search" component={SearchPage} />
-          {/*<Route path="/movie/:list" component={MoviesPage} />*/}
+          <Route path="/movie/:list" component={MoviesPage} />
           {/*<Route path="/tv/:type" component={TvsPage} />*/}
           <Route exact path="/:username" component={ProfilePage} />
           <Route exact path="/m/:movieId" component={MoviePage} />

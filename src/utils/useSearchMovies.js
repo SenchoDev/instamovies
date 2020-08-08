@@ -18,7 +18,7 @@ export function useSearchMovies(search, page) {
     axios.get(BASE_URL, {
       cancelToken: cancelToken1.token,
     }).then(res => {
-      dispatch({ type: ACTIONS.FETCH_SEARCH_SUCCESS, payload: { data: res.data.results} })
+      dispatch({ type: ACTIONS.FETCH_SUCCESS, payload: { data: res.data.results} })
     }).catch(e => {
       if (axios.isCancel(e)) return
       dispatch({ type: ACTIONS.FETCH_FAILURE, payload: { error: e } }) 

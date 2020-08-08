@@ -1,7 +1,7 @@
 export const ACTIONS = {
   FETCH_START: "FETCH_START",
   FETCH_MOVIE_SUCCESS: "FETCH_MOVIE_SUCCESS",
-  FETCH_SEARCH_SUCCESS: "FETCH_SEARCH_SUCCESS",
+  FETCH_SUCCESS: "FETCH_SUCCESS",
   FETCH_FAILURE: "FETCH_FAILURE",
 };
 
@@ -19,7 +19,7 @@ export function reducer(state, action) {
           upcoming: action.payload.upcoming,
         },
       };
-    case ACTIONS.FETCH_SEARCH_SUCCESS:
+    case ACTIONS.FETCH_SUCCESS:
       return {
         ...state,
         loading: false,

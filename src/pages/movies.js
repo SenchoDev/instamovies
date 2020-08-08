@@ -8,15 +8,14 @@ import { useParams } from "react-router-dom";
 import { useFetchList } from "../utils/useFetchList";
 
 function MoviesPage() {
+  const classes = useMoviesStyles();
   const { list } = useParams();
-  const [movieData, setMovieData] = React.useState({});
+  const { data, loading, error } = useFetchList(list, "movie");
 
-  //useFetchList(setMovieData, list, "movie");
   React.useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
-  const classes = useMoviesStyles();
   const displayText =
     list === "top_rated"
       ? "Top Rated Movies"
@@ -31,12 +30,12 @@ function MoviesPage() {
         {displayText}
       </Typography>
       <div className={classes.movies}>
-        {movieData.length > 0 &&
-          movieData.map((card) => (
-            <React.Suspense key={card.id} fallback={<TertiarySkeleton />}>
-              <SemiCard showRating card={card} />
-            </React.Suspense>
-          ))}
+        {loading && Array.from({ length: 20 }).map((_, index) => (
+          <TertiarySkeleton  key={index}/>
+        ))} 
+        {data.length > 0 && data.map((card) => (
+          <SemiCard key={card.id} showRating card={card} loading={loading} />
+        ))}
       </div>
     </Layout>
   );
