@@ -1,11 +1,6 @@
 import { useReducer, useEffect } from "react";
 import axios from "axios";
-
-const ACTIONS = {
-  FETCH_MOVIES_START: "FETCH_MOVIES_START",
-  FETCH_MOVIES_SUCCESS: "FETCH_MOVIES_SUCCESS",
-  FETCH_MOVIES_FAILURE: "FETCH_MOVIES_FAILURE",
-};
+import { reducer, ACTIONS } from "../reducer";
 
 const key = process.env.REACT_APP_API;
 
@@ -20,31 +15,7 @@ const BASE_URL4 = `${base}movie/157336?api_key=${key}&append_to_response=videos`
 const BASE_URL5 = `${base}movie/583083?api_key=${key}&append_to_response=videos`;
 const BASE_URL6 = `${base}movie/516486?api_key=${key}&append_to_response=videos`;
 
-function reducer(state, action) {
-  switch (action.type) {
-    case ACTIONS.FETCH_MOVIES_START:
-      return { loading: true, data: {} };
-    case ACTIONS.FETCH_MOVIES_SUCCESS:
-      return {
-        ...state,
-        loading: false,
-        data: {
-          popularMovies: action.payload.popularMovies,
-          popularTvShows: action.payload.popularTvShows,
-          upcoming: action.payload.upcoming,
-        },
-      };
-    case ACTIONS.FETCH_MOVIES_FAILURE:
-      return {
-        ...state,
-        loading: false,
-        error: action.payload.error,
-        data: {},
-      };
-    default:
-      return state;
-  }
-}
+
 export function useFetchMovies() {
   const [state, dispatch] = useReducer(reducer, {
     data: {},
@@ -56,7 +27,7 @@ export function useFetchMovies() {
     const requestThree = axios.get(BASE_URL3);
 
     const cancelToken1 = axios.CancelToken.source();
-    dispatch({ type: ACTIONS.FETCH_MOVIES_START });
+    dispatch({ type: ACTIONS.FETCH_START });
     axios
       .all([requestOne, requestTwo, requestThree], {
         cancelToken: cancelToken1.token,
@@ -68,7 +39,7 @@ export function useFetchMovies() {
 
           const responesThree = responses[2];
           dispatch({
-            type: ACTIONS.FETCH_MOVIES_SUCCESS,
+            type: ACTIONS.FETCH_MOVIE_SUCCESS,
             payload: {
               popularMovies: responseOne.data.results,
               popularTvShows: responseTwo.data.results,
@@ -79,7 +50,7 @@ export function useFetchMovies() {
       )
       .catch((e) => {
         if (axios.isCancel(e)) return;
-        dispatch({ type: ACTIONS.ERROR, payload: { error: e } });
+        dispatch({ type: ACTIONS.FETCH_FAILURE, payload: { error: e } });
       });
 
     return () => {
@@ -115,19 +86,4 @@ export function fetchTrailer(setTrailers) {
   };
 }
 
-export function fetchIndividualType(setMovieData, type) {
-  let BASE_URL = `https://api.themoviedb.org/3/movie/${type}?api_key=${key}&language=en-US&page=1`;
-  let cancelToken1 = axios.CancelToken.source();
-  axios.get(BASE_URL, {
-    cancelToken: cancelToken1.token,
-  }).then(res => {
-    setMovieData(res.data.results)
-    
-  }).catch(e => {
-    if (axios.isCancel(e)) return;
-  })
-  
-  return () => {
-    cancelToken1.cancel();
-  };
-}
+

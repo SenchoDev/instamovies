@@ -10,8 +10,9 @@ import MainPage from "./pages/main";
 import MoviePage from "./pages/movie";
 import SearchPage from "./pages/search";
 import MoviesPage from "./pages/movies";
+import TvsPage from "./pages/tvs";
 import { AuthContext } from "./auth";
-import searchReducer from "./reducer";
+import searchReducer from "./utils/searchReducer";
 import { useSubscription } from "@apollo/react-hooks";
 import { ME } from "./graphql/subscriptions";
 import LoadingScreen from "./components/shared/LoadingScreen";
@@ -57,8 +58,8 @@ function App() {
         <Switch>
           <Route exact path="/" component={MainPage} />
           <Route path="/search" component={SearchPage} />
-          <Route path="/movies/:type" component={MoviesPage} />
-          {/*<Route path="/tv" component={TVPage} />*/}
+          {/*<Route path="/movie/:list" component={MoviesPage} />*/}
+          {/*<Route path="/tv/:type" component={TvsPage} />*/}
           <Route exact path="/:username" component={ProfilePage} />
           <Route exact path="/m/:movieId" component={MoviePage} />
           <Route path="/accounts/edit" component={EditProfilePage} />

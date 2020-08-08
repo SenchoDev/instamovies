@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react'
 import { useMoviesStyles } from "../styles";
 import { Typography } from "@material-ui/core";
 import Layout from "../components/shared/Layout";
@@ -7,22 +7,23 @@ import TertiarySkeleton from "../components/Cards/TertiarySkeleton";
 import { useParams } from "react-router-dom";
 import { useFetchList } from "../utils/useFetchList";
 
-function MoviesPage() {
-  const { list } = useParams();
-  const [movieData, setMovieData] = React.useState({});
+function TvsPage() {
+  const { type } = useParams();
+  const [movieData, setMovieData] = React.useState({})
 
-  //useFetchList(setMovieData, list, "movie");
   React.useEffect(() => {
+    //useFetchList(setMovieData, type);
     window.scrollTo(0, 0);
-  }, []);
+  }, [type]);
 
+  
   const classes = useMoviesStyles();
   const displayText =
-    list === "top_rated"
+    type === "top_rated"
       ? "Top Rated Movies"
-      : list === "upcoming"
+      : type === "upcoming"
       ? "Upcoming Movies"
-      : list === "popular"
+      : type === "popular"
       ? "Popular Movies"
       : "Not Found";
   return (
@@ -31,15 +32,14 @@ function MoviesPage() {
         {displayText}
       </Typography>
       <div className={classes.movies}>
-        {movieData.length > 0 &&
-          movieData.map((card) => (
-            <React.Suspense key={card.id} fallback={<TertiarySkeleton />}>
-              <SemiCard showRating card={card} />
-            </React.Suspense>
-          ))}
+        {movieData.length > 0 && movieData.map((card) => (
+          <React.Suspense key={card.id} fallback={<TertiarySkeleton />}>
+            <SemiCard showRating card={card} />
+          </React.Suspense>
+        ))}
       </div>
     </Layout>
   );
 }
 
-export default MoviesPage;
+export default TvsPage;
