@@ -21,8 +21,10 @@ function Movie({ movie, setDialog, favoriteMovies, watchlistMovies}) {
   const { movieId } = useParams();
   const {
     original_title,
+    original_name,
     genres,
     runtime,
+    episode_run_time,
     poster_path,
     vote_average,
     overview,
@@ -46,10 +48,10 @@ function Movie({ movie, setDialog, favoriteMovies, watchlistMovies}) {
       />
       <div className={classes.info}>
         <Typography variant="h4" className={classes.heading}>
-          {original_title}
+          {original_title || original_name}
         </Typography>
         <Typography variant="body1">
-          {genres && listElementsWithComma(genres)} · {`${runtime || '0'}m`}
+          {genres && listElementsWithComma(genres)} · {`${episode_run_time || runtime || '0'}m`}
         </Typography>
         <div className={classes.buttons}>
           <p

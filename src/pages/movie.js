@@ -11,7 +11,7 @@ import MovieCastSlider from "../components/Movie/MovieCastSlider";
 import MovieComments from "../components/Movie/MovieComments";
 import MovieAddComment from "../components/Movie/MovieAddComment";
 import { fetchIndividualMovie, fetchRecommendations } from "../utils/useSearchMovies";
-import { useParams } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 import { useMutation, useSubscription, useQuery } from "@apollo/react-hooks";
 import { ADD_COMMENTS } from "../graphql/mutations";
 import { GET_COMMENTS } from "../graphql/subscriptions";
@@ -24,10 +24,12 @@ function MoviePage() {
   const [showDialog, setDialog] = React.useState(false);
   const [movieInfo, setMovieInfo] = React.useState({});
   const [recommendations, setRecommendations] = React.useState([]);
+  const location = useLocation();
   const variables = { movieId };
   const {data: data1, loading: loading1} = useQuery(CHECK_IF_THERE_IS_MOVIE, {variables});
   const {data: data2, loading: loading2} = useSubscription(GET_COMMENTS, { variables });
   const [addComments] = useMutation(ADD_COMMENTS);
+  const tv = location.state?.tv;
 
   React.useEffect(() => {
     if(data1?.comments.length === 0 && !loading1){
@@ -36,8 +38,8 @@ function MoviePage() {
   }, [data1])
   
   React.useEffect(() => {
-    fetchIndividualMovie(setMovieInfo, movieId);
-    fetchRecommendations(setRecommendations, movieId);
+    fetchIndividualMovie(setMovieInfo, movieId, tv);
+    fetchRecommendations(setRecommendations, movieId, tv);
     window.scrollTo(0, 0);
   }, [movieId]);
   
@@ -49,11 +51,10 @@ function MoviePage() {
   function handleCloseDialog() {
     setDialog(false);
   }
- 
   
-  const { backdrop_path, videos, cast, original_title, genres, runtime, poster_path, vote_average, overview, crew } = movieInfo;
-  const otherData = { original_title, genres, runtime, poster_path, vote_average, overview, crew};
-  const { comment, favorite_movies, watchlist_movies  } = data2?.comments_by_pk;
+  const { backdrop_path, videos, cast, original_title, genres, runtime, poster_path, vote_average, overview, crew, original_name, episode_run_time} = movieInfo;
+  const otherData = { original_title, genres, runtime, poster_path, vote_average, overview, crew, original_name, episode_run_time};
+  const { comment, favorite_movies, watchlist_movies } = data2?.comments_by_pk;
   
 
   return (

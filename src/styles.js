@@ -325,6 +325,8 @@ export const useSmallCardStyles = makeStyles((theme) => ({
     width: "150px",
     display: "flex",
     flexDirection: "column",
+    cursor:"pointer",
+    textDecoration: 'none',
   },
   title: {
     paddingTop: 8,

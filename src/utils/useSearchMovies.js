@@ -32,9 +32,9 @@ export function useSearchMovies(search, page) {
   return state;
 }
 
-export function fetchIndividualMovie(setMovieInfo, movieId) {
-  let BASE_URL = `https://api.themoviedb.org/3/movie/${movieId}?api_key=${key}&append_to_response=videos`;
-  let BASE_URL2 = `https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=${key}`
+export function fetchIndividualMovie(setMovieInfo, movieId, tv) {
+  let BASE_URL = `https://api.themoviedb.org/3/${tv ? 'tv' : 'movie'}/${movieId}?api_key=${key}&append_to_response=videos`;
+  let BASE_URL2 = `https://api.themoviedb.org/3/${tv ? 'tv' : 'movie'}/${movieId}/credits?api_key=${key}`
   
   
   const requestMovie = axios.get(BASE_URL);
