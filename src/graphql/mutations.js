@@ -88,12 +88,14 @@ export const ADD_TO_FAVORITES = gql`
     $userId: uuid!
     $movieId: String!
     $movieImage: String!
+    $movieType: String!
   ) {
     insert_favorite_movies(
       objects: {
         user_id: $userId
         movie_id: $movieId
         movie_image: $movieImage
+        movie_type: $movieType
       }
     ) {
       affected_rows
@@ -117,12 +119,14 @@ export const ADD_TO_WATCHLIST = gql`
     $userId: uuid!
     $movieId: String!
     $movieImage: String!
+    $movieType: String!
   ) {
     insert_watchlist_movies(
       objects: {
         user_id: $userId
         movie_id: $movieId
         movie_image: $movieImage
+        movie_type: $movieType
       }
     ) {
       affected_rows

@@ -16,7 +16,7 @@ import { UserContext } from "../../App";
 import { ADD_TO_FAVORITES, REMOVE_FROM_FAVORITES, ADD_TO_WATCHLIST, REMOVE_FROM_WATCHLIST} from "../../graphql/mutations";
 import { useParams } from "react-router-dom";
 
-function Movie({ movie, setDialog, favoriteMovies, watchlistMovies}) {
+function Movie({ movie, setDialog, favoriteMovies, watchlistMovies, isTv}) {
   const classes = useMovieStyles();
   const { movieId } = useParams();
   const {
@@ -75,7 +75,7 @@ function Movie({ movie, setDialog, favoriteMovies, watchlistMovies}) {
             title="Add this movie to watchlist"
           >
             <div>
-              <SaveButton watchlistMovies={watchlistMovies} movieId={movieId} movieImage={poster_path}/>
+              <SaveButton isTv={isTv} watchlistMovies={watchlistMovies} movieId={movieId} movieImage={poster_path}/>
             </div>
           </PurpleTooltip>
           <PurpleTooltip
@@ -84,7 +84,7 @@ function Movie({ movie, setDialog, favoriteMovies, watchlistMovies}) {
             title="Add this move to your favorite list"
           >
             <div>
-              <LikeButton favoriteMovies={favoriteMovies} movieId={movieId} movieImage={poster_path} />
+              <LikeButton isTv={isTv} favoriteMovies={favoriteMovies} movieId={movieId} movieImage={poster_path} />
             </div>
           </PurpleTooltip>
           <Button className={classes.trailer} onClick={() => setDialog(true)}>
@@ -110,7 +110,7 @@ function Movie({ movie, setDialog, favoriteMovies, watchlistMovies}) {
   );
 }
 
-function SaveButton({ watchlistMovies, movieId, movieImage}) {
+function SaveButton({ watchlistMovies, movieId, movieImage, isTv}) {
   const classes = useMovieStyles();
   const { currentUserId } = React.useContext(UserContext);
   const isAlreadySaved = watchlistMovies.some(
@@ -127,6 +127,7 @@ function SaveButton({ watchlistMovies, movieId, movieImage}) {
       movieId,
       userId: currentUserId,
       movieImage,
+      movieType: isTv ? 'tv' : 'movie',
     }
     addToWatchlist({ variables })
     setSaved(true);
@@ -148,7 +149,7 @@ function SaveButton({ watchlistMovies, movieId, movieImage}) {
   );
 }
 
-function LikeButton({ favoriteMovies, movieId, movieImage}) {
+function LikeButton({ favoriteMovies, movieId, movieImage, isTv}) {
   const classes = useMovieStyles();
   const { currentUserId } = React.useContext(UserContext);
   const isAlreadySaved = favoriteMovies.some(({ user_id }) => user_id === currentUserId);
@@ -163,6 +164,7 @@ function LikeButton({ favoriteMovies, movieId, movieImage}) {
       movieId,
       userId: currentUserId,
       movieImage,
+      movieType: isTv ? 'tv' : 'movie',
     }
     setLiked(true);
     addToFavorites({ variables })

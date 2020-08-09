@@ -86,7 +86,7 @@ function MoviePage() {
         </DialogContent>
       </Dialog>
       {/* About Movie */}
-      <Movie movie={otherData} setDialog={setDialog}  favoriteMovies={favorite_movies} watchlistMovies={watchlist_movies}/>
+      <Movie isTv={tv} movie={otherData} setDialog={setDialog}  favoriteMovies={favorite_movies} watchlistMovies={watchlist_movies}/>
 
       {/* Movie Cast */}
       <div className={classes.seriesCast}>

@@ -6,10 +6,12 @@ import { useHistory } from "react-router-dom";
 function GridPost({ card }) {
   const history = useHistory();
   const classes = useGridPostStyles();
-
   function handleChangeMovie() {
     history.push({
-      pathname: `/m/${card.movie_id}`
+      pathname: `/m/${card.movie_id}`,
+      state: {
+        tv: card.movie_type === 'tv' ? true : false,
+      },
     });
   }
 
@@ -28,7 +30,7 @@ function GridPost({ card }) {
           <Typography>{commentsCount}</Typography>
         </div>
       </div>
-      <img src={`https://image.tmdb.org/t/p/w154/${card.movie_image}`} alt="Post cover" className={classes.image} />
+      <img src={`https://image.tmdb.org/t/p/w185/${card.movie_image}`} alt="Post cover" className={classes.image} />
     </div>
   );
 }

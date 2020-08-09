@@ -71,6 +71,7 @@ export const GET_USER_PROFILE = gql`
         id
         movie_image
         movie_id
+        movie_type
         comment {
           comment_aggregate {
             aggregate {
@@ -88,6 +89,7 @@ export const GET_USER_PROFILE = gql`
         id
         movie_image
         movie_id
+        movie_type
         comment {
           comment_aggregate {
             aggregate {
