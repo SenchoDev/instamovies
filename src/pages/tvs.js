@@ -6,12 +6,10 @@ import SemiCard from "../components/Cards/SemiCard";
 import TertiarySkeleton from "../components/Cards/TertiarySkeleton";
 import { useParams } from "react-router-dom";
 import { useFetchList } from "../utils/useFetchList";
-import usePageBottom from "../utils/usePageBottom";
 
 function TvsPage() {
   const { list } = useParams();
   const { data, loading, error } = useFetchList(list, "tv");
-  const isPageBottom = usePageBottom();
 
   React.useEffect(() => {
     window.scrollTo(0, 0);

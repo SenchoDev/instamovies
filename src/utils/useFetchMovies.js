@@ -4,7 +4,7 @@ import { reducer, ACTIONS } from "../reducer";
 
 const key = process.env.REACT_APP_API;
 
-const cors = `https://cors-anywhere.herokuapp.com`;
+//const cors = `https://cors-anywhere.herokuapp.com`;
 const base = `https://api.themoviedb.org/3/`
 
 const BASE_URL1 = `${base}movie/popular?api_key=${key}&language=en-US&page=1`;

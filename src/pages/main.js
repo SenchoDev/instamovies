@@ -53,6 +53,7 @@ function MainPage() {
               width={760}
               height={500}
               style={{ marginLeft: "50px" }}
+              controls={true}
             />
           </div>
         </DialogContent>

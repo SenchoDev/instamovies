@@ -1,4 +1,3 @@
-import { format } from "date-fns";
 import { formatDistanceStrict } from "date-fns/esm";
 
 export function formatDate(d) {

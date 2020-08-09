@@ -1,6 +1,5 @@
 import React from "react";
 import { useMovieStyles } from "../../styles";
-import { getActorCard } from "../../data";
 import { Typography } from "@material-ui/core";
 
 import Slider from "react-slick";

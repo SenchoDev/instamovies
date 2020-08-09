@@ -4,7 +4,7 @@ import { reducer, ACTIONS } from "../reducer";
 
 const key = process.env.REACT_APP_API;
 
-export function useFetchList(list, type) {
+export function useFetchList(list, type, page) {
   const [state, dispatch] = useReducer(reducer, {
     data: {},
     loading: true,

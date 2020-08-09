@@ -1,7 +1,6 @@
 import React from "react";
 import { useMovieStyles } from "../../styles";
-import { Avatar, TextField, Button, Typography } from "@material-ui/core";
-import { defaultUser } from "../../data";
+import { Avatar, TextField, Button } from "@material-ui/core";
 import { UserContext } from "../../App";
 import { useMutation } from "@apollo/react-hooks";
 import { CREATE_COMMENT } from "../../graphql/mutations";

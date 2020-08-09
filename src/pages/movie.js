@@ -2,7 +2,7 @@ import React from "react";
 import { useMovieStyles } from "../styles";
 import Layout from "../components/shared/Layout";
 import { Typography, Dialog, DialogContent, Divider } from "@material-ui/core";
-import ReactPlayer from "react-player";
+import ReactPlayer from "react-player/youtube";
 
 import SliderA from "../components/shared/Slider";
 import Heading from "../components/shared/Heading";
@@ -81,6 +81,7 @@ function MoviePage() {
               width={760}
               height={500}
               style={{ marginLeft: "50px" }}
+              controls={true}
             />
           </div>
         </DialogContent>

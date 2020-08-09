@@ -29,7 +29,7 @@ import { AuthContext } from "../auth";
 import handleImageUpload from "../utils/hanldeImageUpload";
 
 function EditProfilePage({ history }) {
-  const { me, currentUserId } = React.useContext(UserContext);
+  const { currentUserId } = React.useContext(UserContext);
   const variables = { id: currentUserId };
   const { data, loading } = useQuery(GET_EDIT_USER_PROFILE, { variables });
   const classes = useEditProfilePageStyles();
