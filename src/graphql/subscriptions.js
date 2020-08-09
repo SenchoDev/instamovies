@@ -9,7 +9,19 @@ export const ME = gql`
       username
       profile_image
       last_checked
-      notifications(order_by: { created_at: desc }){
+      followers {
+        user {
+          id
+          user_id
+        }
+      }
+      following {
+        user {
+          id
+          user_id
+        }
+      }
+      notifications(order_by: { created_at: desc }) {
         id
         created_at
         user {
@@ -22,27 +34,25 @@ export const ME = gql`
   }
 `;
 
-
 export const GET_COMMENTS = gql`
   subscription getComments($movieId: String!) {
-  comments_by_pk(movie_id: $movieId) {
-    comment(order_by: {created_at: asc}) {
-      created_at
-      content
-      id
-      user {
-        profile_image
-        username
+    comments_by_pk(movie_id: $movieId) {
+      comment(order_by: { created_at: asc }) {
+        created_at
+        content
         id
+        user {
+          profile_image
+          username
+          id
+        }
+      }
+      favorite_movies {
+        user_id
+      }
+      watchlist_movies {
+        user_id
       }
     }
-    favorite_movies {
-      user_id
-    }
-    watchlist_movies{
-      user_id
-    }
   }
-}
-
 `;
