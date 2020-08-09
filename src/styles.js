@@ -277,6 +277,7 @@ export const useBigCardStyles = makeStyles((theme) => ({
 
 export const useSemiCardStyles = makeStyles((theme) => ({
   container: {
+    cursor: "pointer",
     position: "relative",
     width: "210px",
     maringright: "20px",

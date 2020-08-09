@@ -1,6 +1,5 @@
 import React from "react";
 import { useNotificationListStyles } from "../../styles";
-import { defaultNotifications } from "../../data";
 import { Grid, Avatar, Typography } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import FollowButton from "../shared/FollowButton";

@@ -57,8 +57,8 @@ export function fetchIndividualMovie(setMovieInfo, movieId, tv) {
 }
 
 
-export function fetchRecommendations(setRecommendations, movieId) {
-  let BASE_URL = `https://api.themoviedb.org/3/movie/${movieId}/recommendations?api_key=${key}&language=en-US&page=1`;
+export function fetchRecommendations(setRecommendations, movieId, tv) {
+  let BASE_URL = `https://api.themoviedb.org/3/${tv ? 'tv' : 'movie'}/${movieId}/recommendations?api_key=${key}&language=en-US&page=1`;
   
   let cancelToken1 = axios.CancelToken.source();
   axios.get(BASE_URL, {

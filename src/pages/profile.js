@@ -242,7 +242,6 @@ function UnfollowDialog({ onClose, user, onUnfollowUser }) {
 function PostCountSection({ user }) {
   const classes = useProfilePageStyles();
   const options = ["favorite_movies", "followers", "following"];
-  console.log(user)
 
   return (
     <React.Fragment>
