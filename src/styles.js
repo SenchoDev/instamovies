@@ -1054,7 +1054,7 @@ export const useNavbarStyles = makeStyles((theme) => ({
       marginRight: 22,
     },
   },
-  resultContainer: { width: 215 },
+  resultContainer: { width: 215, cursor: 'pointer' },
   resultWrapper: {
     display: "flex",
     alignItems: "center",
