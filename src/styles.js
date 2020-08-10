@@ -148,8 +148,8 @@ export const useMainPageStyles = makeStyles((theme) => ({
 
   movieAboutText: {
     padding: "4px 25px !important",
-    fontSize: '16px !important',
-    fontWeight: '500 !important',
+    fontSize: "16px !important",
+    fontWeight: "500 !important",
     [theme.breakpoints.down("xs")]: {
       padding: "4px 20px !important",
     },
@@ -210,22 +210,22 @@ export const useSliderStyles = makeStyles((theme) => ({
       display: "grid",
     },
   },
-  wrap:{
-    width: '1110px',
-    display: 'flex',
-    marginLeft: '20px',
-    marginTop: '30px',
+  wrap: {
+    width: "1110px",
+    display: "flex",
+    marginLeft: "20px",
+    marginTop: "30px",
   },
   slide: {
     padding: "10px 0px 10px 0px !important",
-    
+
     // border,
     borderTop: "none",
     "& .slick-slide > div": {
       background: "transparent",
       margin: "0px 8px !important",
       padding: "20px !important",
-      marginBottom: "-30px !important"
+      marginBottom: "-30px !important",
     },
     [theme.breakpoints.down("xs")]: {
       margin: "0px 0px !important",
@@ -243,35 +243,22 @@ export const useSliderStyles = makeStyles((theme) => ({
 export const useBigCardStyles = makeStyles((theme) => ({
   card: {
     marginTop: 20,
-    cursor: 'pointer'
+    cursor: "pointer",
   },
-  image:{
+  image: {
     width: 300,
     height: 170,
-    borderRadius: '10px',
+    borderRadius: "10px",
   },
   title: {
     paddingTop: 8,
     paddingLeft: 10,
-    objectFit: 'cover'
+    objectFit: "cover",
   },
   date: {
     paddingLeft: 10,
     color: "#00000080",
     marginTop: 2,
-  },
-  rating: {
-    position: "absolute",
-    background: "#0C7A29",
-    top: -25,
-    left: 44,
-    borderRadius: 25,
-    width: "62px",
-    height: "21px",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    color: "#fff",
   },
 }));
 
@@ -293,16 +280,25 @@ export const useSemiCardStyles = makeStyles((theme) => ({
     heigth: 312,
   },
   title: {
-    fontWeight: '500 !important',
-    fontSize: '18px !important',
-    marginLeft: '15px !important',
-    marginRight: '10px !important',
+    fontWeight: "500 !important",
+    fontSize: "18px !important",
+    marginLeft: "15px !important",
+    marginRight: "10px !important",
   },
   rating: {
     position: "absolute",
-    background: ({ vote_average }) => `${
-      vote_average >= 7.5 ? "#0C7A29" : vote_average >= 4 ? "#FFB008" : vote_average < 4 ? "#FF414E" : vote_average === 0 ? "#636363" : ''
-    }`,
+    background: ({ vote_average }) =>
+      `${
+        vote_average >= 7.5
+          ? "#0C7A29"
+          : vote_average >= 4
+          ? "#FFB008"
+          : vote_average < 4
+          ? "#FF414E"
+          : vote_average === 0
+          ? "#636363"
+          : ""
+      }`,
     top: 295,
     left: 22,
     borderRadius: 25,
@@ -326,8 +322,8 @@ export const useSmallCardStyles = makeStyles((theme) => ({
     width: "150px",
     display: "flex",
     flexDirection: "column",
-    cursor:"pointer",
-    textDecoration: 'none',
+    cursor: "pointer",
+    textDecoration: "none",
   },
   title: {
     paddingTop: 8,
@@ -338,16 +334,25 @@ export const useSmallCardStyles = makeStyles((theme) => ({
     color: "#00000080",
     marginTop: 2,
   },
-  smallImage:{
+  smallImage: {
     width: 150,
     height: 225,
-    borderRadius: '5px'
+    borderRadius: "5px",
   },
   rating: {
     position: "absolute",
-    background: ({ vote_average }) => `${
-      vote_average >= 7.5 ? "#0C7A29" : vote_average >= 4 ? "#FFB008" : vote_average < 4 ? "#FF414E" : vote_average === 0 ? "#636363" : ''
-    }`,
+    background: ({ vote_average }) =>
+      `${
+        vote_average >= 7.5
+          ? "#0C7A29"
+          : vote_average >= 4
+          ? "#FFB008"
+          : vote_average < 4
+          ? "#FF414E"
+          : vote_average === 0
+          ? "#636363"
+          : ""
+      }`,
     top: -25,
     left: 44,
     borderRadius: 25,
@@ -445,7 +450,7 @@ export const useMovieStyles = makeStyles((theme) => ({
       marginRight: 15,
     },
   },
-  noRecommendations:{
+  noRecommendations: {
     margin: theme.spacing(5),
   },
   rating: {
@@ -457,7 +462,18 @@ export const useMovieStyles = makeStyles((theme) => ({
     justifyContent: "center",
     fontSize: "15px",
     fontWeight: "500",
-
+    background: ({ vote_average }) =>
+      `${
+        vote_average >= 7.5
+          ? "#0C7A29"
+          : vote_average >= 4
+          ? "#FFB008"
+          : vote_average < 4
+          ? "#FF414E"
+          : vote_average === 0
+          ? "#636363"
+          : ""
+      }`,
     boxShadow: "0 0 5px rgba(var(--jb7,0,0,0),.0975)",
   },
   saveIcon: {
@@ -530,8 +546,8 @@ export const useMovieStyles = makeStyles((theme) => ({
   imageCard: {
     width: "100%",
     borderRadius: "10px 10px 0 0",
-    height: '175px',
-    objectFit: 'cover',
+    height: "175px",
+    objectFit: "cover",
   },
   realName: {
     fontSize: "14px",
@@ -562,7 +578,7 @@ export const useMovieStyles = makeStyles((theme) => ({
   commentsInfo: {
     display: "flex",
     flexDirection: "column",
-    width: '90%',
+    width: "90%",
   },
   commentsInfoHeader: {
     display: "flex",
@@ -644,24 +660,23 @@ export const useSearchStyles = makeStyles((theme) => ({
       border: "none !important",
     },
   },
-  returnText:{
-    width:'1110px',
-    height: '35vw',
+  returnText: {
+    width: "1110px",
+    height: "35vw",
     paddingBottom: "300px",
     display: "flex",
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginLeft: '-50px',
+    alignItems: "center",
+    justifyContent: "center",
+    marginLeft: "-50px",
   },
-  loading:{
-    width:'1110px',
-    height: '35vw',
+  loading: {
+    width: "1110px",
+    height: "35vw",
     display: "flex",
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
   },
   moviesWrapper: {
-    
     display: "grid",
     gridTemplateColumns: "repeat(auto-fill, 150px)",
     gridGap: 25,
@@ -683,9 +698,9 @@ export const useMainSkeletonStyles = makeStyles((theme) => ({
     position: "relative",
     borderRadius: "3px",
     marginLeft: "-1px",
-    marginRight: '60px',
+    marginRight: "60px",
     width: "150px !important",
-    marginBottom: '40px'
+    marginBottom: "40px",
   },
 
   mediaSkeleton: {
@@ -819,8 +834,8 @@ export const useMoviesStyles = makeStyles((theme) => ({
     justifyContent: "center !important",
   },
   heading: {
-    margin: '40px !important',
-    marginBottom: '60px !important',
+    margin: "40px !important",
+    marginBottom: "60px !important",
   },
 }));
 
@@ -988,7 +1003,7 @@ export const useNavbarStyles = makeStyles((theme) => ({
     fontSize: "20px !important",
     cursor: "pointer",
     paddingBottom: "5px !important",
-    color: '#000 !important'
+    color: "#000 !important",
   },
   navLink: {
     fontSize: "20px !important",
@@ -1054,7 +1069,7 @@ export const useNavbarStyles = makeStyles((theme) => ({
       marginRight: 22,
     },
   },
-  resultContainer: { width: 215, cursor: 'pointer' },
+  resultContainer: { width: 215, cursor: "pointer" },
   resultWrapper: {
     display: "flex",
     alignItems: "center",
@@ -1306,14 +1321,13 @@ export const useLayoutStyles = makeStyles((theme) => ({
   },
   image: {
     height: "500px",
-    width: '100%',
-    backgroundSize: 'cover'
+    width: "100%",
+    backgroundSize: "cover",
   },
   children: {
     width: "100%",
   },
 }));
-
 
 /* FollowButton component: /components/shared/FollowButton.js */
 export const useFollowButtonStyles = makeStyles({
@@ -1366,7 +1380,6 @@ export const useUserCardStyles = makeStyles({
 });
 
 /* Suggestions: /components/feed/FeedSideSuggestions.js */
-
 
 // OptionsDialog component: /components/shared/OptionsDialog.js
 export const useOptionsDialogStyles = makeStyles((theme) => ({
@@ -1433,65 +1446,65 @@ const form = {
   display: "grid",
 };
 
-export const useEditProfilePageStyles = makeStyles(theme => ({
+export const useEditProfilePageStyles = makeStyles((theme) => ({
   section: {
     display: "grid",
     gridAutoFlow: "column",
     [theme.breakpoints.down("sm")]: {
-      gridTemplateColumns: "minmax(48px, max-content) 0px auto"
+      gridTemplateColumns: "minmax(48px, max-content) 0px auto",
     },
     [theme.breakpoints.up("sm")]: {
-      gridTemplateColumns: "minmax(220px, max-content) auto"
+      gridTemplateColumns: "minmax(220px, max-content) auto",
     },
-    border: "1px solid #dbdbdb"
+    border: "1px solid #dbdbdb",
   },
   permanentDrawerPaper: {
     borderRight: "1px solid #dbdbdb !important",
     left: "unset !important",
     top: "unset !important",
-    position: "relative !important"
+    position: "relative !important",
   },
   permanentDrawerRoot: {
     height: "100% !important",
     "& div": {
-      zIndex: "unset !important"
-    }
+      zIndex: "unset !important",
+    },
   },
   temporaryDrawer: {
     "& div": {
-      width: "220px !important"
-    }
+      width: "220px !important",
+    },
   },
   listItemSelected: {
     borderLeft: "2px solid black",
     "& span": {
-      fontWeight: "600 !important"
-    }
+      fontWeight: "600 !important",
+    },
   },
   listItemButton: {
     paddingTop: "10px !important",
-    paddingBottom: "10px !important"
+    paddingBottom: "10px !important",
   },
   menuButton: {
     [theme.breakpoints.up("sm")]: {
-      display: "none !important"
+      display: "none !important",
     },
     marginLeft: "unset !important",
     "&:hover": {
-      background: "none !important"
-    }
+      background: "none !important",
+    },
   },
   container: {
     background: "#ffffff",
     display: "grid",
     justifyContent: "start",
-    padding: "30px !important"
+    padding: "30px !important",
   },
   sectionItem: {
     ...sectionItem,
     [theme.breakpoints.down("xs")]: {
-      display: "block"
-    }
+      display: "block",
+    },
   },
   form,
   typography,
@@ -1499,28 +1512,28 @@ export const useEditProfilePageStyles = makeStyles(theme => ({
   sectionItemWrapper: {
     ...sectionItem,
     [theme.breakpoints.down("xs")]: {
-      display: "unset"
-    }
+      display: "unset",
+    },
   },
   textFieldInput: {
-    padding: "10px !important"
+    padding: "10px !important",
   },
   textField: {
-    alignSelf: "center"
+    alignSelf: "center",
   },
   pictureSectionItem: {
     ...sectionItem,
     placeItems: "center end",
     [theme.breakpoints.down("xs")]: {
       gridGap: 20,
-      gridTemplateColumns: "minmax(auto, 38px) minmax(auto, 340px)"
-    }
+      gridTemplateColumns: "minmax(auto, 38px) minmax(auto, 340px)",
+    },
   },
   typographyChangePic: {
     "&:hover": {
-      cursor: "pointer"
-    }
-  }
+      cursor: "pointer",
+    },
+  },
 }));
 
 export const useNotificationListStyles = makeStyles((theme) => ({

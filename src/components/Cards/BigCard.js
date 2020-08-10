@@ -5,16 +5,12 @@ import { Typography } from "@material-ui/core";
 function BigCard({ card, setDialog, setTrailerVideo }) {
   const classes = useBigCardStyles();
 
-  const {
-    original_title,
-    backdrop_path,
-    videos
-  } = card;
-
   function handleTrailerSettings(){
     setDialog(true)
     setTrailerVideo(`https://www.youtube.com/watch?v=${videos.results[0].key}`);
   }
+
+  const { original_title, backdrop_path, videos} = card;
 
   return (
     <div className={classes.card} onClick={handleTrailerSettings}>

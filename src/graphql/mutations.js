@@ -113,7 +113,6 @@ export const REMOVE_FROM_FAVORITES = gql`
   }
 `;
 
-
 export const ADD_TO_WATCHLIST = gql`
   mutation addToWatchlist(
     $userId: uuid!
@@ -168,10 +167,7 @@ export const FOLLOW_USER = gql`
       affected_rows
     }
     insert_notifications(
-      objects: {
-        user_id: $currentUserId
-        profile_id: $userIdToFollow
-      }
+      objects: { user_id: $currentUserId, profile_id: $userIdToFollow }
     ) {
       affected_rows
     }

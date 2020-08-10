@@ -16,26 +16,24 @@ function Layout({
   const classes = useLayoutStyles();
 
   return (
-    
-      <section className={classes.section}>
-        <SEO title={title} />
-        <Navbar minimalNavbar={minimalNavbar} />
-        <main className={classes.main} style={{ marginTop }}>
-          {movieLarge && (
-            <div
-              style={{
-                background: `linear-gradient(to right bottom, #AA2CA8BF, #AA2CA8AF), url(https://image.tmdb.org/t/p/original/${image}) no-repeat center center fixed`,
-              }}
-              className={classes.image}
-            />
-          )}
-          <section className={classes.childrenWrapper}>
-            <div className={classes.children}>{children}</div>
-          </section>
-          {!hideFooter && <Footer /> }
-        </main>
-      </section>
-    
+    <section className={classes.section}>
+      <SEO title={title} />
+      <Navbar minimalNavbar={minimalNavbar} />
+      <main className={classes.main} style={{ marginTop }}>
+        {movieLarge && (
+          <div
+            style={{
+              background: `linear-gradient(to right bottom, #AA2CA8BF, #AA2CA8AF), url(https://image.tmdb.org/t/p/original/${image}) no-repeat center center fixed`,
+            }}
+            className={classes.image}
+          />
+        )}
+        <section className={classes.childrenWrapper}>
+          <div className={classes.children}>{children}</div>
+        </section>
+        {!hideFooter && <Footer />}
+      </main>
+    </section>
   );
 }
 

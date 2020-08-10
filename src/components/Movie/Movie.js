@@ -17,8 +17,13 @@ import { ADD_TO_FAVORITES, REMOVE_FROM_FAVORITES, ADD_TO_WATCHLIST, REMOVE_FROM_
 import { useParams } from "react-router-dom";
 
 function Movie({ movie, setDialog, favoriteMovies, watchlistMovies, isTv}) {
-  const classes = useMovieStyles();
   const { movieId } = useParams();
+
+  function listElementsWithComma(array) {
+    return array.map(
+      (el, index) => `${el.name}${index === array.length - 1 ? "" : ","} `
+    );
+  }
   const {
     original_title,
     original_name,
@@ -31,11 +36,7 @@ function Movie({ movie, setDialog, favoriteMovies, watchlistMovies, isTv}) {
     crew,
   } = movie;
 
-  function listElementsWithComma(array) {
-    return array.map(
-      (el, index) => `${el.name}${index === array.length - 1 ? "" : ","} `
-    );
-  }
+  const classes = useMovieStyles({ vote_average });
 
   return (
     <section className={classes.about}>
@@ -54,21 +55,7 @@ function Movie({ movie, setDialog, favoriteMovies, watchlistMovies, isTv}) {
           {genres && listElementsWithComma(genres)} · {`${episode_run_time || runtime || '0'}m`}
         </Typography>
         <div className={classes.buttons}>
-          <p
-            className={classes.rating}
-            style={{
-              background:
-                vote_average >= 7.5
-                  ? "#0C7A29"
-                  : vote_average >= 4
-                  ? "#FFB008"
-                  : vote_average > 0
-                  ? "#FF414E"
-                  : "#636363"
-            }}
-          >
-            {vote_average}
-          </p>
+          <p className={classes.rating}>{vote_average}</p>
           <PurpleTooltip
             arrow
             TransitionComponent={Zoom}

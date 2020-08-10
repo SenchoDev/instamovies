@@ -30,11 +30,13 @@ function MovieComments({ comments, loading }) {
           </Link>
           <div className={classes.commentsInfo}>
             <div className={classes.commentsInfoHeader}>
-              <Typography variant="body2" className={classes.commentName}>
-                {comment.user.username}
-              </Typography>
+              <Link to={`/${comment.user.username}`}>
+                <Typography variant="body2" className={classes.commentName}>
+                  {comment.user.username}
+                </Typography>
+              </Link>
               <Typography variant="body1" className={classes.commentDate}>
-                {formatDateToNowShort(comment.created_at)} 
+                {formatDateToNowShort(comment.created_at)}
               </Typography>
             </div>
             <Typography variant="body2" className={classes.commentContent}>
