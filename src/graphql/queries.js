@@ -67,7 +67,7 @@ export const GET_USER_PROFILE = gql`
           count
         }
       }
-      favorite_movies {
+      favorite_movies(order_by: { created_at: desc }) {
         id
         movie_image
         movie_id
@@ -85,7 +85,7 @@ export const GET_USER_PROFILE = gql`
           }
         }
       }
-      watchlist_movies {
+      watchlist_movies(order_by: { created_at: desc }) {
         id
         movie_image
         movie_id
