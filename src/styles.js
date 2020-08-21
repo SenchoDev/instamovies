@@ -1946,6 +1946,7 @@ export const useGridPostStyles = makeStyles((theme) => ({
   image: {
     width: "100%",
     userSelect: "none",
+    borderRadius: 10,
   },
   gridPostContainer: {
     position: "relative",

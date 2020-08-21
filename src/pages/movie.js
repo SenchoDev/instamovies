@@ -41,7 +41,7 @@ function MoviePage() {
     fetchIndividualMovie(setMovieInfo, movieId, tv);
     fetchRecommendations(setRecommendations, movieId, tv);
     window.scrollTo(0, 0);
-  }, [movieId]);
+  }, [movieId, tv]);
   
   if(loading2 || (data2?.comments_by_pk === null || data2 === undefined)) {
     return <LoadingScreen/>
